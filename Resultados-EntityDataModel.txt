@@ -1,0 +1,15 @@
+﻿Archivo de modelo generado: ticeModelo.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.5388649.
+La generación del modelo tardó 00:00:01.9463627.
+Archivo de modelo generado: ticeModelo.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:01.5181298.
+La generación del modelo tardó 00:00:03.4333292.
+Archivo de modelo generado: ticeModelo.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.6493663.
+La generación del modelo tardó 00:00:00.5505512.
+Archivo de modelo generado: ticeModelo.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.6862533.
+La generación del modelo tardó 00:00:01.4799304.
+Archivo de modelo generado: ticeModelo.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.7375613.
+La generación del modelo tardó 00:00:00.6800699.

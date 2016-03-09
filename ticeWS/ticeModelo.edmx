@@ -1,0 +1,1197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ticeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AsignacionCurso">
+          <Key>
+            <PropertyRef Name="codigoAsignacionCurso" />
+          </Key>
+          <Property Name="codigoAsignacionCurso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigoCurso" Type="int" />
+          <Property Name="codigoDocente" Type="int" />
+          <Property Name="codigoModalidad" Type="int" />
+          <Property Name="codigoPeriodo" Type="int" />
+          <Property Name="asignado" Type="varchar" MaxLength="200" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fechaCreacion" Type="datetime" />
+          <Property Name="fechaModificacion" Type="datetime" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="50" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Documento">
+          <Key>
+            <PropertyRef Name="codigoDocumento" />
+          </Key>
+          <Property Name="codigoDocumento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigoCurso" Type="int" />
+          <Property Name="codigoActividad" Type="int" />
+          <Property Name="codigoTarea" Type="int" />
+          <Property Name="titulo" Type="varchar" MaxLength="200" />
+          <Property Name="autor" Type="varchar" MaxLength="50" />
+          <Property Name="codigoTipoDocumento" Type="int" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="rutaDocumento" Type="varchar" MaxLength="500" />
+          <Property Name="estado" Type="char" MaxLength="1" />
+          <Property Name="fechaCreacion" Type="datetime" />
+          <Property Name="fechaModificacion" Type="datetime" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="50" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Periodo">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="fechaCreacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Tarea">
+          <Key>
+            <PropertyRef Name="codigoTarea" />
+          </Key>
+          <Property Name="codigoTarea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="codigoCurso" Type="int" />
+          <Property Name="codigoActividad" Type="int" />
+          <Property Name="titulo" Type="varchar" MaxLength="200" />
+          <Property Name="codigoPrioridad" Type="int" />
+          <Property Name="estado" Type="varchar" MaxLength="50" />
+          <Property Name="porcentajeCompletado" Type="int" />
+          <Property Name="codigoRecurso" Type="int" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="fechaInicio" Type="datetime" />
+          <Property Name="fechaFin" Type="datetime" />
+          <Property Name="fechaCreacion" Type="datetime" />
+          <Property Name="fechaModificacion" Type="datetime" />
+          <Property Name="usuarioCreacion" Type="varchar" MaxLength="50" />
+          <Property Name="usuarioModificacion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="SP_ACTIVIDAD_CREATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoCurso" Type="int" Mode="In" />
+          <Parameter Name="codigoModalidad" Type="int" Mode="In" />
+          <Parameter Name="codigoPeriodo" Type="int" Mode="In" />
+          <Parameter Name="codigoTipoCurso" Type="int" Mode="In" />
+          <Parameter Name="titulo" Type="varchar" Mode="In" />
+          <Parameter Name="fechaInicio" Type="datetime" Mode="In" />
+          <Parameter Name="fechaFin" Type="datetime" Mode="In" />
+          <Parameter Name="codigoSesion" Type="int" Mode="In" />
+          <Parameter Name="codigoEstado" Type="int" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="usuarioCreacion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_ACTIVIDAD_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoActividad" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_ACTIVIDAD_RETRIEVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoActividad" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_ACTIVIDAD_RETRIEVE_BY_CURSO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="periodo" Type="nvarchar" Mode="In" />
+          <Parameter Name="estado" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_ACTIVIDAD_RETRIEVE_BY_CURSO2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoCurso" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_ACTIVIDAD_RETRIEVE_BY_CURSO3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idperiodo" Type="int" Mode="In" />
+          <Parameter Name="estado" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_ACTIVIDAD_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoActividad" Type="int" Mode="In" />
+          <Parameter Name="codigoCurso" Type="int" Mode="In" />
+          <Parameter Name="codigoModalidad" Type="int" Mode="In" />
+          <Parameter Name="codigoPeriodo" Type="int" Mode="In" />
+          <Parameter Name="codigoTipoCurso" Type="int" Mode="In" />
+          <Parameter Name="titulo" Type="varchar" Mode="In" />
+          <Parameter Name="fechaInicio" Type="datetime" Mode="In" />
+          <Parameter Name="fechaFin" Type="datetime" Mode="In" />
+          <Parameter Name="codigoSesion" Type="int" Mode="In" />
+          <Parameter Name="codigoEstado" Type="int" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="usuarioModificacion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_CAPACITACION_CREATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="certificado" Type="bit" Mode="In" />
+          <Parameter Name="codigoPerido" Type="int" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="correoContacto" Type="varchar" Mode="In" />
+          <Parameter Name="enviarNotificacion" Type="bit" Mode="In" />
+          <Parameter Name="periodicidadEnvio" Type="int" Mode="In" />
+          <Parameter Name="fechaInicio" Type="datetime" Mode="In" />
+          <Parameter Name="capacitacionActiva" Type="bit" Mode="In" />
+          <Parameter Name="codigoTaller" Type="int" Mode="In" />
+          <Parameter Name="fechaCreacion" Type="datetime" Mode="In" />
+          <Parameter Name="fechaModificacióm" Type="datetime" Mode="In" />
+          <Parameter Name="usuarioCreacion" Type="varchar" Mode="In" />
+          <Parameter Name="usuarioModificacion" Type="varchar" Mode="In" />
+          <Parameter Name="lugar" Type="varchar" Mode="In" />
+          <Parameter Name="fechaInicioEnvio" Type="datetime" Mode="In" />
+          <Parameter Name="fechaCapacitacion" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="SP_CAPACITACION_RETRIEVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoCapacitacion" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_CAPACITACION_RETRIEVE_BY_FILTER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoTaller" Type="int" Mode="In" />
+          <Parameter Name="codigoPeriodo" Type="int" Mode="In" />
+          <Parameter Name="nomCapacitacion" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_CAPACITACION_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoCapacitacion" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="certificado" Type="bit" Mode="In" />
+          <Parameter Name="codigoPerido" Type="int" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="correoContacto" Type="varchar" Mode="In" />
+          <Parameter Name="enviarNotificacion" Type="bit" Mode="In" />
+          <Parameter Name="periodicidadEnvio" Type="int" Mode="In" />
+          <Parameter Name="fechaInicio" Type="datetime" Mode="In" />
+          <Parameter Name="capacitacionActiva" Type="bit" Mode="In" />
+          <Parameter Name="codigoTaller" Type="int" Mode="In" />
+          <Parameter Name="fechaCreacion" Type="datetime" Mode="In" />
+          <Parameter Name="fechaModificacióm" Type="datetime" Mode="In" />
+          <Parameter Name="usuarioCreacion" Type="varchar" Mode="In" />
+          <Parameter Name="usuarioModificacion" Type="varchar" Mode="In" />
+          <Parameter Name="lugar" Type="varchar" Mode="In" />
+          <Parameter Name="fechaInicioEnvio" Type="datetime" Mode="In" />
+          <Parameter Name="fechaCapacitacion" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="SP_CURSO_RETRIEVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoCurso" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_CURSO_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoCurso" Type="int" Mode="In" />
+          <Parameter Name="nombreCurso" Type="varchar" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+          <Parameter Name="observaciones" Type="varchar" Mode="In" />
+          <Parameter Name="usuarioModificacion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_DOCENTE_RETRIEVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_DOCUMENTO_CREATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoCurso" Type="int" Mode="In" />
+          <Parameter Name="codigoActividad" Type="int" Mode="In" />
+          <Parameter Name="codigoTarea" Type="int" Mode="In" />
+          <Parameter Name="titulo" Type="varchar" Mode="In" />
+          <Parameter Name="autor" Type="varchar" Mode="In" />
+          <Parameter Name="codigoTipoDocumento" Type="int" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="rutaDocumento" Type="varchar" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+          <Parameter Name="usuarioCreacion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_DOCUMENTO_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoDocumento" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_DOCUMENTO_RETRIEVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoDocumento" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_DOCUMENTO_RETRIEVE_BY_TAREA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoTarea" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_DOCUMENTO_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoDocumento" Type="int" Mode="In" />
+          <Parameter Name="codigoCurso" Type="int" Mode="In" />
+          <Parameter Name="codigoActividad" Type="int" Mode="In" />
+          <Parameter Name="codigoTarea" Type="int" Mode="In" />
+          <Parameter Name="titulo" Type="varchar" Mode="In" />
+          <Parameter Name="autor" Type="varchar" Mode="In" />
+          <Parameter Name="codigoTipoDocumento" Type="int" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="rutaDocumento" Type="varchar" Mode="In" />
+          <Parameter Name="estado" Type="char" Mode="In" />
+          <Parameter Name="usuarioModificacion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_MATERIAL_CAPACITACION_CREATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoCapacitacion" Type="int" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="rutaDocumento" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_MATERIAL_CAPACITACION_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoMaterial" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_MATERIAL_CAPACITACION_RETRIEVE_BY_CAPACITACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoCapacitacion" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_MATERIAL_RETRIEVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoTaller" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_PARTICIPANTES_CAPACITACION_CREATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoDocente" Type="int" Mode="In" />
+          <Parameter Name="codigoCapacitacion" Type="int" Mode="In" />
+          <Parameter Name="nombreCompleto" Type="varchar" Mode="In" />
+          <Parameter Name="enviarconvocatoria" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="SP_PARTICIPANTES_CAPACITACION_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoCapacitacion" Type="int" Mode="In" />
+          <Parameter Name="codigoDocente" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_PARTICIPANTES_CAPACITACION_RETRIEVE_BY_CAPACITACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoCapacitacion" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_PERIODO_RETRIEVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_TALLER_RETRIEVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_TALLER_RETRIEVE_BY_TALLER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoTaller" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_TAREA_CREATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoCurso" Type="int" Mode="In" />
+          <Parameter Name="codigoActividad" Type="int" Mode="In" />
+          <Parameter Name="titulo" Type="varchar" Mode="In" />
+          <Parameter Name="codigoPrioridad" Type="int" Mode="In" />
+          <Parameter Name="estado" Type="varchar" Mode="In" />
+          <Parameter Name="porcentajeCompletado" Type="int" Mode="In" />
+          <Parameter Name="codigoRecurso" Type="int" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="fechaInicio" Type="datetime" Mode="In" />
+          <Parameter Name="fechaFin" Type="datetime" Mode="In" />
+          <Parameter Name="usuarioCreacion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_TAREA_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoTarea" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_TAREA_RETRIEVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoTarea" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_TAREA_RETRIEVE_BY_ACTIVIDAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoActividad" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_TAREA_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoTarea" Type="int" Mode="In" />
+          <Parameter Name="codigoCurso" Type="int" Mode="In" />
+          <Parameter Name="codigoActividad" Type="int" Mode="In" />
+          <Parameter Name="titulo" Type="varchar" Mode="In" />
+          <Parameter Name="codigoPrioridad" Type="int" Mode="In" />
+          <Parameter Name="estado" Type="varchar" Mode="In" />
+          <Parameter Name="porcentajeCompletado" Type="int" Mode="In" />
+          <Parameter Name="codigoRecurso" Type="int" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+          <Parameter Name="fechaInicio" Type="datetime" Mode="In" />
+          <Parameter Name="fechaFin" Type="datetime" Mode="In" />
+          <Parameter Name="usuarioModificacion" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ticeModelStoreContainer">
+          <EntitySet Name="AsignacionCurso" EntityType="Self.AsignacionCurso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Documento" EntityType="Self.Documento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Periodo" EntityType="Self.Periodo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tarea" EntityType="Self.Tarea" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ticeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AsignacionCurso">
+          <Key>
+            <PropertyRef Name="codigoAsignacionCurso" />
+          </Key>
+          <Property Name="codigoAsignacionCurso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigoCurso" Type="Int32" />
+          <Property Name="codigoDocente" Type="Int32" />
+          <Property Name="codigoModalidad" Type="Int32" />
+          <Property Name="codigoPeriodo" Type="Int32" />
+          <Property Name="asignado" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="ticeEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AsignacionCurso" EntityType="Self.AsignacionCurso" />
+          <FunctionImport Name="SP_ACTIVIDAD_RETRIEVE_BY_CURSO" ReturnType="Collection(ticeModel.SP_ACTIVIDAD_RETRIEVE_BY_CURSO_Result)">
+            <Parameter Name="periodo" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ACTIVIDAD_CREATE">
+            <Parameter Name="codigoCurso" Mode="In" Type="Int32" />
+            <Parameter Name="codigoModalidad" Mode="In" Type="Int32" />
+            <Parameter Name="codigoPeriodo" Mode="In" Type="Int32" />
+            <Parameter Name="codigoTipoCurso" Mode="In" Type="Int32" />
+            <Parameter Name="titulo" Mode="In" Type="String" />
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
+            <Parameter Name="codigoSesion" Mode="In" Type="Int32" />
+            <Parameter Name="codigoEstado" Mode="In" Type="Int32" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="usuarioCreacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ACTIVIDAD_DELETE">
+          <Parameter Name="codigoActividad" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ACTIVIDAD_UPDATE">
+            <Parameter Name="codigoActividad" Mode="In" Type="Int32" />
+            <Parameter Name="codigoCurso" Mode="In" Type="Int32" />
+            <Parameter Name="codigoModalidad" Mode="In" Type="Int32" />
+            <Parameter Name="codigoPeriodo" Mode="In" Type="Int32" />
+            <Parameter Name="codigoTipoCurso" Mode="In" Type="Int32" />
+            <Parameter Name="titulo" Mode="In" Type="String" />
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
+            <Parameter Name="codigoSesion" Mode="In" Type="Int32" />
+            <Parameter Name="codigoEstado" Mode="In" Type="Int32" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="usuarioModificacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Tarea" EntityType="ticeModel.Tarea" />
+          <FunctionImport Name="SP_TAREA_CREATE">
+            <Parameter Name="codigoCurso" Mode="In" Type="Int32" />
+            <Parameter Name="codigoActividad" Mode="In" Type="Int32" />
+            <Parameter Name="titulo" Mode="In" Type="String" />
+            <Parameter Name="codigoPrioridad" Mode="In" Type="Int32" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+            <Parameter Name="porcentajeCompletado" Mode="In" Type="Int32" />
+            <Parameter Name="codigoRecurso" Mode="In" Type="Int32" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
+            <Parameter Name="usuarioCreacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_TAREA_DELETE">
+          <Parameter Name="codigoTarea" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_TAREA_RETRIEVE_BY_ACTIVIDAD" ReturnType="Collection(ticeModel.SP_TAREA_RETRIEVE_BY_ACTIVIDAD_Result)">
+          <Parameter Name="codigoActividad" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_TAREA_UPDATE">
+            <Parameter Name="codigoTarea" Mode="In" Type="Int32" />
+            <Parameter Name="codigoCurso" Mode="In" Type="Int32" />
+            <Parameter Name="codigoActividad" Mode="In" Type="Int32" />
+            <Parameter Name="titulo" Mode="In" Type="String" />
+            <Parameter Name="codigoPrioridad" Mode="In" Type="Int32" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+            <Parameter Name="porcentajeCompletado" Mode="In" Type="Int32" />
+            <Parameter Name="codigoRecurso" Mode="In" Type="Int32" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaFin" Mode="In" Type="DateTime" />
+            <Parameter Name="usuarioModificacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Documento" EntityType="ticeModel.Documento" />
+          <FunctionImport Name="SP_DOCUMENTO_RETRIEVE_BY_TAREA" ReturnType="Collection(ticeModel.SP_DOCUMENTO_RETRIEVE_BY_TAREA_Result)">
+          <Parameter Name="codigoTarea" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CURSO_RETRIEVE" ReturnType="Collection(ticeModel.SP_CURSO_RETRIEVE_Result)">
+          <Parameter Name="codigoCurso" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_DOCUMENTO_CREATE">
+            <Parameter Name="codigoCurso" Mode="In" Type="Int32" />
+            <Parameter Name="codigoActividad" Mode="In" Type="Int32" />
+            <Parameter Name="codigoTarea" Mode="In" Type="Int32" />
+            <Parameter Name="titulo" Mode="In" Type="String" />
+            <Parameter Name="autor" Mode="In" Type="String" />
+            <Parameter Name="codigoTipoDocumento" Mode="In" Type="Int32" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="rutaDocumento" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+            <Parameter Name="usuarioCreacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ACTIVIDAD_RETRIEVE_BY_CURSO2" ReturnType="Collection(ticeModel.SP_ACTIVIDAD_RETRIEVE_BY_CURSO2_Result)">
+          <Parameter Name="codigoCurso" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ACTIVIDAD_RETRIEVE" ReturnType="Collection(ticeModel.SP_ACTIVIDAD_RETRIEVE_Result)">
+          <Parameter Name="codigoActividad" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_TAREA_RETRIEVE" ReturnType="Collection(ticeModel.SP_TAREA_RETRIEVE_Result)">
+          <Parameter Name="codigoTarea" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_DOCUMENTO_RETRIEVE" ReturnType="Collection(ticeModel.SP_DOCUMENTO_RETRIEVE_Result)">
+          <Parameter Name="codigoDocumento" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_DOCUMENTO_DELETE">
+          <Parameter Name="codigoDocumento" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_DOCUMENTO_UPDATE">
+            <Parameter Name="codigoDocumento" Mode="In" Type="Int32" />
+            <Parameter Name="codigoCurso" Mode="In" Type="Int32" />
+            <Parameter Name="codigoActividad" Mode="In" Type="Int32" />
+            <Parameter Name="codigoTarea" Mode="In" Type="Int32" />
+            <Parameter Name="titulo" Mode="In" Type="String" />
+            <Parameter Name="autor" Mode="In" Type="String" />
+            <Parameter Name="codigoTipoDocumento" Mode="In" Type="Int32" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="rutaDocumento" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+            <Parameter Name="usuarioModificacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CURSO_UPDATE">
+            <Parameter Name="codigoCurso" Mode="In" Type="Int32" />
+            <Parameter Name="nombreCurso" Mode="In" Type="String" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+            <Parameter Name="observaciones" Mode="In" Type="String" />
+            <Parameter Name="usuarioModificacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CAPACITACION_RETRIEVE_BY_FILTER" ReturnType="Collection(ticeModel.SP_CAPACITACION_RETRIEVE_BY_FILTER_Result)">
+            <Parameter Name="codigoTaller" Mode="In" Type="Int32" />
+            <Parameter Name="codigoPeriodo" Mode="In" Type="Int32" />
+            <Parameter Name="nomCapacitacion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CAPACITACION_CREATE">
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="certificado" Mode="In" Type="Boolean" />
+            <Parameter Name="codigoPerido" Mode="In" Type="Int32" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="correoContacto" Mode="In" Type="String" />
+            <Parameter Name="enviarNotificacion" Mode="In" Type="Boolean" />
+            <Parameter Name="periodicidadEnvio" Mode="In" Type="Int32" />
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="capacitacionActiva" Mode="In" Type="Boolean" />
+            <Parameter Name="codigoTaller" Mode="In" Type="Int32" />
+            <Parameter Name="fechaCreacion" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaModificacióm" Mode="In" Type="DateTime" />
+            <Parameter Name="usuarioCreacion" Mode="In" Type="String" />
+            <Parameter Name="usuarioModificacion" Mode="In" Type="String" />
+            <Parameter Name="lugar" Mode="In" Type="String" />
+            <Parameter Name="fechaInicioEnvio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaCapacitacion" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SP_MATERIAL_CAPACITACION_CREATE">
+            <Parameter Name="codigoCapacitacion" Mode="In" Type="Int32" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="rutaDocumento" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_PARTICIPANTES_CAPACITACION_CREATE">
+            <Parameter Name="codigoDocente" Mode="In" Type="Int32" />
+            <Parameter Name="codigoCapacitacion" Mode="In" Type="Int32" />
+            <Parameter Name="nombreCompleto" Mode="In" Type="String" />
+            <Parameter Name="enviarconvocatoria" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="SP_TALLER_RETRIEVE" ReturnType="Collection(ticeModel.SP_TALLER_RETRIEVE_Result)" />
+          <FunctionImport Name="SP_MATERIAL_CAPACITACION_RETRIEVE_BY_CAPACITACION" ReturnType="Collection(ticeModel.SP_MATERIAL_CAPACITACION_RETRIEVE_BY_CAPACITACION_Result)">
+          <Parameter Name="codigoCapacitacion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_MATERIAL_RETRIEVE" ReturnType="Collection(ticeModel.SP_MATERIAL_RETRIEVE_Result)">
+          <Parameter Name="codigoTaller" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_TALLER_RETRIEVE_BY_TALLER" ReturnType="Collection(ticeModel.SP_TALLER_RETRIEVE_BY_TALLER_Result)">
+          <Parameter Name="codigoTaller" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CAPACITACION_RETRIEVE" ReturnType="Collection(ticeModel.SP_CAPACITACION_RETRIEVE_Result)" >
+          <Parameter Name="codigoCapacitacion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_PARTICIPANTES_CAPACITACION_RETRIEVE_BY_CAPACITACION" ReturnType="Collection(ticeModel.SP_PARTICIPANTES_CAPACITACION_RETRIEVE_BY_CAPACITACION_Result)">
+          <Parameter Name="codigoCapacitacion" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_DOCENTE_RETRIEVE" ReturnType="Collection(ticeModel.SP_DOCENTE_RETRIEVE_Result)" />
+          <FunctionImport Name="SP_MATERIAL_CAPACITACION_DELETE">
+          <Parameter Name="codigoMaterial" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_PARTICIPANTES_CAPACITACION_DELETE">
+            <Parameter Name="codigoCapacitacion" Mode="In" Type="Int32" />
+            <Parameter Name="codigoDocente" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CAPACITACION_UPDATE">
+            <Parameter Name="codigoCapacitacion" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="certificado" Mode="In" Type="Boolean" />
+            <Parameter Name="codigoPerido" Mode="In" Type="Int32" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+            <Parameter Name="correoContacto" Mode="In" Type="String" />
+            <Parameter Name="enviarNotificacion" Mode="In" Type="Boolean" />
+            <Parameter Name="periodicidadEnvio" Mode="In" Type="Int32" />
+            <Parameter Name="fechaInicio" Mode="In" Type="DateTime" />
+            <Parameter Name="capacitacionActiva" Mode="In" Type="Boolean" />
+            <Parameter Name="codigoTaller" Mode="In" Type="Int32" />
+            <Parameter Name="fechaCreacion" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaModificacióm" Mode="In" Type="DateTime" />
+            <Parameter Name="usuarioCreacion" Mode="In" Type="String" />
+            <Parameter Name="usuarioModificacion" Mode="In" Type="String" />
+            <Parameter Name="lugar" Mode="In" Type="String" />
+            <Parameter Name="fechaInicioEnvio" Mode="In" Type="DateTime" />
+            <Parameter Name="fechaCapacitacion" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <EntitySet Name="Periodo" EntityType="ticeModel.Periodo" />
+          <FunctionImport Name="SP_ACTIVIDAD_RETRIEVE_BY_CURSO3" ReturnType="Collection(ticeModel.SP_ACTIVIDAD_RETRIEVE_BY_CURSO3_Result)">
+            <Parameter Name="idperiodo" Mode="In" Type="Int32" />
+            <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_PERIODO_RETRIEVE" ReturnType="Collection(ticeModel.SP_PERIODO_RETRIEVE_Result)">
+            </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Tarea">
+          <Key>
+            <PropertyRef Name="codigoTarea" />
+          </Key>
+          <Property Name="codigoTarea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigoCurso" Type="Int32" />
+          <Property Name="codigoActividad" Type="Int32" />
+          <Property Name="titulo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="codigoPrioridad" Type="Int32" />
+          <Property Name="estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="porcentajeCompletado" Type="Int32" />
+          <Property Name="codigoRecurso" Type="Int32" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="fechaInicio" Type="DateTime" Precision="3" />
+          <Property Name="fechaFin" Type="DateTime" Precision="3" />
+          <Property Name="fechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Documento">
+          <Key>
+            <PropertyRef Name="codigoDocumento" />
+          </Key>
+          <Property Name="codigoDocumento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codigoCurso" Type="Int32" />
+          <Property Name="codigoActividad" Type="Int32" />
+          <Property Name="codigoTarea" Type="Int32" />
+          <Property Name="titulo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="autor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="codigoTipoDocumento" Type="Int32" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="rutaDocumento" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="SP_CURSO_RETRIEVE_Result">
+          <Property Type="Int32" Name="Codigo" Nullable="false" />
+          <Property Type="String" Name="Curso" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Periodo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Modalidad" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Docente" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="DescEstado" Nullable="false" MaxLength="8" />
+        </ComplexType>
+        <ComplexType Name="SP_ACTIVIDAD_RETRIEVE_BY_CURSO_Result">
+          <Property Type="Int32" Name="Codigo" Nullable="false" />
+          <Property Type="String" Name="Curso" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Fecha" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="Periodo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Modalidad" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Docente" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="DescEstado" Nullable="false" MaxLength="8" />
+        </ComplexType>
+        <ComplexType Name="SP_ACTIVIDAD_RETRIEVE_BY_CURSO2_Result">
+          <Property Type="Int32" Name="codigoActividad" Nullable="false" />
+          <Property Type="String" Name="titulo" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="codigoCurso" Nullable="true" />
+          <Property Type="Int32" Name="codigoTipoCurso" Nullable="true" />
+          <Property Type="String" Name="TipoCurso" Nullable="false" MaxLength="10" />
+          <Property Type="Int32" Name="codigoEstado" Nullable="true" />
+          <Property Type="String" Name="DescEstado" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="fechaInicio" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="fechaFin" Nullable="true" MaxLength="11" />
+          <Property Type="Int32" Name="codigoModalidad" Nullable="true" />
+          <Property Type="Int32" Name="codigoPeriodo" Nullable="true" />
+          <Property Type="Int32" Name="codigoSesion" Nullable="true" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="fechaCreacion" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="fechaModificacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="usuarioCreacion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="usuarioModificacion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_ACTIVIDAD_RETRIEVE_Result">
+          <Property Type="Int32" Name="codigoActividad" Nullable="false" />
+          <Property Type="Int32" Name="codigoCurso" Nullable="true" />
+          <Property Type="String" Name="Curso" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="codigoModalidad" Nullable="true" />
+          <Property Type="Int32" Name="codigoPeriodo" Nullable="true" />
+          <Property Type="Int32" Name="codigoTipoCurso" Nullable="true" />
+          <Property Type="String" Name="titulo" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="fechaInicio" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="fechaFin" Nullable="true" MaxLength="11" />
+          <Property Type="Int32" Name="codigoSesion" Nullable="true" />
+          <Property Type="Int32" Name="codigoEstado" Nullable="true" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="DateTime" Name="fechaCreacion" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="fechaModificacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="usuarioCreacion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="usuarioModificacion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TipoCurso" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="DescEstado" Nullable="false" MaxLength="8" />
+        </ComplexType>
+        <ComplexType Name="SP_TAREA_RETRIEVE_BY_ACTIVIDAD_Result">
+          <Property Type="Int32" Name="codigoTarea" Nullable="false" />
+          <Property Type="Int32" Name="codigoCurso" Nullable="true" />
+          <Property Type="Int32" Name="codigoActividad" Nullable="true" />
+          <Property Type="String" Name="titulo" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="codigoPrioridad" Nullable="true" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="porcentajeCompletado" Nullable="true" />
+          <Property Type="Int32" Name="codigoRecurso" Nullable="true" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="fechaInicio" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="fechaFin" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="fechaCreacion" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="fechaModificacion" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="usuarioCreacion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="usuarioModificacion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_TAREA_RETRIEVE_Result">
+          <Property Type="Int32" Name="codigoTarea" Nullable="false" />
+          <Property Type="Int32" Name="codigoCurso" Nullable="true" />
+          <Property Type="String" Name="Curso" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="codigoActividad" Nullable="true" />
+          <Property Type="String" Name="Actividad" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="titulo" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="codigoPrioridad" Nullable="true" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="porcentajeCompletado" Nullable="true" />
+          <Property Type="Int32" Name="codigoRecurso" Nullable="true" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="fechaInicio" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="fechaFin" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="fechaCreacion" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="fechaModificacion" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="usuarioCreacion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="usuarioModificacion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_DOCUMENTO_RETRIEVE_BY_TAREA_Result">
+          <Property Type="Int32" Name="codigoDocumento" Nullable="false" />
+          <Property Type="Int32" Name="codigoCurso" Nullable="true" />
+          <Property Type="Int32" Name="codigoActividad" Nullable="true" />
+          <Property Type="Int32" Name="codigoTarea" Nullable="true" />
+          <Property Type="String" Name="titulo" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="autor" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="codigoTipoDocumento" Nullable="true" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="fechaCreacion" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="fechaModificacion" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="usuarioCreacion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="usuarioModificacion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_DOCUMENTO_RETRIEVE_Result">
+          <Property Type="Int32" Name="codigoDocumento" Nullable="false" />
+          <Property Type="Int32" Name="codigoCurso" Nullable="true" />
+          <Property Type="String" Name="Curso" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="codigoActividad" Nullable="true" />
+          <Property Type="String" Name="Actividad" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="codigoTarea" Nullable="true" />
+          <Property Type="String" Name="Tarea" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="titulo" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="autor" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="codigoTipoDocumento" Nullable="true" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="fechaCreacion" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="fechaModificacion" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="usuarioCreacion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="usuarioModificacion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_TALLER_RETRIEVE_Result">
+          <Property Type="Int32" Name="codigoTaller" Nullable="false" />
+          <Property Type="String" Name="nombreTaller" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SP_MATERIAL_RETRIEVE_Result">
+          <Property Type="Int32" Name="codigoMaterial" Nullable="true" />
+          <Property Type="Int32" Name="codigoTaller" Nullable="true" />
+          <Property Type="String" Name="nombreDocumento" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="tipoMaterial" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="rutaDocumento" Nullable="true" MaxLength="500" />
+          <Property Type="DateTime" Name="fechaCreacion" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SP_TALLER_RETRIEVE_BY_TALLER_Result">
+          <Property Type="Int32" Name="codigoTaller" Nullable="false" />
+          <Property Type="String" Name="nombreTaller" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SP_MATERIAL_CAPACITACION_RETRIEVE_BY_CAPACITACION_Result">
+          <Property Type="Int32" Name="codigoMaterial" Nullable="false" />
+          <Property Type="Int32" Name="codigoCapacitacion" Nullable="true" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaCreacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="rutaDocumento" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="SP_CAPACITACION_RETRIEVE_Result">
+          <Property Type="Int32" Name="codigoCapacitacion" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="certificado" Nullable="true" />
+          <Property Type="Int32" Name="codigoPerido" Nullable="true" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="correoContacto" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="enviarNotificacion" Nullable="true" />
+          <Property Type="Int32" Name="periodicidadEnvio" Nullable="true" />
+          <Property Type="String" Name="fechaInicio" Nullable="true" MaxLength="11" />
+          <Property Type="Boolean" Name="capacitacionActiva" Nullable="true" />
+          <Property Type="Int32" Name="codigoTaller" Nullable="true" />
+          <Property Type="String" Name="fechaCreacion" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="fechaModificacion" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="usuarioCreacion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="usuarioModificacion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="lugar" Nullable="true" MaxLength="200" />
+          <Property Type="Binary" Name="horaCapacitacion" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="fechaInicioEnvio" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="fechaCapacitacion" Nullable="true" MaxLength="11" />
+        </ComplexType>
+        <ComplexType Name="SP_CAPACITACION_RETRIEVE_BY_FILTER_Result">
+          <Property Type="Int32" Name="codigoCapacitacion" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="certificado" Nullable="true" />
+          <Property Type="Int32" Name="codigoPerido" Nullable="true" />
+          <Property Type="String" Name="periodo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="correoContacto" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="enviarNotificacion" Nullable="true" />
+          <Property Type="Int32" Name="periodicidadEnvio" Nullable="true" />
+          <Property Type="String" Name="fechaInicio" Nullable="true" MaxLength="11" />
+          <Property Type="Boolean" Name="capacitacionActiva" Nullable="true" />
+          <Property Type="Int32" Name="codigoTaller" Nullable="true" />
+          <Property Type="String" Name="nombreTaller" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="fechaCreacion" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="fechaModificacion" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="usuarioCreacion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="usuarioModificacion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="lugar" Nullable="true" MaxLength="200" />
+          <Property Type="Binary" Name="horaCapacitacion" Nullable="true" MaxLength="8" />
+          <Property Type="String" Name="fechaInicioEnvio" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="fechaCapacitacion" Nullable="true" MaxLength="11" />
+        </ComplexType>
+        <ComplexType Name="SP_PARTICIPANTES_CAPACITACION_RETRIEVE_BY_CAPACITACION_Result">
+          <Property Type="Int32" Name="codigoParticipacionCapacitacion" Nullable="false" />
+          <Property Type="Int32" Name="codigoDocente" Nullable="true" />
+          <Property Type="Int32" Name="codigoCapacitacion" Nullable="true" />
+          <Property Type="String" Name="nombreCompleto" Nullable="true" MaxLength="200" />
+          <Property Type="Boolean" Name="enviarconvocatoria" Nullable="true" />
+          <Property Type="DateTime" Name="fechaCreacion" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="fechaModificacion" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SP_DOCENTE_RETRIEVE_Result">
+          <Property Type="Int32" Name="codigoDo0cente" Nullable="false" />
+          <Property Type="String" Name="nombres" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="apellidos" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="direccion" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="sexo" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="fechaNacimiento" Nullable="true" Precision="23" />
+        </ComplexType>
+        <EntityType Name="Periodo">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <ComplexType Name="SP_ACTIVIDAD_RETRIEVE_BY_CURSO3_Result">
+          <Property Type="Int32" Name="Codigo" Nullable="false" />
+          <Property Type="String" Name="Curso" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Fecha" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="Periodo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Modalidad" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Docente" Nullable="true" MaxLength="201" />
+          <Property Type="String" Name="Estado" Nullable="true" MaxLength="1" />
+          <Property Type="String" Name="DescEstado" Nullable="false" MaxLength="8" />
+        </ComplexType>
+        <ComplexType Name="SP_PERIODO_RETRIEVE_Result">
+          <Property Type="Int32" Name="codigo" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="fechaCreacion" Nullable="true" Precision="23" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ticeModelStoreContainer" CdmEntityContainer="ticeEntities3">
+          <EntitySetMapping Name="AsignacionCurso">
+            <EntityTypeMapping TypeName="ticeModel.AsignacionCurso">
+              <MappingFragment StoreEntitySet="AsignacionCurso">
+                <ScalarProperty Name="codigoAsignacionCurso" ColumnName="codigoAsignacionCurso" />
+                <ScalarProperty Name="codigoCurso" ColumnName="codigoCurso" />
+                <ScalarProperty Name="codigoDocente" ColumnName="codigoDocente" />
+                <ScalarProperty Name="codigoModalidad" ColumnName="codigoModalidad" />
+                <ScalarProperty Name="codigoPeriodo" ColumnName="codigoPeriodo" />
+                <ScalarProperty Name="asignado" ColumnName="asignado" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_ACTIVIDAD_RETRIEVE_BY_CURSO" FunctionName="ticeModel.Store.SP_ACTIVIDAD_RETRIEVE_BY_CURSO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_ACTIVIDAD_RETRIEVE_BY_CURSO_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Curso" ColumnName="Curso" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Periodo" ColumnName="Periodo" />
+                <ScalarProperty Name="Modalidad" ColumnName="Modalidad" />
+                <ScalarProperty Name="Docente" ColumnName="Docente" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="DescEstado" ColumnName="DescEstado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_ACTIVIDAD_CREATE" FunctionName="ticeModel.Store.SP_ACTIVIDAD_CREATE" />
+          <FunctionImportMapping FunctionImportName="SP_ACTIVIDAD_DELETE" FunctionName="ticeModel.Store.SP_ACTIVIDAD_DELETE" />
+          <FunctionImportMapping FunctionImportName="SP_ACTIVIDAD_UPDATE" FunctionName="ticeModel.Store.SP_ACTIVIDAD_UPDATE" />
+          <EntitySetMapping Name="Tarea">
+            <EntityTypeMapping TypeName="ticeModel.Tarea">
+              <MappingFragment StoreEntitySet="Tarea">
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="codigoRecurso" ColumnName="codigoRecurso" />
+                <ScalarProperty Name="porcentajeCompletado" ColumnName="porcentajeCompletado" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="codigoPrioridad" ColumnName="codigoPrioridad" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="codigoActividad" ColumnName="codigoActividad" />
+                <ScalarProperty Name="codigoCurso" ColumnName="codigoCurso" />
+                <ScalarProperty Name="codigoTarea" ColumnName="codigoTarea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_TAREA_CREATE" FunctionName="ticeModel.Store.SP_TAREA_CREATE" />
+          <FunctionImportMapping FunctionImportName="SP_TAREA_DELETE" FunctionName="ticeModel.Store.SP_TAREA_DELETE" />
+          <FunctionImportMapping FunctionImportName="SP_TAREA_RETRIEVE_BY_ACTIVIDAD" FunctionName="ticeModel.Store.SP_TAREA_RETRIEVE_BY_ACTIVIDAD">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_TAREA_RETRIEVE_BY_ACTIVIDAD_Result">
+                <ScalarProperty Name="codigoTarea" ColumnName="codigoTarea" />
+                <ScalarProperty Name="codigoCurso" ColumnName="codigoCurso" />
+                <ScalarProperty Name="codigoActividad" ColumnName="codigoActividad" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="codigoPrioridad" ColumnName="codigoPrioridad" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="porcentajeCompletado" ColumnName="porcentajeCompletado" />
+                <ScalarProperty Name="codigoRecurso" ColumnName="codigoRecurso" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_TAREA_UPDATE" FunctionName="ticeModel.Store.SP_TAREA_UPDATE" />
+          <EntitySetMapping Name="Documento">
+            <EntityTypeMapping TypeName="ticeModel.Documento">
+              <MappingFragment StoreEntitySet="Documento">
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="rutaDocumento" ColumnName="rutaDocumento" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="codigoTipoDocumento" ColumnName="codigoTipoDocumento" />
+                <ScalarProperty Name="autor" ColumnName="autor" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="codigoTarea" ColumnName="codigoTarea" />
+                <ScalarProperty Name="codigoActividad" ColumnName="codigoActividad" />
+                <ScalarProperty Name="codigoCurso" ColumnName="codigoCurso" />
+                <ScalarProperty Name="codigoDocumento" ColumnName="codigoDocumento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_DOCUMENTO_RETRIEVE_BY_TAREA" FunctionName="ticeModel.Store.SP_DOCUMENTO_RETRIEVE_BY_TAREA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_DOCUMENTO_RETRIEVE_BY_TAREA_Result">
+                <ScalarProperty Name="codigoDocumento" ColumnName="codigoDocumento" />
+                <ScalarProperty Name="codigoCurso" ColumnName="codigoCurso" />
+                <ScalarProperty Name="codigoActividad" ColumnName="codigoActividad" />
+                <ScalarProperty Name="codigoTarea" ColumnName="codigoTarea" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="autor" ColumnName="autor" />
+                <ScalarProperty Name="codigoTipoDocumento" ColumnName="codigoTipoDocumento" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_CURSO_RETRIEVE" FunctionName="ticeModel.Store.SP_CURSO_RETRIEVE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_CURSO_RETRIEVE_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Curso" ColumnName="Curso" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Periodo" ColumnName="Periodo" />
+                <ScalarProperty Name="Modalidad" ColumnName="Modalidad" />
+                <ScalarProperty Name="Docente" ColumnName="Docente" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="DescEstado" ColumnName="DescEstado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_DOCUMENTO_CREATE" FunctionName="ticeModel.Store.SP_DOCUMENTO_CREATE" />
+          <FunctionImportMapping FunctionImportName="SP_ACTIVIDAD_RETRIEVE_BY_CURSO2" FunctionName="ticeModel.Store.SP_ACTIVIDAD_RETRIEVE_BY_CURSO2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_ACTIVIDAD_RETRIEVE_BY_CURSO2_Result">
+                <ScalarProperty Name="codigoActividad" ColumnName="codigoActividad" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="codigoCurso" ColumnName="codigoCurso" />
+                <ScalarProperty Name="codigoTipoCurso" ColumnName="codigoTipoCurso" />
+                <ScalarProperty Name="TipoCurso" ColumnName="TipoCurso" />
+                <ScalarProperty Name="codigoEstado" ColumnName="codigoEstado" />
+                <ScalarProperty Name="DescEstado" ColumnName="DescEstado" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+                <ScalarProperty Name="codigoModalidad" ColumnName="codigoModalidad" />
+                <ScalarProperty Name="codigoPeriodo" ColumnName="codigoPeriodo" />
+                <ScalarProperty Name="codigoSesion" ColumnName="codigoSesion" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_ACTIVIDAD_RETRIEVE" FunctionName="ticeModel.Store.SP_ACTIVIDAD_RETRIEVE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_ACTIVIDAD_RETRIEVE_Result">
+                <ScalarProperty Name="codigoActividad" ColumnName="codigoActividad" />
+                <ScalarProperty Name="codigoCurso" ColumnName="codigoCurso" />
+                <ScalarProperty Name="Curso" ColumnName="Curso" />
+                <ScalarProperty Name="codigoModalidad" ColumnName="codigoModalidad" />
+                <ScalarProperty Name="codigoPeriodo" ColumnName="codigoPeriodo" />
+                <ScalarProperty Name="codigoTipoCurso" ColumnName="codigoTipoCurso" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+                <ScalarProperty Name="codigoSesion" ColumnName="codigoSesion" />
+                <ScalarProperty Name="codigoEstado" ColumnName="codigoEstado" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="TipoCurso" ColumnName="TipoCurso" />
+                <ScalarProperty Name="DescEstado" ColumnName="DescEstado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_TAREA_RETRIEVE" FunctionName="ticeModel.Store.SP_TAREA_RETRIEVE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_TAREA_RETRIEVE_Result">
+                <ScalarProperty Name="codigoTarea" ColumnName="codigoTarea" />
+                <ScalarProperty Name="codigoCurso" ColumnName="codigoCurso" />
+                <ScalarProperty Name="Curso" ColumnName="Curso" />
+                <ScalarProperty Name="codigoActividad" ColumnName="codigoActividad" />
+                <ScalarProperty Name="Actividad" ColumnName="Actividad" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="codigoPrioridad" ColumnName="codigoPrioridad" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="porcentajeCompletado" ColumnName="porcentajeCompletado" />
+                <ScalarProperty Name="codigoRecurso" ColumnName="codigoRecurso" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_DOCUMENTO_RETRIEVE" FunctionName="ticeModel.Store.SP_DOCUMENTO_RETRIEVE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_DOCUMENTO_RETRIEVE_Result">
+                <ScalarProperty Name="codigoDocumento" ColumnName="codigoDocumento" />
+                <ScalarProperty Name="codigoCurso" ColumnName="codigoCurso" />
+                <ScalarProperty Name="Curso" ColumnName="Curso" />
+                <ScalarProperty Name="codigoActividad" ColumnName="codigoActividad" />
+                <ScalarProperty Name="Actividad" ColumnName="Actividad" />
+                <ScalarProperty Name="codigoTarea" ColumnName="codigoTarea" />
+                <ScalarProperty Name="Tarea" ColumnName="Tarea" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="autor" ColumnName="autor" />
+                <ScalarProperty Name="codigoTipoDocumento" ColumnName="codigoTipoDocumento" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_DOCUMENTO_DELETE" FunctionName="ticeModel.Store.SP_DOCUMENTO_DELETE" />
+          <FunctionImportMapping FunctionImportName="SP_DOCUMENTO_UPDATE" FunctionName="ticeModel.Store.SP_DOCUMENTO_UPDATE" />
+          <FunctionImportMapping FunctionImportName="SP_CURSO_UPDATE" FunctionName="ticeModel.Store.SP_CURSO_UPDATE" />
+          <FunctionImportMapping FunctionImportName="SP_CAPACITACION_RETRIEVE_BY_FILTER" FunctionName="ticeModel.Store.SP_CAPACITACION_RETRIEVE_BY_FILTER">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_CAPACITACION_RETRIEVE_BY_FILTER_Result">
+                <ScalarProperty Name="codigoCapacitacion" ColumnName="codigoCapacitacion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="certificado" ColumnName="certificado" />
+                <ScalarProperty Name="codigoPerido" ColumnName="codigoPerido" />
+                <ScalarProperty Name="periodo" ColumnName="periodo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="correoContacto" ColumnName="correoContacto" />
+                <ScalarProperty Name="enviarNotificacion" ColumnName="enviarNotificacion" />
+                <ScalarProperty Name="periodicidadEnvio" ColumnName="periodicidadEnvio" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="capacitacionActiva" ColumnName="capacitacionActiva" />
+                <ScalarProperty Name="codigoTaller" ColumnName="codigoTaller" />
+                <ScalarProperty Name="nombreTaller" ColumnName="nombreTaller" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="lugar" ColumnName="lugar" />
+                <ScalarProperty Name="horaCapacitacion" ColumnName="horaCapacitacion" />
+                <ScalarProperty Name="fechaInicioEnvio" ColumnName="fechaInicioEnvio" />
+                <ScalarProperty Name="fechaCapacitacion" ColumnName="fechaCapacitacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_CAPACITACION_CREATE" FunctionName="ticeModel.Store.SP_CAPACITACION_CREATE" />
+          <FunctionImportMapping FunctionImportName="SP_MATERIAL_CAPACITACION_CREATE" FunctionName="ticeModel.Store.SP_MATERIAL_CAPACITACION_CREATE" />
+          <FunctionImportMapping FunctionImportName="SP_PARTICIPANTES_CAPACITACION_CREATE" FunctionName="ticeModel.Store.SP_PARTICIPANTES_CAPACITACION_CREATE" />
+          <FunctionImportMapping FunctionImportName="SP_TALLER_RETRIEVE" FunctionName="ticeModel.Store.SP_TALLER_RETRIEVE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_TALLER_RETRIEVE_Result">
+                <ScalarProperty Name="codigoTaller" ColumnName="codigoTaller" />
+                <ScalarProperty Name="nombreTaller" ColumnName="nombreTaller" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_MATERIAL_CAPACITACION_RETRIEVE_BY_CAPACITACION" FunctionName="ticeModel.Store.SP_MATERIAL_CAPACITACION_RETRIEVE_BY_CAPACITACION" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_MATERIAL_CAPACITACION_RETRIEVE_BY_CAPACITACION_Result">
+                <ScalarProperty Name="codigoMaterial" ColumnName="codigoMaterial" />
+                <ScalarProperty Name="codigoCapacitacion" ColumnName="codigoCapacitacion" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="rutaDocumento" ColumnName="rutaDocumento" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_MATERIAL_RETRIEVE" FunctionName="ticeModel.Store.SP_MATERIAL_RETRIEVE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_MATERIAL_RETRIEVE_Result">
+                <ScalarProperty Name="codigoMaterial" ColumnName="codigoMaterial" />
+                <ScalarProperty Name="codigoTaller" ColumnName="codigoTaller" />
+                <ScalarProperty Name="nombreDocumento" ColumnName="nombreDocumento" />
+                <ScalarProperty Name="tipoMaterial" ColumnName="tipoMaterial" />
+                <ScalarProperty Name="rutaDocumento" ColumnName="rutaDocumento" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_TALLER_RETRIEVE_BY_TALLER" FunctionName="ticeModel.Store.SP_TALLER_RETRIEVE_BY_TALLER">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_TALLER_RETRIEVE_BY_TALLER_Result">
+                <ScalarProperty Name="codigoTaller" ColumnName="codigoTaller" />
+                <ScalarProperty Name="nombreTaller" ColumnName="nombreTaller" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_CAPACITACION_RETRIEVE" FunctionName="ticeModel.Store.SP_CAPACITACION_RETRIEVE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_CAPACITACION_RETRIEVE_Result">
+                <ScalarProperty Name="codigoCapacitacion" ColumnName="codigoCapacitacion" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="certificado" ColumnName="certificado" />
+                <ScalarProperty Name="codigoPerido" ColumnName="codigoPerido" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="correoContacto" ColumnName="correoContacto" />
+                <ScalarProperty Name="enviarNotificacion" ColumnName="enviarNotificacion" />
+                <ScalarProperty Name="periodicidadEnvio" ColumnName="periodicidadEnvio" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="capacitacionActiva" ColumnName="capacitacionActiva" />
+                <ScalarProperty Name="codigoTaller" ColumnName="codigoTaller" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="lugar" ColumnName="lugar" />
+                <ScalarProperty Name="horaCapacitacion" ColumnName="horaCapacitacion" />
+                <ScalarProperty Name="fechaInicioEnvio" ColumnName="fechaInicioEnvio" />
+                <ScalarProperty Name="fechaCapacitacion" ColumnName="fechaCapacitacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_PARTICIPANTES_CAPACITACION_RETRIEVE_BY_CAPACITACION" FunctionName="ticeModel.Store.SP_PARTICIPANTES_CAPACITACION_RETRIEVE_BY_CAPACITACION">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_PARTICIPANTES_CAPACITACION_RETRIEVE_BY_CAPACITACION_Result">
+                <ScalarProperty Name="codigoParticipacionCapacitacion" ColumnName="codigoParticipacionCapacitacion" />
+                <ScalarProperty Name="codigoDocente" ColumnName="codigoDocente" />
+                <ScalarProperty Name="codigoCapacitacion" ColumnName="codigoCapacitacion" />
+                <ScalarProperty Name="nombreCompleto" ColumnName="nombreCompleto" />
+                <ScalarProperty Name="enviarconvocatoria" ColumnName="enviarconvocatoria" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_DOCENTE_RETRIEVE" FunctionName="ticeModel.Store.SP_DOCENTE_RETRIEVE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_DOCENTE_RETRIEVE_Result">
+                <ScalarProperty Name="codigoDo0cente" ColumnName="codigoDo0cente" />
+                <ScalarProperty Name="nombres" ColumnName="nombres" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_MATERIAL_CAPACITACION_DELETE" FunctionName="ticeModel.Store.SP_MATERIAL_CAPACITACION_DELETE" />
+          <FunctionImportMapping FunctionImportName="SP_PARTICIPANTES_CAPACITACION_DELETE" FunctionName="ticeModel.Store.SP_PARTICIPANTES_CAPACITACION_DELETE" />
+          <FunctionImportMapping FunctionImportName="SP_CAPACITACION_UPDATE" FunctionName="ticeModel.Store.SP_CAPACITACION_UPDATE" />
+          <EntitySetMapping Name="Periodo">
+            <EntityTypeMapping TypeName="ticeModel.Periodo">
+              <MappingFragment StoreEntitySet="Periodo">
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_ACTIVIDAD_RETRIEVE_BY_CURSO3" FunctionName="ticeModel.Store.SP_ACTIVIDAD_RETRIEVE_BY_CURSO3">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_ACTIVIDAD_RETRIEVE_BY_CURSO3_Result">
+                <ScalarProperty Name="Codigo" ColumnName="Codigo" />
+                <ScalarProperty Name="Curso" ColumnName="Curso" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Periodo" ColumnName="Periodo" />
+                <ScalarProperty Name="Modalidad" ColumnName="Modalidad" />
+                <ScalarProperty Name="Docente" ColumnName="Docente" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="DescEstado" ColumnName="DescEstado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_PERIODO_RETRIEVE" FunctionName="ticeModel.Store.SP_PERIODO_RETRIEVE">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_PERIODO_RETRIEVE_Result">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
