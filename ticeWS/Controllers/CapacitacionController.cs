@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -61,7 +62,9 @@ namespace ticeWS.Controllers
             {
                 return objapi.SP_CAPACITACION_UPDATE(obj.codigoCapacitacion,obj.nombre, obj.certificado, obj.codigoPerido, obj.descripcion, obj.correoContacto, obj.enviarNotificacion, obj.periodicidadEnvio, fechaInicio, obj.capacitacionActiva, obj.codigoTaller, fechaCreacion, fechaModificacion, obj.usuarioCreacion, obj.usuarioModificacion, obj.lugar, fechaInicioEnvio, fechaCapacitacion);
             }
-            return objapi.SP_CAPACITACION_CREATE(obj.nombre, obj.certificado, obj.codigoPerido, obj.descripcion, obj.correoContacto, obj.enviarNotificacion, obj.periodicidadEnvio, fechaInicio, obj.capacitacionActiva, obj.codigoTaller, fechaCreacion, fechaModificacion, obj.usuarioCreacion, obj.usuarioModificacion, obj.lugar, fechaInicioEnvio, fechaCapacitacion);
+            ObjectParameter codigoCapacitacion = new ObjectParameter("codigoCapacitacion", typeof(int));
+            objapi.SP_CAPACITACION_CREATE(obj.nombre, obj.certificado, obj.codigoPerido, obj.descripcion, obj.correoContacto, obj.enviarNotificacion, obj.periodicidadEnvio, fechaInicio, obj.capacitacionActiva, obj.codigoTaller, fechaCreacion, fechaModificacion, obj.usuarioCreacion, obj.usuarioModificacion, obj.lugar, fechaInicioEnvio, fechaCapacitacion, codigoCapacitacion);
+            return (int)codigoCapacitacion.Value;
         }
 
         [HttpPost]

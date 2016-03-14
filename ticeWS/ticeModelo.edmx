@@ -130,6 +130,7 @@
           <Parameter Name="lugar" Type="varchar" Mode="In" />
           <Parameter Name="fechaInicioEnvio" Type="datetime" Mode="In" />
           <Parameter Name="fechaCapacitacion" Type="datetime" Mode="In" />
+          <Parameter Name="codigoCapacitacion" Type="int" Mode="InOut" />
         </Function>
         <Function Name="SP_CAPACITACION_RETRIEVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="codigoCapacitacion" Type="int" Mode="In" />
@@ -445,6 +446,7 @@
             <Parameter Name="lugar" Mode="In" Type="String" />
             <Parameter Name="fechaInicioEnvio" Mode="In" Type="DateTime" />
             <Parameter Name="fechaCapacitacion" Mode="In" Type="DateTime" />
+            <Parameter Name="codigoCapacitacion" Mode="InOut" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_MATERIAL_CAPACITACION_CREATE">
             <Parameter Name="codigoCapacitacion" Mode="In" Type="Int32" />

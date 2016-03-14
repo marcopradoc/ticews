@@ -475,7 +475,7 @@ namespace ticeWS
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CAPACITACION_RETRIEVE_BY_FILTER_Result>("SP_CAPACITACION_RETRIEVE_BY_FILTER", codigoTallerParameter, codigoPeriodoParameter, nomCapacitacionParameter);
         }
     
-        public virtual int SP_CAPACITACION_CREATE(string nombre, Nullable<bool> certificado, Nullable<int> codigoPerido, string descripcion, string correoContacto, Nullable<bool> enviarNotificacion, Nullable<int> periodicidadEnvio, Nullable<System.DateTime> fechaInicio, Nullable<bool> capacitacionActiva, Nullable<int> codigoTaller, Nullable<System.DateTime> fechaCreacion, Nullable<System.DateTime> fechaModificacióm, string usuarioCreacion, string usuarioModificacion, string lugar, Nullable<System.DateTime> fechaInicioEnvio, Nullable<System.DateTime> fechaCapacitacion)
+        public virtual int SP_CAPACITACION_CREATE(string nombre, Nullable<bool> certificado, Nullable<int> codigoPerido, string descripcion, string correoContacto, Nullable<bool> enviarNotificacion, Nullable<int> periodicidadEnvio, Nullable<System.DateTime> fechaInicio, Nullable<bool> capacitacionActiva, Nullable<int> codigoTaller, Nullable<System.DateTime> fechaCreacion, Nullable<System.DateTime> fechaModificacióm, string usuarioCreacion, string usuarioModificacion, string lugar, Nullable<System.DateTime> fechaInicioEnvio, Nullable<System.DateTime> fechaCapacitacion, ObjectParameter codigoCapacitacion)
         {
             var nombreParameter = nombre != null ?
                 new ObjectParameter("nombre", nombre) :
@@ -545,7 +545,7 @@ namespace ticeWS
                 new ObjectParameter("fechaCapacitacion", fechaCapacitacion) :
                 new ObjectParameter("fechaCapacitacion", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CAPACITACION_CREATE", nombreParameter, certificadoParameter, codigoPeridoParameter, descripcionParameter, correoContactoParameter, enviarNotificacionParameter, periodicidadEnvioParameter, fechaInicioParameter, capacitacionActivaParameter, codigoTallerParameter, fechaCreacionParameter, fechaModificaciómParameter, usuarioCreacionParameter, usuarioModificacionParameter, lugarParameter, fechaInicioEnvioParameter, fechaCapacitacionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CAPACITACION_CREATE", nombreParameter, certificadoParameter, codigoPeridoParameter, descripcionParameter, correoContactoParameter, enviarNotificacionParameter, periodicidadEnvioParameter, fechaInicioParameter, capacitacionActivaParameter, codigoTallerParameter, fechaCreacionParameter, fechaModificaciómParameter, usuarioCreacionParameter, usuarioModificacionParameter, lugarParameter, fechaInicioEnvioParameter, fechaCapacitacionParameter, codigoCapacitacion);
         }
     
         public virtual int SP_MATERIAL_CAPACITACION_CREATE(Nullable<int> codigoCapacitacion, string descripcion, string rutaDocumento)
