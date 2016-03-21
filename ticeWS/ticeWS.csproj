@@ -245,6 +245,9 @@
     <Compile Include="AsignacionCurso.cs">
       <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Capacitacion.cs">
+      <DependentUpon>ticeModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActividadController.cs" />
     <Compile Include="Controllers\AsignacionCursoController.cs" />

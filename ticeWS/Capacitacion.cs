@@ -12,22 +12,19 @@ namespace ticeWS
     using System;
     using System.Collections.Generic;
     
-    public partial class Tarea
+    public partial class Capacitacion
     {
-        public int codigoTarea { get; set; }
-        public Nullable<int> codigoCurso { get; set; }
-        public Nullable<int> codigoActividad { get; set; }
-        public string titulo { get; set; }
-        public string estado { get; set; }
-        public Nullable<int> porcentajeCompletado { get; set; }
-        public Nullable<int> codTipoRecurso { get; set; }
-        public Nullable<int> codigoRecurso { get; set; }
+        public int codigoCapacitacion { get; set; }
+        public string nombre { get; set; }
+        public Nullable<int> codigoPerido { get; set; }
         public string descripcion { get; set; }
-        public Nullable<System.DateTime> fechaInicio { get; set; }
-        public Nullable<System.DateTime> fechaFin { get; set; }
-        public Nullable<System.DateTime> fechaRealCierre { get; set; }
+        public string correoContacto { get; set; }
+        public Nullable<bool> enviarNotificacion { get; set; }
+        public Nullable<int> periodicidadEnvio { get; set; }
+        public Nullable<bool> capacitacionActiva { get; set; }
+        public Nullable<int> codigoTaller { get; set; }
         public Nullable<System.DateTime> fechaCreacion { get; set; }
-        public Nullable<System.DateTime> fechaModificacion { get; set; }
+        public Nullable<System.DateTime> fechaModificacióm { get; set; }
         public string usuarioCreacion { get; set; }
         public string usuarioModificacion { get; set; }
     }

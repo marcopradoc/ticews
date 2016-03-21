@@ -28,9 +28,10 @@ namespace ticeWS
         }
     
         public virtual DbSet<AsignacionCurso> AsignacionCurso { get; set; }
-        public virtual DbSet<Tarea> Tarea { get; set; }
         public virtual DbSet<Documento> Documento { get; set; }
         public virtual DbSet<Periodo> Periodo { get; set; }
+        public virtual DbSet<Tarea> Tarea { get; set; }
+        public virtual DbSet<Capacitacion> Capacitacion { get; set; }
     
         public virtual ObjectResult<SP_ACTIVIDAD_RETRIEVE_BY_CURSO_Result> SP_ACTIVIDAD_RETRIEVE_BY_CURSO(string periodo, string estado)
         {
@@ -458,12 +459,8 @@ namespace ticeWS
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CURSO_UPDATE", codigoCursoParameter, nombreCursoParameter, estadoParameter, observacionesParameter, usuarioModificacionParameter);
         }
     
-        public virtual ObjectResult<SP_CAPACITACION_RETRIEVE_BY_FILTER_Result> SP_CAPACITACION_RETRIEVE_BY_FILTER(Nullable<int> codigoTaller, Nullable<int> codigoPeriodo, string nomCapacitacion)
+        public virtual ObjectResult<SP_CAPACITACION_RETRIEVE_BY_FILTER_Result> SP_CAPACITACION_RETRIEVE_BY_FILTER(Nullable<int> codigoPeriodo, string nomCapacitacion)
         {
-            var codigoTallerParameter = codigoTaller.HasValue ?
-                new ObjectParameter("codigoTaller", codigoTaller) :
-                new ObjectParameter("codigoTaller", typeof(int));
-    
             var codigoPeriodoParameter = codigoPeriodo.HasValue ?
                 new ObjectParameter("codigoPeriodo", codigoPeriodo) :
                 new ObjectParameter("codigoPeriodo", typeof(int));
@@ -472,18 +469,14 @@ namespace ticeWS
                 new ObjectParameter("nomCapacitacion", nomCapacitacion) :
                 new ObjectParameter("nomCapacitacion", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CAPACITACION_RETRIEVE_BY_FILTER_Result>("SP_CAPACITACION_RETRIEVE_BY_FILTER", codigoTallerParameter, codigoPeriodoParameter, nomCapacitacionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CAPACITACION_RETRIEVE_BY_FILTER_Result>("SP_CAPACITACION_RETRIEVE_BY_FILTER", codigoPeriodoParameter, nomCapacitacionParameter);
         }
     
-        public virtual int SP_CAPACITACION_CREATE(string nombre, Nullable<bool> certificado, Nullable<int> codigoPerido, string descripcion, string correoContacto, Nullable<bool> enviarNotificacion, Nullable<int> periodicidadEnvio, Nullable<System.DateTime> fechaInicio, Nullable<bool> capacitacionActiva, Nullable<int> codigoTaller, Nullable<System.DateTime> fechaCreacion, Nullable<System.DateTime> fechaModificacióm, string usuarioCreacion, string usuarioModificacion, string lugar, Nullable<System.DateTime> fechaInicioEnvio, Nullable<System.DateTime> fechaCapacitacion, ObjectParameter codigoCapacitacion)
+        public virtual int SP_CAPACITACION_CREATE(string nombre, Nullable<int> codigoPerido, string descripcion, string correoContacto, Nullable<bool> enviarNotificacion, Nullable<int> periodicidadEnvio, Nullable<bool> capacitacionActiva, Nullable<int> codigoTaller, Nullable<System.DateTime> fechaCreacion, Nullable<System.DateTime> fechaModificacióm, string usuarioCreacion, string usuarioModificacion, Nullable<System.DateTime> fechaInicioEnvio, Nullable<System.DateTime> fechaCapacitacion, ObjectParameter codigoCapacitacion)
         {
             var nombreParameter = nombre != null ?
                 new ObjectParameter("nombre", nombre) :
                 new ObjectParameter("nombre", typeof(string));
-    
-            var certificadoParameter = certificado.HasValue ?
-                new ObjectParameter("certificado", certificado) :
-                new ObjectParameter("certificado", typeof(bool));
     
             var codigoPeridoParameter = codigoPerido.HasValue ?
                 new ObjectParameter("codigoPerido", codigoPerido) :
@@ -504,10 +497,6 @@ namespace ticeWS
             var periodicidadEnvioParameter = periodicidadEnvio.HasValue ?
                 new ObjectParameter("periodicidadEnvio", periodicidadEnvio) :
                 new ObjectParameter("periodicidadEnvio", typeof(int));
-    
-            var fechaInicioParameter = fechaInicio.HasValue ?
-                new ObjectParameter("fechaInicio", fechaInicio) :
-                new ObjectParameter("fechaInicio", typeof(System.DateTime));
     
             var capacitacionActivaParameter = capacitacionActiva.HasValue ?
                 new ObjectParameter("capacitacionActiva", capacitacionActiva) :
@@ -533,10 +522,6 @@ namespace ticeWS
                 new ObjectParameter("usuarioModificacion", usuarioModificacion) :
                 new ObjectParameter("usuarioModificacion", typeof(string));
     
-            var lugarParameter = lugar != null ?
-                new ObjectParameter("lugar", lugar) :
-                new ObjectParameter("lugar", typeof(string));
-    
             var fechaInicioEnvioParameter = fechaInicioEnvio.HasValue ?
                 new ObjectParameter("fechaInicioEnvio", fechaInicioEnvio) :
                 new ObjectParameter("fechaInicioEnvio", typeof(System.DateTime));
@@ -545,7 +530,7 @@ namespace ticeWS
                 new ObjectParameter("fechaCapacitacion", fechaCapacitacion) :
                 new ObjectParameter("fechaCapacitacion", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CAPACITACION_CREATE", nombreParameter, certificadoParameter, codigoPeridoParameter, descripcionParameter, correoContactoParameter, enviarNotificacionParameter, periodicidadEnvioParameter, fechaInicioParameter, capacitacionActivaParameter, codigoTallerParameter, fechaCreacionParameter, fechaModificaciómParameter, usuarioCreacionParameter, usuarioModificacionParameter, lugarParameter, fechaInicioEnvioParameter, fechaCapacitacionParameter, codigoCapacitacion);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CAPACITACION_CREATE", nombreParameter, codigoPeridoParameter, descripcionParameter, correoContactoParameter, enviarNotificacionParameter, periodicidadEnvioParameter, capacitacionActivaParameter, codigoTallerParameter, fechaCreacionParameter, fechaModificaciómParameter, usuarioCreacionParameter, usuarioModificacionParameter, fechaInicioEnvioParameter, fechaCapacitacionParameter, codigoCapacitacion);
         }
     
         public virtual int SP_MATERIAL_CAPACITACION_CREATE(Nullable<int> codigoCapacitacion, string descripcion, string rutaDocumento)
@@ -663,7 +648,7 @@ namespace ticeWS
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_PARTICIPANTES_CAPACITACION_DELETE", codigoCapacitacionParameter, codigoDocenteParameter);
         }
     
-        public virtual int SP_CAPACITACION_UPDATE(Nullable<int> codigoCapacitacion, string nombre, Nullable<bool> certificado, Nullable<int> codigoPerido, string descripcion, string correoContacto, Nullable<bool> enviarNotificacion, Nullable<int> periodicidadEnvio, Nullable<System.DateTime> fechaInicio, Nullable<bool> capacitacionActiva, Nullable<int> codigoTaller, Nullable<System.DateTime> fechaCreacion, Nullable<System.DateTime> fechaModificacióm, string usuarioCreacion, string usuarioModificacion, string lugar, Nullable<System.DateTime> fechaInicioEnvio, Nullable<System.DateTime> fechaCapacitacion)
+        public virtual int SP_CAPACITACION_UPDATE(Nullable<int> codigoCapacitacion, string nombre, Nullable<int> codigoPerido, string descripcion, string correoContacto, Nullable<bool> enviarNotificacion, Nullable<int> periodicidadEnvio, Nullable<bool> capacitacionActiva, Nullable<int> codigoTaller, Nullable<System.DateTime> fechaCreacion, Nullable<System.DateTime> fechaModificacióm, string usuarioCreacion, string usuarioModificacion)
         {
             var codigoCapacitacionParameter = codigoCapacitacion.HasValue ?
                 new ObjectParameter("codigoCapacitacion", codigoCapacitacion) :
@@ -672,10 +657,6 @@ namespace ticeWS
             var nombreParameter = nombre != null ?
                 new ObjectParameter("nombre", nombre) :
                 new ObjectParameter("nombre", typeof(string));
-    
-            var certificadoParameter = certificado.HasValue ?
-                new ObjectParameter("certificado", certificado) :
-                new ObjectParameter("certificado", typeof(bool));
     
             var codigoPeridoParameter = codigoPerido.HasValue ?
                 new ObjectParameter("codigoPerido", codigoPerido) :
@@ -696,10 +677,6 @@ namespace ticeWS
             var periodicidadEnvioParameter = periodicidadEnvio.HasValue ?
                 new ObjectParameter("periodicidadEnvio", periodicidadEnvio) :
                 new ObjectParameter("periodicidadEnvio", typeof(int));
-    
-            var fechaInicioParameter = fechaInicio.HasValue ?
-                new ObjectParameter("fechaInicio", fechaInicio) :
-                new ObjectParameter("fechaInicio", typeof(System.DateTime));
     
             var capacitacionActivaParameter = capacitacionActiva.HasValue ?
                 new ObjectParameter("capacitacionActiva", capacitacionActiva) :
@@ -725,19 +702,7 @@ namespace ticeWS
                 new ObjectParameter("usuarioModificacion", usuarioModificacion) :
                 new ObjectParameter("usuarioModificacion", typeof(string));
     
-            var lugarParameter = lugar != null ?
-                new ObjectParameter("lugar", lugar) :
-                new ObjectParameter("lugar", typeof(string));
-    
-            var fechaInicioEnvioParameter = fechaInicioEnvio.HasValue ?
-                new ObjectParameter("fechaInicioEnvio", fechaInicioEnvio) :
-                new ObjectParameter("fechaInicioEnvio", typeof(System.DateTime));
-    
-            var fechaCapacitacionParameter = fechaCapacitacion.HasValue ?
-                new ObjectParameter("fechaCapacitacion", fechaCapacitacion) :
-                new ObjectParameter("fechaCapacitacion", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CAPACITACION_UPDATE", codigoCapacitacionParameter, nombreParameter, certificadoParameter, codigoPeridoParameter, descripcionParameter, correoContactoParameter, enviarNotificacionParameter, periodicidadEnvioParameter, fechaInicioParameter, capacitacionActivaParameter, codigoTallerParameter, fechaCreacionParameter, fechaModificaciómParameter, usuarioCreacionParameter, usuarioModificacionParameter, lugarParameter, fechaInicioEnvioParameter, fechaCapacitacionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CAPACITACION_UPDATE", codigoCapacitacionParameter, nombreParameter, codigoPeridoParameter, descripcionParameter, correoContactoParameter, enviarNotificacionParameter, periodicidadEnvioParameter, capacitacionActivaParameter, codigoTallerParameter, fechaCreacionParameter, fechaModificaciómParameter, usuarioCreacionParameter, usuarioModificacionParameter);
         }
     
         public virtual ObjectResult<SP_ACTIVIDAD_RETRIEVE_BY_CURSO3_Result> SP_ACTIVIDAD_RETRIEVE_BY_CURSO3(Nullable<int> idperiodo, string estado)

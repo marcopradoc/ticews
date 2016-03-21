@@ -14,13 +14,13 @@ namespace ticeWS.Controllers
         ticeEntities3 objapi = new ticeEntities3();
 
         [HttpGet]
-        public IEnumerable<SP_CAPACITACION_RETRIEVE_BY_FILTER_Result> listarCapacitaciones(int codigoTaller, int codigoPeriodo, string nombreCapacitacion)
+        public IEnumerable<SP_CAPACITACION_RETRIEVE_BY_FILTER_Result> listarCapacitaciones(int codigoPeriodo, string nombreCapacitacion)
         {
             if (nombreCapacitacion == null)
             {
                 nombreCapacitacion = "";
             }
-            return objapi.SP_CAPACITACION_RETRIEVE_BY_FILTER(codigoTaller, codigoPeriodo, nombreCapacitacion).AsEnumerable();
+            return objapi.SP_CAPACITACION_RETRIEVE_BY_FILTER(codigoPeriodo, nombreCapacitacion).AsEnumerable();
         }
 
         [HttpGet]
@@ -60,10 +60,11 @@ namespace ticeWS.Controllers
             }
             if (obj.codigoCapacitacion != null)
             {
-                return objapi.SP_CAPACITACION_UPDATE(obj.codigoCapacitacion,obj.nombre, obj.certificado, obj.codigoPerido, obj.descripcion, obj.correoContacto, obj.enviarNotificacion, obj.periodicidadEnvio, fechaInicio, obj.capacitacionActiva, obj.codigoTaller, fechaCreacion, fechaModificacion, obj.usuarioCreacion, obj.usuarioModificacion, obj.lugar, fechaInicioEnvio, fechaCapacitacion);
+                int cod = objapi.SP_CAPACITACION_UPDATE(obj.codigoCapacitacion,obj.nombre, obj.codigoPerido, obj.descripcion, obj.correoContacto, obj.enviarNotificacion, obj.periodicidadEnvio, obj.capacitacionActiva, obj.codigoTaller, fechaCreacion, fechaModificacion, obj.usuarioCreacion, obj.usuarioModificacion);
+                return 1;
             }
             ObjectParameter codigoCapacitacion = new ObjectParameter("codigoCapacitacion", typeof(int));
-            objapi.SP_CAPACITACION_CREATE(obj.nombre, obj.certificado, obj.codigoPerido, obj.descripcion, obj.correoContacto, obj.enviarNotificacion, obj.periodicidadEnvio, fechaInicio, obj.capacitacionActiva, obj.codigoTaller, fechaCreacion, fechaModificacion, obj.usuarioCreacion, obj.usuarioModificacion, obj.lugar, fechaInicioEnvio, fechaCapacitacion, codigoCapacitacion);
+            objapi.SP_CAPACITACION_CREATE(obj.nombre, obj.codigoPerido, obj.descripcion, obj.correoContacto, obj.enviarNotificacion, obj.periodicidadEnvio, obj.capacitacionActiva, obj.codigoTaller, fechaCreacion, fechaModificacion, obj.usuarioCreacion, obj.usuarioModificacion, fechaInicioEnvio, fechaCapacitacion, codigoCapacitacion);
             return (int)codigoCapacitacion.Value;
         }
 
