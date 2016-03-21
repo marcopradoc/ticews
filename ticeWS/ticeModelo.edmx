@@ -577,15 +577,6 @@ advertencia 6002: La tabla o vista 'tice.dbo.Capacitacion' no tiene definida nin
           <Property Type="Int32" Name="codigoActividad" Nullable="false" />
           <Property Type="String" Name="titulo" Nullable="true" MaxLength="200" />
           <Property Type="Int32" Name="codigoCurso" Nullable="true" />
-          <Property Type="Int32" Name="codigoTipoCurso" Nullable="true" />
-          <Property Type="String" Name="TipoCurso" Nullable="false" MaxLength="10" />
-          <Property Type="Int32" Name="codigoEstado" Nullable="true" />
-          <Property Type="String" Name="DescEstado" Nullable="false" MaxLength="8" />
-          <Property Type="String" Name="fechaInicio" Nullable="true" MaxLength="11" />
-          <Property Type="String" Name="fechaFin" Nullable="true" MaxLength="11" />
-          <Property Type="Int32" Name="codigoModalidad" Nullable="true" />
-          <Property Type="Int32" Name="codigoPeriodo" Nullable="true" />
-          <Property Type="Int32" Name="codigoSesion" Nullable="true" />
           <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
           <Property Type="DateTime" Name="fechaCreacion" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="fechaModificacion" Nullable="true" Precision="23" />
@@ -596,28 +587,18 @@ advertencia 6002: La tabla o vista 'tice.dbo.Capacitacion' no tiene definida nin
           <Property Type="Int32" Name="codigoActividad" Nullable="false" />
           <Property Type="Int32" Name="codigoCurso" Nullable="true" />
           <Property Type="String" Name="Curso" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="codigoModalidad" Nullable="true" />
-          <Property Type="Int32" Name="codigoPeriodo" Nullable="true" />
-          <Property Type="Int32" Name="codigoTipoCurso" Nullable="true" />
           <Property Type="String" Name="titulo" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="fechaInicio" Nullable="true" MaxLength="11" />
-          <Property Type="String" Name="fechaFin" Nullable="true" MaxLength="11" />
-          <Property Type="Int32" Name="codigoSesion" Nullable="true" />
-          <Property Type="Int32" Name="codigoEstado" Nullable="true" />
           <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
           <Property Type="DateTime" Name="fechaCreacion" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="fechaModificacion" Nullable="true" Precision="23" />
           <Property Type="String" Name="usuarioCreacion" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="usuarioModificacion" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="TipoCurso" Nullable="false" MaxLength="10" />
-          <Property Type="String" Name="DescEstado" Nullable="false" MaxLength="8" />
-        </ComplexType>
+          </ComplexType>
         <ComplexType Name="SP_TAREA_RETRIEVE_BY_ACTIVIDAD_Result">
           <Property Type="Int32" Name="codigoTarea" Nullable="false" />
           <Property Type="Int32" Name="codigoCurso" Nullable="true" />
           <Property Type="Int32" Name="codigoActividad" Nullable="true" />
           <Property Type="String" Name="titulo" Nullable="true" MaxLength="200" />
-          <Property Type="Int32" Name="codigoPrioridad" Nullable="true" />
           <Property Type="String" Name="estado" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="porcentajeCompletado" Nullable="true" />
           <Property Type="Int32" Name="codigoRecurso" Nullable="true" />
@@ -636,7 +617,6 @@ advertencia 6002: La tabla o vista 'tice.dbo.Capacitacion' no tiene definida nin
           <Property Type="Int32" Name="codigoActividad" Nullable="true" />
           <Property Type="String" Name="Actividad" Nullable="true" MaxLength="200" />
           <Property Type="String" Name="titulo" Nullable="true" MaxLength="200" />
-          <Property Type="Int32" Name="codigoPrioridad" Nullable="true" />
           <Property Type="String" Name="estado" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="porcentajeCompletado" Nullable="true" />
           <Property Type="Int32" Name="codigoRecurso" Nullable="true" />
@@ -868,7 +848,6 @@ advertencia 6002: La tabla o vista 'tice.dbo.Capacitacion' no tiene definida nin
                 <ScalarProperty Name="codigoCurso" ColumnName="codigoCurso" />
                 <ScalarProperty Name="codigoActividad" ColumnName="codigoActividad" />
                 <ScalarProperty Name="titulo" ColumnName="titulo" />
-                <ScalarProperty Name="codigoPrioridad" ColumnName="codigoPrioridad" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="porcentajeCompletado" ColumnName="porcentajeCompletado" />
                 <ScalarProperty Name="codigoRecurso" ColumnName="codigoRecurso" />
@@ -943,15 +922,6 @@ advertencia 6002: La tabla o vista 'tice.dbo.Capacitacion' no tiene definida nin
                 <ScalarProperty Name="codigoActividad" ColumnName="codigoActividad" />
                 <ScalarProperty Name="titulo" ColumnName="titulo" />
                 <ScalarProperty Name="codigoCurso" ColumnName="codigoCurso" />
-                <ScalarProperty Name="codigoTipoCurso" ColumnName="codigoTipoCurso" />
-                <ScalarProperty Name="TipoCurso" ColumnName="TipoCurso" />
-                <ScalarProperty Name="codigoEstado" ColumnName="codigoEstado" />
-                <ScalarProperty Name="DescEstado" ColumnName="DescEstado" />
-                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
-                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
-                <ScalarProperty Name="codigoModalidad" ColumnName="codigoModalidad" />
-                <ScalarProperty Name="codigoPeriodo" ColumnName="codigoPeriodo" />
-                <ScalarProperty Name="codigoSesion" ColumnName="codigoSesion" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
                 <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
@@ -966,22 +936,13 @@ advertencia 6002: La tabla o vista 'tice.dbo.Capacitacion' no tiene definida nin
                 <ScalarProperty Name="codigoActividad" ColumnName="codigoActividad" />
                 <ScalarProperty Name="codigoCurso" ColumnName="codigoCurso" />
                 <ScalarProperty Name="Curso" ColumnName="Curso" />
-                <ScalarProperty Name="codigoModalidad" ColumnName="codigoModalidad" />
-                <ScalarProperty Name="codigoPeriodo" ColumnName="codigoPeriodo" />
-                <ScalarProperty Name="codigoTipoCurso" ColumnName="codigoTipoCurso" />
                 <ScalarProperty Name="titulo" ColumnName="titulo" />
-                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
-                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
-                <ScalarProperty Name="codigoSesion" ColumnName="codigoSesion" />
-                <ScalarProperty Name="codigoEstado" ColumnName="codigoEstado" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
                 <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
                 <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
                 <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
-                <ScalarProperty Name="TipoCurso" ColumnName="TipoCurso" />
-                <ScalarProperty Name="DescEstado" ColumnName="DescEstado" />
-              </ComplexTypeMapping>
+                </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_TAREA_RETRIEVE" FunctionName="ticeModel.Store.SP_TAREA_RETRIEVE">
@@ -993,7 +954,6 @@ advertencia 6002: La tabla o vista 'tice.dbo.Capacitacion' no tiene definida nin
                 <ScalarProperty Name="codigoActividad" ColumnName="codigoActividad" />
                 <ScalarProperty Name="Actividad" ColumnName="Actividad" />
                 <ScalarProperty Name="titulo" ColumnName="titulo" />
-                <ScalarProperty Name="codigoPrioridad" ColumnName="codigoPrioridad" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="porcentajeCompletado" ColumnName="porcentajeCompletado" />
                 <ScalarProperty Name="codigoRecurso" ColumnName="codigoRecurso" />

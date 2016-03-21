@@ -19,7 +19,6 @@ namespace ticeWS
         public Nullable<int> codigoActividad { get; set; }
         public string Actividad { get; set; }
         public string titulo { get; set; }
-        public Nullable<int> codigoPrioridad { get; set; }
         public string estado { get; set; }
         public Nullable<int> porcentajeCompletado { get; set; }
         public Nullable<int> codigoRecurso { get; set; }
