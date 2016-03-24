@@ -10,15 +10,21 @@
 namespace ticeWS
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class SP_ACTIVIDAD_RETRIEVE_BY_CURSO2_Result
+    public partial class Capacitacion
     {
-        public int codigoActividad { get; set; }
-        public string titulo { get; set; }
-        public Nullable<int> codigoCurso { get; set; }
+        public int codigoCapacitacion { get; set; }
+        public string nombre { get; set; }
+        public Nullable<int> codigoPerido { get; set; }
         public string descripcion { get; set; }
+        public string correoContacto { get; set; }
+        public Nullable<bool> enviarNotificacion { get; set; }
+        public Nullable<int> periodicidadEnvio { get; set; }
+        public Nullable<bool> capacitacionActiva { get; set; }
+        public Nullable<int> codigoTaller { get; set; }
         public Nullable<System.DateTime> fechaCreacion { get; set; }
-        public Nullable<System.DateTime> fechaModificacion { get; set; }
+        public Nullable<System.DateTime> fechaModificacióm { get; set; }
         public string usuarioCreacion { get; set; }
         public string usuarioModificacion { get; set; }
     }

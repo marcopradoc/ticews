@@ -18,13 +18,14 @@ namespace ticeWS
         public Nullable<int> codigoCurso { get; set; }
         public Nullable<int> codigoActividad { get; set; }
         public string titulo { get; set; }
-        public Nullable<int> codigoPrioridad { get; set; }
         public string estado { get; set; }
         public Nullable<int> porcentajeCompletado { get; set; }
+        public Nullable<int> codTipoRecurso { get; set; }
         public Nullable<int> codigoRecurso { get; set; }
         public string descripcion { get; set; }
         public Nullable<System.DateTime> fechaInicio { get; set; }
         public Nullable<System.DateTime> fechaFin { get; set; }
+        public Nullable<System.DateTime> fechaRealCierre { get; set; }
         public Nullable<System.DateTime> fechaCreacion { get; set; }
         public Nullable<System.DateTime> fechaModificacion { get; set; }
         public string usuarioCreacion { get; set; }

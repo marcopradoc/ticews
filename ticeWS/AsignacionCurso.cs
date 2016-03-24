@@ -25,5 +25,6 @@ namespace ticeWS
         public Nullable<System.DateTime> fechaModificacion { get; set; }
         public string usuarioCreacion { get; set; }
         public string usuarioModificacion { get; set; }
+        public string docDiseño { get; set; }
     }
 }
