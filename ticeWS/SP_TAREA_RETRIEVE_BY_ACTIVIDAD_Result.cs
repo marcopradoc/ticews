@@ -13,13 +13,9 @@ namespace ticeWS
     
     public partial class SP_TAREA_RETRIEVE_BY_ACTIVIDAD_Result
     {
-        public int codigoTarea { get; set; }
-        public Nullable<int> codigoCurso { get; set; }
-        public Nullable<int> codigoActividad { get; set; }
         public string titulo { get; set; }
         public string estado { get; set; }
         public Nullable<int> porcentajeCompletado { get; set; }
-        public Nullable<int> codigoRecurso { get; set; }
         public string descripcion { get; set; }
         public string fechaInicio { get; set; }
         public string fechaFin { get; set; }
@@ -27,5 +23,9 @@ namespace ticeWS
         public string fechaModificacion { get; set; }
         public string usuarioCreacion { get; set; }
         public string usuarioModificacion { get; set; }
+        public int codTarea { get; set; }
+        public Nullable<int> codCurso { get; set; }
+        public Nullable<int> codActividad { get; set; }
+        public Nullable<int> codRecurso { get; set; }
     }
 }

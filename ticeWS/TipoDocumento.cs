@@ -10,14 +10,13 @@
 namespace ticeWS
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class SP_DOCENTE_RETRIEVE_Result
+    public partial class TipoDocumento
     {
-        public string nombres { get; set; }
-        public string apellidos { get; set; }
-        public string direccion { get; set; }
-        public string sexo { get; set; }
-        public Nullable<System.DateTime> fechaNacimiento { get; set; }
-        public int codDocente { get; set; }
+        public int codTipoDocumento { get; set; }
+        public Nullable<int> numDocumento { get; set; }
+        public string descripcion { get; set; }
+        public Nullable<System.DateTime> fechaCreacion { get; set; }
     }
 }

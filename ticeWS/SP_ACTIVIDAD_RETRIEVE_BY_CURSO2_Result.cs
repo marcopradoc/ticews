@@ -13,13 +13,19 @@ namespace ticeWS
     
     public partial class SP_ACTIVIDAD_RETRIEVE_BY_CURSO2_Result
     {
-        public int codigoActividad { get; set; }
         public string titulo { get; set; }
-        public Nullable<int> codigoCurso { get; set; }
         public string descripcion { get; set; }
-        public Nullable<System.DateTime> fechaCreacion { get; set; }
+        public string fechaCreacion { get; set; }
         public Nullable<System.DateTime> fechaModificacion { get; set; }
         public string usuarioCreacion { get; set; }
         public string usuarioModificacion { get; set; }
+        public int codActividad { get; set; }
+        public Nullable<int> codCurso { get; set; }
+        public string estado { get; set; }
+        public string DescEstado { get; set; }
+        public Nullable<int> codUnidad { get; set; }
+        public string unidad { get; set; }
+        public Nullable<int> codSemana { get; set; }
+        public string semana { get; set; }
     }
 }

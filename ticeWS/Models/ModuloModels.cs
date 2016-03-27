@@ -25,6 +25,10 @@ namespace ticeWS.Models
         public Nullable<int> codigoPeriodo { get; set; }
         public string usuarioModificacion { get; set; }
 
+
+        public int? codUnidad { get; set; }
+
+        public int? codSemana { get; set; }
     }
 
     public class CursoViewModel
@@ -45,6 +49,7 @@ namespace ticeWS.Models
         public Nullable<int> codigoActividad { get; set; }
         public string titulo { get; set; }
         public Nullable<int> codigoPrioridad { get; set; }
+        public Nullable<int> codTipoRecurso { get; set; }
         public string estado { get; set; }
         public Nullable<int> porcentajeCompletado { get; set; }
         public Nullable<int> codigoRecurso { get; set; }
@@ -53,6 +58,7 @@ namespace ticeWS.Models
         public string fechaFin { get; set; }
         public string usuarioCreacion { get; set; }
         public string usuarioModificacion { get; set; }
+        public int? codigoTipoRecurso { get; set; }
     }
 
     public class DocumentoViewModel

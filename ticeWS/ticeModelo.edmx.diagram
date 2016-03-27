@@ -5,11 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="0a87b6e7fc284ebda3a33e82808751d2" Name="Diagram1">
-        <EntityTypeShape EntityType="ticeModel.AsignacionCurso" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ticeModel.Documento" Width="1.5" PointX="4.25" PointY="0.75" />
-        <EntityTypeShape EntityType="ticeModel.Periodo" Width="1.5" PointX="0.75" PointY="5.75" />
-        <EntityTypeShape EntityType="ticeModel.Tarea" Width="1.5" PointX="3.375" PointY="5.75" />
-        <EntityTypeShape EntityType="ticeModel.Capacitacion" Width="1.5" PointX="5.375" PointY="5.75" />
+        <EntityTypeShape EntityType="ticeModel.AsignacionCurso" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ticeModel.Documento" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ticeModel.Periodo" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ticeModel.Capacitacion" Width="1.5" PointX="2.75" PointY="5.75" />
+        <EntityTypeShape EntityType="ticeModel.Tarea" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="ticeModel.Curso" Width="1.5" PointX="7.375" PointY="6.75" />
+        <EntityTypeShape EntityType="ticeModel.TipoDocumento" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ticeModel.Semana" Width="1.5" PointX="9.375" PointY="3.75" />
+        <EntityTypeShape EntityType="ticeModel.TipoRecurso" Width="1.5" PointX="9.375" PointY="6.75" />
+        <EntityTypeShape EntityType="ticeModel.Unidad" Width="1.5" PointX="9.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

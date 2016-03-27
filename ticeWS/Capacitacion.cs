@@ -14,15 +14,14 @@ namespace ticeWS
     
     public partial class Capacitacion
     {
-        public int codigoCapacitacion { get; set; }
+        public int codCapacitacion { get; set; }
         public string nombre { get; set; }
-        public Nullable<int> codigoPerido { get; set; }
+        public Nullable<int> codPeriodo { get; set; }
         public string descripcion { get; set; }
         public string correoContacto { get; set; }
         public Nullable<bool> enviarNotificacion { get; set; }
         public Nullable<int> periodicidadEnvio { get; set; }
         public Nullable<bool> capacitacionActiva { get; set; }
-        public Nullable<int> codigoTaller { get; set; }
         public Nullable<System.DateTime> fechaCreacion { get; set; }
         public Nullable<System.DateTime> fechaModificacióm { get; set; }
         public string usuarioCreacion { get; set; }

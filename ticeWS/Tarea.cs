@@ -14,14 +14,14 @@ namespace ticeWS
     
     public partial class Tarea
     {
-        public int codigoTarea { get; set; }
-        public Nullable<int> codigoCurso { get; set; }
-        public Nullable<int> codigoActividad { get; set; }
+        public int codTarea { get; set; }
+        public Nullable<int> codCurso { get; set; }
+        public Nullable<int> codActividad { get; set; }
         public string titulo { get; set; }
         public string estado { get; set; }
         public Nullable<int> porcentajeCompletado { get; set; }
         public Nullable<int> codTipoRecurso { get; set; }
-        public Nullable<int> codigoRecurso { get; set; }
+        public Nullable<int> codRecurso { get; set; }
         public string descripcion { get; set; }
         public Nullable<System.DateTime> fechaInicio { get; set; }
         public Nullable<System.DateTime> fechaFin { get; set; }

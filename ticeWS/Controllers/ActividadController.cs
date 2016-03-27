@@ -16,13 +16,11 @@ namespace ticeWS.Controllers
         [HttpPost]
         public int actualizaActividad(ActividadViewModel obj)
         {
-            DateTime fechaInicio = DateTime.Parse(obj.fechaInicio);
-            DateTime fechaFin = DateTime.Parse(obj.fechaFin);
             if (obj.codigoActividad != null)
             {
-                return objapi.SP_ACTIVIDAD_UPDATE(obj.codigoActividad, obj.codigoCurso, obj.codigoModalidad, obj.codigoPeriodo, obj.codigoTipoCurso, obj.titulo, fechaInicio, fechaFin, obj.codigoSesion, obj.codigoEstado, obj.descripcion, obj.usuarioModificacion);
+                return objapi.SP_ACTIVIDAD_UPDATE(obj.codigoActividad, obj.codigoCurso, obj.codUnidad, obj.codSemana, obj.titulo, obj.codigoEstado, obj.descripcion, obj.usuarioModificacion);
             }
-            return objapi.SP_ACTIVIDAD_CREATE(obj.codigoCurso, obj.codigoModalidad, obj.codigoPeriodo, obj.codigoTipoCurso, obj.titulo, fechaInicio, fechaFin, obj.codigoSesion, obj.codigoEstado, obj.descripcion, obj.usuarioCreacion);
+            return objapi.SP_ACTIVIDAD_CREATE(obj.codigoCurso, obj.codUnidad, obj.codSemana, obj.titulo, obj.codigoEstado.ToString(), obj.descripcion, obj.usuarioCreacion);
         }
         
         [HttpGet]

@@ -14,11 +14,11 @@ namespace ticeWS
     
     public partial class AsignacionCurso
     {
-        public int codigoAsignacionCurso { get; set; }
-        public Nullable<int> codigoCurso { get; set; }
-        public Nullable<int> codigoDocente { get; set; }
-        public Nullable<int> codigoModalidad { get; set; }
-        public Nullable<int> codigoPeriodo { get; set; }
+        public int codAsignacionCurso { get; set; }
+        public Nullable<int> codCurso { get; set; }
+        public Nullable<int> codDocente { get; set; }
+        public Nullable<int> codModalidad { get; set; }
+        public Nullable<int> codPeriodo { get; set; }
         public string asignado { get; set; }
         public string estado { get; set; }
         public Nullable<System.DateTime> fechaCreacion { get; set; }

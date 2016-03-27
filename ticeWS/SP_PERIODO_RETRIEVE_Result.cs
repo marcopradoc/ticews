@@ -13,8 +13,8 @@ namespace ticeWS
     
     public partial class SP_PERIODO_RETRIEVE_Result
     {
-        public int codigo { get; set; }
         public string descripcion { get; set; }
         public Nullable<System.DateTime> fechaCreacion { get; set; }
+        public int codPeriodo { get; set; }
     }
 }

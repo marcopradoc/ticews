@@ -12,11 +12,11 @@ namespace ticeWS.Controllers
     {
         ticeEntities3 objapi = new ticeEntities3();
 
-        [HttpGet]
-        public IEnumerable<SP_MATERIAL_CAPACITACION_RETRIEVE_BY_CAPACITACION_Result> listarCapacitacionMaterial(int codigoCapacitacion)
-        {
-            return objapi.SP_MATERIAL_CAPACITACION_RETRIEVE_BY_CAPACITACION(codigoCapacitacion).AsEnumerable();
-        }
+        //[HttpGet]
+        //public IEnumerable<SP_MATERIAL_CAPACITACION_RETRIEVE_BY_CAPACITACION_Result> listarCapacitacionMaterial(int codigoCapacitacion)
+        //{
+        //    return objapi.SP_MATERIAL_CAPACITACION_RETRIEVE_BY_CAPACITACION(codigoCapacitacion).AsEnumerable();
+        //}
 
     }
 }

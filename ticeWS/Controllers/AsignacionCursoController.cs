@@ -48,7 +48,7 @@ namespace ticeWS.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<SP_ACTIVIDAD_RETRIEVE_BY_CURSO3_Result> listarCursosxPeriodo(int idperiodo, string estado)
+        public IEnumerable<SP_ACTIVIDAD_RETRIEVE_BY_CURSO3_Result> listarCursosxPeriodo(int? idperiodo, string estado)
         {
             if (idperiodo == null)
                 idperiodo = 0;

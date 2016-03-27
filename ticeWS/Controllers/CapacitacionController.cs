@@ -60,11 +60,11 @@ namespace ticeWS.Controllers
             }
             if (obj.codigoCapacitacion != null)
             {
-                int cod = objapi.SP_CAPACITACION_UPDATE(obj.codigoCapacitacion,obj.nombre, obj.codigoPerido, obj.descripcion, obj.correoContacto, obj.enviarNotificacion, obj.periodicidadEnvio, obj.capacitacionActiva, obj.codigoTaller, fechaCreacion, fechaModificacion, obj.usuarioCreacion, obj.usuarioModificacion);
+                int cod = objapi.SP_CAPACITACION_UPDATE(obj.codigoCapacitacion,obj.nombre, obj.codigoPerido, obj.descripcion, obj.correoContacto, obj.enviarNotificacion, obj.periodicidadEnvio, obj.capacitacionActiva, fechaCreacion, fechaModificacion, obj.usuarioCreacion, obj.usuarioModificacion);
                 return 1;
             }
             ObjectParameter codigoCapacitacion = new ObjectParameter("codigoCapacitacion", typeof(int));
-            objapi.SP_CAPACITACION_CREATE(obj.nombre, obj.codigoPerido, obj.descripcion, obj.correoContacto, obj.enviarNotificacion, obj.periodicidadEnvio, obj.capacitacionActiva, obj.codigoTaller, fechaCreacion, fechaModificacion, obj.usuarioCreacion, obj.usuarioModificacion, fechaInicioEnvio, fechaCapacitacion, codigoCapacitacion);
+            objapi.SP_CAPACITACION_CREATE(obj.nombre, obj.codigoPerido, obj.descripcion, obj.correoContacto, obj.enviarNotificacion, obj.periodicidadEnvio, obj.capacitacionActiva, fechaCreacion, fechaModificacion, obj.usuarioCreacion);
             return (int)codigoCapacitacion.Value;
         }
 

@@ -21,10 +21,10 @@ namespace ticeWS.Controllers
         }
 
         [HttpGet]
-        public int ingresarTarea(int codigoCurso, int codigoActividad , string titulo, int codigoPrioridad, string estado, int porcentajecompletado , int codigoRecuros ,string descripcion,DateTime fechaInicio,  DateTime fechaFin, string usuarioCreacion)
+        public int ingresarTarea(int codigoCurso, int codigoActividad , string titulo, string estado, int porcentajecompletado, int codigoTipRec, int codigoRecuros ,string descripcion,DateTime fechaInicio,  DateTime fechaFin, string usuarioCreacion)
         {
 
-            return objapi.SP_TAREA_CREATE(codigoCurso, codigoActividad, titulo,  codigoPrioridad,  estado,  porcentajecompletado,  codigoRecuros, descripcion, fechaInicio,  fechaFin,  usuarioCreacion );
+            return objapi.SP_TAREA_CREATE(codigoCurso, codigoActividad, titulo,  estado,  porcentajecompletado, codigoTipRec, codigoRecuros, descripcion, fechaInicio,  fechaFin,  usuarioCreacion);
 
 
         }
@@ -34,25 +34,26 @@ namespace ticeWS.Controllers
         {
             DateTime fechaInicio = DateTime.Parse(obj.fechaInicio);
             DateTime fechaFin = DateTime.Parse(obj.fechaFin);
+            //obj.estado = obj.estado[0];
             if (obj.codigoTarea.HasValue)
             {
-                return objapi.SP_TAREA_UPDATE(obj.codigoTarea,obj.codigoCurso, obj.codigoActividad, obj.titulo, obj.codigoPrioridad, obj.estado, obj.porcentajeCompletado, obj.codigoRecurso, obj.descripcion, fechaInicio, fechaFin, obj.usuarioModificacion);
+                return objapi.SP_TAREA_UPDATE(obj.codigoTarea, obj.codigoCurso, obj.codigoActividad, obj.titulo, obj.codigoPrioridad, obj.estado, obj.porcentajeCompletado, obj.codigoRecurso, obj.descripcion, fechaInicio, fechaFin, obj.usuarioModificacion);
             }
-            return objapi.SP_TAREA_CREATE(obj.codigoCurso, obj.codigoActividad, obj.titulo, obj.codigoPrioridad, obj.estado, obj.porcentajeCompletado, obj.codigoRecurso, obj.descripcion, fechaInicio, fechaFin, obj.usuarioCreacion);
+            return objapi.SP_TAREA_CREATE(obj.codigoCurso, obj.codigoActividad, obj.titulo, obj.estado, obj.porcentajeCompletado, obj.codigoTipoRecurso,obj.codigoRecurso, obj.descripcion, fechaInicio, fechaFin, obj.usuarioCreacion);
         }
 
         [HttpGet]
-        public int actualizarTarea(int codigoCurso, int codigoActividad, string titulo, int codigoPrioridad, string estado, int porcentajecompletado, int codigoRecuros, string descripcion, DateTime fechaInicio, DateTime fechaFin, string usuarioCreacion)
+        public int actualizarTarea(int codigoCurso, int codigoActividad, string titulo, string estado, int porcentajecompletado, int codigoTipRec, int codigoRecuros, string descripcion, DateTime fechaInicio, DateTime fechaFin, string usuarioCreacion)
         {
 
-            return objapi.SP_TAREA_CREATE(codigoCurso, codigoActividad, titulo, codigoPrioridad, estado, porcentajecompletado, codigoRecuros, descripcion, fechaInicio, fechaFin, usuarioCreacion);
+            return objapi.SP_TAREA_CREATE(codigoCurso, codigoActividad, titulo, estado, porcentajecompletado, codigoTipRec, codigoRecuros, descripcion, fechaInicio, fechaFin, usuarioCreacion);
 
         }
 
         [HttpPost]
-        public int actualizarTareaPost(int codigoCurso, int codigoActividad, string titulo, int codigoPrioridad, string estado, int porcentajecompletado, int codigoRecuros, string descripcion, DateTime fechaInicio, DateTime fechaFin, string usuarioCreacion)
+        public int actualizarTareaPost(int codigoCurso, int codigoActividad, string titulo, string estado, int porcentajecompletado, int codigoTipRec, int codigoRecuros, string descripcion, DateTime fechaInicio, DateTime fechaFin, string usuarioCreacion)
         {
-            return objapi.SP_TAREA_CREATE(codigoCurso, codigoActividad, titulo, codigoPrioridad, estado, porcentajecompletado, codigoRecuros, descripcion, fechaInicio, fechaFin, usuarioCreacion);
+            return objapi.SP_TAREA_CREATE(codigoCurso, codigoActividad, titulo, estado, porcentajecompletado, codigoTipRec, codigoRecuros, descripcion, fechaInicio, fechaFin, usuarioCreacion);
         }
 
         [HttpGet]
