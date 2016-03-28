@@ -106,4 +106,21 @@ namespace ticeWS.Models
         public string fechaInicioEnvio { get; set; }
         public string fechaCapacitacion { get; set; }
     }
+
+    public class DetalleCapacitacionViewModel
+    {
+        public int? codDetalleCapacitacion { get; set; }
+        public int? codCapacitacion { get; set; }
+        public int? codTaller { get; set; }
+        public string codAulaVirtual { get; set; }
+        public string fechaInicio { get; set; }
+        public string fechaFin { get; set; }
+        public int? codSede { get; set; }
+        public string lugar { get; set; }
+        public decimal? sesionesPresenciales { get; set; }
+        public decimal? sesionesVirtuales { get; set; }
+        public string fechaEnvioNotificacion { get; set; }
+
+        public DateTime? fechaCreacion { get; set; }
+    }
 }

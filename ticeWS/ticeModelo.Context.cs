@@ -37,6 +37,9 @@ namespace ticeWS
         public virtual DbSet<Semana> Semana { get; set; }
         public virtual DbSet<TipoRecurso> TipoRecurso { get; set; }
         public virtual DbSet<Unidad> Unidad { get; set; }
+        public virtual DbSet<Aula> Aula { get; set; }
+        public virtual DbSet<Sede> Sede { get; set; }
+        public virtual DbSet<Direccion> Direccion { get; set; }
     
         public virtual ObjectResult<SP_ACTIVIDAD_RETRIEVE_BY_CURSO_Result> SP_ACTIVIDAD_RETRIEVE_BY_CURSO(string periodo, string estado)
         {
@@ -666,6 +669,159 @@ namespace ticeWS
         public virtual ObjectResult<SP_UNIDAD_RETRIEVE_Result> SP_UNIDAD_RETRIEVE()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_UNIDAD_RETRIEVE_Result>("SP_UNIDAD_RETRIEVE");
+        }
+    
+        public virtual ObjectResult<SP_TALLER_RETRIEVE_BY_CAPACITACION_Result> SP_TALLER_RETRIEVE_BY_CAPACITACION(Nullable<int> codigoCapacitacion)
+        {
+            var codigoCapacitacionParameter = codigoCapacitacion.HasValue ?
+                new ObjectParameter("codigoCapacitacion", codigoCapacitacion) :
+                new ObjectParameter("codigoCapacitacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_TALLER_RETRIEVE_BY_CAPACITACION_Result>("SP_TALLER_RETRIEVE_BY_CAPACITACION", codigoCapacitacionParameter);
+        }
+    
+        public virtual ObjectResult<SP_AULA_RETRIEVE_Result> SP_AULA_RETRIEVE()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_AULA_RETRIEVE_Result>("SP_AULA_RETRIEVE");
+        }
+    
+        public virtual ObjectResult<SP_SEDE_RETRIEVE_Result> SP_SEDE_RETRIEVE()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_SEDE_RETRIEVE_Result>("SP_SEDE_RETRIEVE");
+        }
+    
+        public virtual int SP_DETALLE_CAPACITACION_CREATE(Nullable<int> codCapacitacion, Nullable<int> codTaller, string codAulaVirtual, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, Nullable<int> codSede, string lugar, Nullable<decimal> sesionesPresenciales, Nullable<decimal> sesionesVirtuales, Nullable<System.DateTime> fechaEnvioNotificacion)
+        {
+            var codCapacitacionParameter = codCapacitacion.HasValue ?
+                new ObjectParameter("codCapacitacion", codCapacitacion) :
+                new ObjectParameter("codCapacitacion", typeof(int));
+    
+            var codTallerParameter = codTaller.HasValue ?
+                new ObjectParameter("codTaller", codTaller) :
+                new ObjectParameter("codTaller", typeof(int));
+    
+            var codAulaVirtualParameter = codAulaVirtual != null ?
+                new ObjectParameter("codAulaVirtual", codAulaVirtual) :
+                new ObjectParameter("codAulaVirtual", typeof(string));
+    
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("fechaInicio", fechaInicio) :
+                new ObjectParameter("fechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("fechaFin", fechaFin) :
+                new ObjectParameter("fechaFin", typeof(System.DateTime));
+    
+            var codSedeParameter = codSede.HasValue ?
+                new ObjectParameter("codSede", codSede) :
+                new ObjectParameter("codSede", typeof(int));
+    
+            var lugarParameter = lugar != null ?
+                new ObjectParameter("lugar", lugar) :
+                new ObjectParameter("lugar", typeof(string));
+    
+            var sesionesPresencialesParameter = sesionesPresenciales.HasValue ?
+                new ObjectParameter("sesionesPresenciales", sesionesPresenciales) :
+                new ObjectParameter("sesionesPresenciales", typeof(decimal));
+    
+            var sesionesVirtualesParameter = sesionesVirtuales.HasValue ?
+                new ObjectParameter("sesionesVirtuales", sesionesVirtuales) :
+                new ObjectParameter("sesionesVirtuales", typeof(decimal));
+    
+            var fechaEnvioNotificacionParameter = fechaEnvioNotificacion.HasValue ?
+                new ObjectParameter("fechaEnvioNotificacion", fechaEnvioNotificacion) :
+                new ObjectParameter("fechaEnvioNotificacion", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_DETALLE_CAPACITACION_CREATE", codCapacitacionParameter, codTallerParameter, codAulaVirtualParameter, fechaInicioParameter, fechaFinParameter, codSedeParameter, lugarParameter, sesionesPresencialesParameter, sesionesVirtualesParameter, fechaEnvioNotificacionParameter);
+        }
+    
+        public virtual int SP_DETALLECAPACITACION_UPDATE(Nullable<int> codDetalleCapacitacion, Nullable<int> codCapacitacion, Nullable<int> codTaller, string codAulaVirtual, Nullable<System.DateTime> fechaInicio, Nullable<System.DateTime> fechaFin, Nullable<int> codSede, string lugar, Nullable<decimal> sesionesPresenciales, Nullable<decimal> sesionesVirtuales, Nullable<System.DateTime> fechaEnvioNotificacion, Nullable<System.DateTime> fechaCreacion)
+        {
+            var codDetalleCapacitacionParameter = codDetalleCapacitacion.HasValue ?
+                new ObjectParameter("codDetalleCapacitacion", codDetalleCapacitacion) :
+                new ObjectParameter("codDetalleCapacitacion", typeof(int));
+    
+            var codCapacitacionParameter = codCapacitacion.HasValue ?
+                new ObjectParameter("codCapacitacion", codCapacitacion) :
+                new ObjectParameter("codCapacitacion", typeof(int));
+    
+            var codTallerParameter = codTaller.HasValue ?
+                new ObjectParameter("codTaller", codTaller) :
+                new ObjectParameter("codTaller", typeof(int));
+    
+            var codAulaVirtualParameter = codAulaVirtual != null ?
+                new ObjectParameter("codAulaVirtual", codAulaVirtual) :
+                new ObjectParameter("codAulaVirtual", typeof(string));
+    
+            var fechaInicioParameter = fechaInicio.HasValue ?
+                new ObjectParameter("fechaInicio", fechaInicio) :
+                new ObjectParameter("fechaInicio", typeof(System.DateTime));
+    
+            var fechaFinParameter = fechaFin.HasValue ?
+                new ObjectParameter("fechaFin", fechaFin) :
+                new ObjectParameter("fechaFin", typeof(System.DateTime));
+    
+            var codSedeParameter = codSede.HasValue ?
+                new ObjectParameter("codSede", codSede) :
+                new ObjectParameter("codSede", typeof(int));
+    
+            var lugarParameter = lugar != null ?
+                new ObjectParameter("lugar", lugar) :
+                new ObjectParameter("lugar", typeof(string));
+    
+            var sesionesPresencialesParameter = sesionesPresenciales.HasValue ?
+                new ObjectParameter("sesionesPresenciales", sesionesPresenciales) :
+                new ObjectParameter("sesionesPresenciales", typeof(decimal));
+    
+            var sesionesVirtualesParameter = sesionesVirtuales.HasValue ?
+                new ObjectParameter("sesionesVirtuales", sesionesVirtuales) :
+                new ObjectParameter("sesionesVirtuales", typeof(decimal));
+    
+            var fechaEnvioNotificacionParameter = fechaEnvioNotificacion.HasValue ?
+                new ObjectParameter("fechaEnvioNotificacion", fechaEnvioNotificacion) :
+                new ObjectParameter("fechaEnvioNotificacion", typeof(System.DateTime));
+    
+            var fechaCreacionParameter = fechaCreacion.HasValue ?
+                new ObjectParameter("fechaCreacion", fechaCreacion) :
+                new ObjectParameter("fechaCreacion", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_DETALLECAPACITACION_UPDATE", codDetalleCapacitacionParameter, codCapacitacionParameter, codTallerParameter, codAulaVirtualParameter, fechaInicioParameter, fechaFinParameter, codSedeParameter, lugarParameter, sesionesPresencialesParameter, sesionesVirtualesParameter, fechaEnvioNotificacionParameter, fechaCreacionParameter);
+        }
+    
+        public virtual ObjectResult<SP_DETALLECAPACITACION_RETRIEVE_Result> SP_DETALLECAPACITACION_RETRIEVE(Nullable<int> codDetalleCapacitacion)
+        {
+            var codDetalleCapacitacionParameter = codDetalleCapacitacion.HasValue ?
+                new ObjectParameter("codDetalleCapacitacion", codDetalleCapacitacion) :
+                new ObjectParameter("codDetalleCapacitacion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_DETALLECAPACITACION_RETRIEVE_Result>("SP_DETALLECAPACITACION_RETRIEVE", codDetalleCapacitacionParameter);
+        }
+    
+        public virtual ObjectResult<SP_CURSO_LOAD_Result> SP_CURSO_LOAD(Nullable<int> coDireccion)
+        {
+            var coDireccionParameter = coDireccion.HasValue ?
+                new ObjectParameter("coDireccion", coDireccion) :
+                new ObjectParameter("coDireccion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CURSO_LOAD_Result>("SP_CURSO_LOAD", coDireccionParameter);
+        }
+    
+        public virtual ObjectResult<SP_DIRECCION_LOAD_Result> SP_DIRECCION_LOAD()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_DIRECCION_LOAD_Result>("SP_DIRECCION_LOAD");
+        }
+    
+        public virtual ObjectResult<SP_FOCUSGROUP_RETRIEVE_BY_CURSO_ESTADO_Result> SP_FOCUSGROUP_RETRIEVE_BY_CURSO_ESTADO(Nullable<int> codCurso, string estado)
+        {
+            var codCursoParameter = codCurso.HasValue ?
+                new ObjectParameter("codCurso", codCurso) :
+                new ObjectParameter("codCurso", typeof(int));
+    
+            var estadoParameter = estado != null ?
+                new ObjectParameter("estado", estado) :
+                new ObjectParameter("estado", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_FOCUSGROUP_RETRIEVE_BY_CURSO_ESTADO_Result>("SP_FOCUSGROUP_RETRIEVE_BY_CURSO_ESTADO", codCursoParameter, estadoParameter);
         }
     }
 }

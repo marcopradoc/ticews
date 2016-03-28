@@ -25,5 +25,11 @@ namespace ticeWS.Controllers
             return objapi.SP_TALLER_RETRIEVE_BY_TALLER(codigoTaller).AsEnumerable();
         }
 
+        [HttpGet]
+        public IEnumerable<SP_TALLER_RETRIEVE_BY_CAPACITACION_Result> obtenerTallerCapacitacion(int codigoCapacitacion)
+        {
+            return objapi.SP_TALLER_RETRIEVE_BY_CAPACITACION(codigoCapacitacion).AsEnumerable();
+        }
+
     }
 }

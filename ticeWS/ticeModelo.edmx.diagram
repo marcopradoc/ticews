@@ -15,6 +15,9 @@
         <EntityTypeShape EntityType="ticeModel.Semana" Width="1.5" PointX="9.375" PointY="3.75" />
         <EntityTypeShape EntityType="ticeModel.TipoRecurso" Width="1.5" PointX="9.375" PointY="6.75" />
         <EntityTypeShape EntityType="ticeModel.Unidad" Width="1.5" PointX="9.375" PointY="9.75" />
+        <EntityTypeShape EntityType="ticeModel.Aula" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ticeModel.Sede" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="ticeModel.Direccion" Width="1.5" PointX="3.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
