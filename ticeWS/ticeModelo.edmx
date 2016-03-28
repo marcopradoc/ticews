@@ -313,6 +313,9 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Parameter Name="estado" Type="char" Mode="In" />
           <Parameter Name="usuarioModificacion" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SP_FOCUSGROUP_RETRIEVE_BY_CURSO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codCurso" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_FOCUSGROUP_RETRIEVE_BY_CURSO_ESTADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="codCurso" Type="int" Mode="In" />
           <Parameter Name="estado" Type="varchar" Mode="In" />
@@ -669,6 +672,9 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <FunctionImport Name="SP_FOCUSGROUP_RETRIEVE_BY_CURSO_ESTADO" ReturnType="Collection(ticeModel.SP_FOCUSGROUP_RETRIEVE_BY_CURSO_ESTADO_Result)">
             <Parameter Name="codCurso" Mode="In" Type="Int32" />
             <Parameter Name="estado" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_FOCUSGROUP_RETRIEVE_BY_CURSO" ReturnType="Collection(ticeModel.SP_FOCUSGROUP_RETRIEVE_BY_CURSO_Result)">
+            <Parameter Name="codCurso" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SP_CURSO_RETRIEVE_Result">
@@ -1102,6 +1108,22 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Property Type="String" Name="usuarioCreacion" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="usuarioModificacion" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="nombres" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SP_FOCUSGROUP_RETRIEVE_BY_CURSO_Result">
+          <Property Type="Int32" Name="codCurso" Nullable="true" />
+          <Property Type="String" Name="modalidad" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="codModalidad" Nullable="true" />
+          <Property Type="String" Name="curso" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="docente" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="codDocente" Nullable="true" />
+          <Property Type="String" Name="campus" Nullable="true" MaxLength="50" />
+          <Property Type="Time" Name="horaInicio" Nullable="true" />
+          <Property Type="String" Name="psicologo" Nullable="true" MaxLength="400" />
+          <Property Type="Int32" Name="codPsicologo" Nullable="true" />
+          <Property Type="String" Name="semana" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="confirmacionPsicologo" Nullable="false" MaxLength="9" />
+          <Property Type="String" Name="confirmacionDocente" Nullable="false" MaxLength="9" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1653,6 +1675,26 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
                 <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
                 <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
                 <ScalarProperty Name="nombres" ColumnName="nombres" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_FOCUSGROUP_RETRIEVE_BY_CURSO" FunctionName="ticeModel.Store.SP_FOCUSGROUP_RETRIEVE_BY_CURSO">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_FOCUSGROUP_RETRIEVE_BY_CURSO_Result">
+                <ScalarProperty Name="codCurso" ColumnName="codCurso" />
+                <ScalarProperty Name="modalidad" ColumnName="modalidad" />
+                <ScalarProperty Name="codModalidad" ColumnName="codModalidad" />
+                <ScalarProperty Name="curso" ColumnName="curso" />
+                <ScalarProperty Name="docente" ColumnName="docente" />
+                <ScalarProperty Name="codDocente" ColumnName="codDocente" />
+                <ScalarProperty Name="campus" ColumnName="campus" />
+                <ScalarProperty Name="horaInicio" ColumnName="horaInicio" />
+                <ScalarProperty Name="psicologo" ColumnName="psicologo" />
+                <ScalarProperty Name="codPsicologo" ColumnName="codPsicologo" />
+                <ScalarProperty Name="semana" ColumnName="semana" />
+                <ScalarProperty Name="confirmacionPsicologo" ColumnName="confirmacionPsicologo" />
+                <ScalarProperty Name="confirmacionDocente" ColumnName="confirmacionDocente" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -823,5 +823,14 @@ namespace ticeWS
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_FOCUSGROUP_RETRIEVE_BY_CURSO_ESTADO_Result>("SP_FOCUSGROUP_RETRIEVE_BY_CURSO_ESTADO", codCursoParameter, estadoParameter);
         }
+    
+        public virtual ObjectResult<SP_FOCUSGROUP_RETRIEVE_BY_CURSO_Result> SP_FOCUSGROUP_RETRIEVE_BY_CURSO(Nullable<int> codCurso)
+        {
+            var codCursoParameter = codCurso.HasValue ?
+                new ObjectParameter("codCurso", codCurso) :
+                new ObjectParameter("codCurso", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_FOCUSGROUP_RETRIEVE_BY_CURSO_Result>("SP_FOCUSGROUP_RETRIEVE_BY_CURSO", codCursoParameter);
+        }
     }
 }

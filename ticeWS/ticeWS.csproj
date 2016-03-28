@@ -346,6 +346,9 @@
     <Compile Include="SP_FOCUSGROUP_RETRIEVE_BY_CURSO_ESTADO_Result.cs">
       <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_FOCUSGROUP_RETRIEVE_BY_CURSO_Result.cs">
+      <DependentUpon>ticeModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_MATERIAL_CAPACITACION_RETRIEVE_BY_CAPACITACION_Result.cs">
       <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>

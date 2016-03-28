@@ -17,5 +17,11 @@ namespace ticeWS.Controllers
         {
             return objapi.SP_FOCUSGROUP_RETRIEVE_BY_CURSO_ESTADO(codCurso, estado).AsEnumerable();
         }
+
+        [HttpGet]
+        public IEnumerable<SP_FOCUSGROUP_RETRIEVE_BY_CURSO_Result> listarFocusGroup(int codCurso)
+        {
+            return objapi.SP_FOCUSGROUP_RETRIEVE_BY_CURSO(codCurso).AsEnumerable();
+        }
     }
 }
