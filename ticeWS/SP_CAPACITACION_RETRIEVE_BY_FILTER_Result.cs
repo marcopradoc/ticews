@@ -26,5 +26,6 @@ namespace ticeWS
         public Nullable<int> codPeriodo { get; set; }
         public string fechaCreacion { get; set; }
         public string fechaModificacion { get; set; }
+        public string estado { get; set; }
     }
 }

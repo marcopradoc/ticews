@@ -176,6 +176,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Parameter Name="usuarioModificacion" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SP_CAPACITACION_CREATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codigoCapacitacion" Type="int" Mode="InOut" />
           <Parameter Name="nombre" Type="varchar" Mode="In" />
           <Parameter Name="codPerido" Type="int" Mode="In" />
           <Parameter Name="descripcion" Type="varchar" Mode="In" />
@@ -479,6 +480,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
             <Parameter Name="nomCapacitacion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_CAPACITACION_CREATE">
+            <Parameter Name="codigoCapacitacion" Mode="InOut" Type="Int32" />
             <Parameter Name="nombre" Mode="In" Type="String" />
             <Parameter Name="codPerido" Mode="In" Type="Int32" />
             <Parameter Name="descripcion" Mode="In" Type="String" />
@@ -604,7 +606,8 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Property Type="String" Name="Unidad" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="codSemana" Nullable="true" />
           <Property Type="String" Name="Semana" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="DescEstado" Nullable="false" MaxLength="8" />
+          <Property Type="String" Name="DescEstado" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="1" />
           </ComplexType>
         <ComplexType Name="SP_TAREA_RETRIEVE_BY_ACTIVIDAD_Result">
           <Property Type="String" Name="titulo" Nullable="true" MaxLength="200" />
@@ -724,6 +727,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Property Type="Int32" Name="codPeriodo" Nullable="true" />
           <Property Type="String" Name="fechaCreacion" Nullable="true" MaxLength="11" />
           <Property Type="String" Name="fechaModificacion" Nullable="true" MaxLength="11" />
+          <Property Type="String" Name="estado" Nullable="false" MaxLength="8" />
           </ComplexType>
         <ComplexType Name="SP_PARTICIPANTES_CAPACITACION_RETRIEVE_BY_CAPACITACION_Result">
           <Property Type="Int32" Name="codigoParticipacionCapacitacion" Nullable="false" />
@@ -1014,6 +1018,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
                 <ScalarProperty Name="codSemana" ColumnName="codSemana" />
                 <ScalarProperty Name="Semana" ColumnName="Semana" />
                 <ScalarProperty Name="DescEstado" ColumnName="DescEstado" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
                 </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1080,6 +1085,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
                 <ScalarProperty Name="codPeriodo" ColumnName="codPeriodo" />
                 <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
                 <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
                 </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

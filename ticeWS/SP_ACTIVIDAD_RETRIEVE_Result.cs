@@ -27,5 +27,6 @@ namespace ticeWS
         public Nullable<int> codSemana { get; set; }
         public string Semana { get; set; }
         public string DescEstado { get; set; }
+        public string estado { get; set; }
     }
 }

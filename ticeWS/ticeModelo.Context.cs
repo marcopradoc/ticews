@@ -445,7 +445,7 @@ namespace ticeWS
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CAPACITACION_RETRIEVE_BY_FILTER_Result>("SP_CAPACITACION_RETRIEVE_BY_FILTER", codPeriodoParameter, nomCapacitacionParameter);
         }
     
-        public virtual int SP_CAPACITACION_CREATE(string nombre, Nullable<int> codPerido, string descripcion, string correoContacto, Nullable<bool> enviarNotificacion, Nullable<int> periodicidadEnvio, Nullable<bool> capacitacionActiva, Nullable<System.DateTime> fechaCreacion, Nullable<System.DateTime> fechaModificacióm, string usuarioCreacion)
+        public virtual int SP_CAPACITACION_CREATE(ObjectParameter codigoCapacitacion, string nombre, Nullable<int> codPerido, string descripcion, string correoContacto, Nullable<bool> enviarNotificacion, Nullable<int> periodicidadEnvio, Nullable<bool> capacitacionActiva, Nullable<System.DateTime> fechaCreacion, Nullable<System.DateTime> fechaModificacióm, string usuarioCreacion)
         {
             var nombreParameter = nombre != null ?
                 new ObjectParameter("nombre", nombre) :
@@ -487,7 +487,7 @@ namespace ticeWS
                 new ObjectParameter("usuarioCreacion", usuarioCreacion) :
                 new ObjectParameter("usuarioCreacion", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CAPACITACION_CREATE", nombreParameter, codPeridoParameter, descripcionParameter, correoContactoParameter, enviarNotificacionParameter, periodicidadEnvioParameter, capacitacionActivaParameter, fechaCreacionParameter, fechaModificaciómParameter, usuarioCreacionParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CAPACITACION_CREATE", codigoCapacitacion, nombreParameter, codPeridoParameter, descripcionParameter, correoContactoParameter, enviarNotificacionParameter, periodicidadEnvioParameter, capacitacionActivaParameter, fechaCreacionParameter, fechaModificaciómParameter, usuarioCreacionParameter);
         }
     
         public virtual int SP_MATERIAL_CAPACITACION_CREATE(Nullable<int> codigoCapacitacion, string descripcion, string rutaDocumento)

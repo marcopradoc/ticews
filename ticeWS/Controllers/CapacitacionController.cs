@@ -32,24 +32,24 @@ namespace ticeWS.Controllers
         [HttpPost]
         public int guardarCapacitacion(CapacitacionViewModel obj)
         {
-            Nullable<System.DateTime> fechaInicio = null;
-            Nullable<System.DateTime> fechaInicioEnvio = null;
-            Nullable<System.DateTime> fechaCapacitacion = null;
+            //Nullable<System.DateTime> fechaInicio = null;
+            //Nullable<System.DateTime> fechaInicioEnvio = null;
+            //Nullable<System.DateTime> fechaCapacitacion = null;
             Nullable<System.DateTime> fechaCreacion = null;
             Nullable<System.DateTime> fechaModificacion = null;
 
-            if (obj.fechaInicio != null && obj.fechaInicio.Length > 0)
-            {
-                fechaInicio = DateTime.Parse(obj.fechaInicio);
-            }
-            if (obj.fechaInicioEnvio != null && obj.fechaInicioEnvio.Length > 0)
-            {
-                fechaInicioEnvio = DateTime.Parse(obj.fechaInicioEnvio);
-            }
-            if (obj.fechaCapacitacion != null && obj.fechaCapacitacion.Length > 0)
-            {
-                fechaCapacitacion = DateTime.Parse(obj.fechaCapacitacion);
-            }
+            //if (obj.fechaInicio != null && obj.fechaInicio.Length > 0)
+            //{
+            //    fechaInicio = DateTime.Parse(obj.fechaInicio);
+            //}
+            //if (obj.fechaInicioEnvio != null && obj.fechaInicioEnvio.Length > 0)
+            //{
+            //    fechaInicioEnvio = DateTime.Parse(obj.fechaInicioEnvio);
+            //}
+            //if (obj.fechaCapacitacion != null && obj.fechaCapacitacion.Length > 0)
+            //{
+            //    fechaCapacitacion = DateTime.Parse(obj.fechaCapacitacion);
+            //}
             if (obj.fechaCreacion != null && obj.fechaCreacion.Length > 0)
             {
                 fechaCreacion = DateTime.Parse(obj.fechaCreacion);
@@ -64,7 +64,7 @@ namespace ticeWS.Controllers
                 return 1;
             }
             ObjectParameter codigoCapacitacion = new ObjectParameter("codigoCapacitacion", typeof(int));
-            objapi.SP_CAPACITACION_CREATE(obj.nombre, obj.codigoPerido, obj.descripcion, obj.correoContacto, obj.enviarNotificacion, obj.periodicidadEnvio, obj.capacitacionActiva, fechaCreacion, fechaModificacion, obj.usuarioCreacion);
+            objapi.SP_CAPACITACION_CREATE(codigoCapacitacion, obj.nombre, obj.codigoPerido, obj.descripcion, obj.correoContacto, obj.enviarNotificacion, obj.periodicidadEnvio, obj.capacitacionActiva, fechaCreacion, fechaModificacion, obj.usuarioCreacion);
             return (int)codigoCapacitacion.Value;
         }
 
