@@ -93,6 +93,15 @@ advertencia 6002: La tabla o vista 'tice.dbo.Capacitacion' no tiene definida nin
           <Property Name="usuarioCreacion" Type="varchar" MaxLength="50" />
           <Property Name="usuarioModificacion" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Modalidad">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="abreviatura" Type="char" MaxLength="3" />
+          <Property Name="fechaCreacion" Type="datetime" />
+        </EntityType>
         <EntityType Name="Periodo">
           <Key>
             <PropertyRef Name="codPeriodo" />
@@ -334,6 +343,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
         <Function Name="SP_MATERIAL_RETRIEVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="codigoTaller" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_MODALIDAD_LOAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_PARTICIPANTES_CAPACITACION_CREATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="codigoDocente" Type="int" Mode="In" />
           <Parameter Name="codigoCapacitacion" Type="int" Mode="In" />
@@ -393,6 +403,12 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Parameter Name="fechaFin" Type="datetime" Mode="In" />
           <Parameter Name="usuarioModificacion" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SP_TAREAS_RETRIEVE_BY_ACTAS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codModalidad" Type="int" Mode="In" />
+          <Parameter Name="estadoTarea" Type="char" Mode="In" />
+          <Parameter Name="estadoActa" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_TIPORECURSO_LOAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_UNIDAD_RETRIEVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="ticeModelStoreContainer">
           <EntitySet Name="AsignacionCurso" EntityType="Self.AsignacionCurso" Schema="dbo" store:Type="Tables" />
@@ -400,6 +416,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <EntitySet Name="Curso" EntityType="Self.Curso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Direccion" EntityType="Self.Direccion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Documento" EntityType="Self.Documento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modalidad" EntityType="Self.Modalidad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Periodo" EntityType="Self.Periodo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sede" EntityType="Self.Sede" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Semana" EntityType="Self.Semana" Schema="dbo" store:Type="Tables" />
@@ -674,7 +691,15 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
             <Parameter Name="estado" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_FOCUSGROUP_RETRIEVE_BY_CURSO" ReturnType="Collection(ticeModel.SP_FOCUSGROUP_RETRIEVE_BY_CURSO_Result)">
-            <Parameter Name="codCurso" Mode="In" Type="Int32" />
+          <Parameter Name="codCurso" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Modalidad" EntityType="ticeModel.Modalidad" />
+          <FunctionImport Name="SP_MODALIDAD_LOAD" ReturnType="Collection(ticeModel.SP_MODALIDAD_LOAD_Result)" />
+          <FunctionImport Name="SP_TIPORECURSO_LOAD" ReturnType="Collection(ticeModel.SP_TIPORECURSO_LOAD_Result)" />
+          <FunctionImport Name="SP_TAREAS_RETRIEVE_BY_ACTAS" ReturnType="Collection(ticeModel.SP_TAREAS_RETRIEVE_BY_ACTAS_Result)" >
+            <Parameter Name="codModalidad" Mode="In" Type="Int32" />
+            <Parameter Name="estadoTarea" Mode="In" Type="String" />
+            <Parameter Name="estadoActa" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SP_CURSO_RETRIEVE_Result">
@@ -1124,6 +1149,38 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Property Type="String" Name="confirmacionPsicologo" Nullable="false" MaxLength="9" />
           <Property Type="String" Name="confirmacionDocente" Nullable="false" MaxLength="9" />
           <Property Type="String" Name="estado" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="Modalidad">
+          <Key>
+            <PropertyRef Name="codigo" />
+          </Key>
+          <Property Name="codigo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="abreviatura" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <ComplexType Name="SP_MODALIDAD_LOAD_Result">
+          <Property Type="Int32" Name="codigo" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="abreviatura" Nullable="true" MaxLength="3" />
+          <Property Type="DateTime" Name="fechaCreacion" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="SP_TIPORECURSO_LOAD_Result">
+          <Property Type="Int32" Name="codTipoRecurso" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_TAREAS_RETRIEVE_BY_ACTAS_Result">
+          <Property Type="Int32" Name="Curso" Nullable="true" />
+          <Property Type="String" Name="Actividad" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Unidad" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Semana" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Tarea" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="NombreRecurso" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaTermino" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="codActa" Nullable="false" />
+          <Property Type="String" Name="EstadoActa" Nullable="false" MaxLength="9" />
+          <Property Type="Int32" Name="codTarea" Nullable="false" />
+          <Property Type="String" Name="codigo" Nullable="true" MaxLength="10" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1695,6 +1752,51 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
                 <ScalarProperty Name="confirmacionPsicologo" ColumnName="confirmacionPsicologo" />
                 <ScalarProperty Name="confirmacionDocente" ColumnName="confirmacionDocente" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Modalidad">
+            <EntityTypeMapping TypeName="ticeModel.Modalidad">
+              <MappingFragment StoreEntitySet="Modalidad">
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="abreviatura" ColumnName="abreviatura" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_MODALIDAD_LOAD" FunctionName="ticeModel.Store.SP_MODALIDAD_LOAD">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_MODALIDAD_LOAD_Result">
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="abreviatura" ColumnName="abreviatura" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_TIPORECURSO_LOAD" FunctionName="ticeModel.Store.SP_TIPORECURSO_LOAD">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_TIPORECURSO_LOAD_Result">
+                <ScalarProperty Name="codTipoRecurso" ColumnName="codTipoRecurso" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_TAREAS_RETRIEVE_BY_ACTAS" FunctionName="ticeModel.Store.SP_TAREAS_RETRIEVE_BY_ACTAS">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_TAREAS_RETRIEVE_BY_ACTAS_Result">
+                <ScalarProperty Name="Curso" ColumnName="Curso" />
+                <ScalarProperty Name="Actividad" ColumnName="Actividad" />
+                <ScalarProperty Name="Unidad" ColumnName="Unidad" />
+                <ScalarProperty Name="Semana" ColumnName="Semana" />
+                <ScalarProperty Name="Tarea" ColumnName="Tarea" />
+                <ScalarProperty Name="NombreRecurso" ColumnName="NombreRecurso" />
+                <ScalarProperty Name="FechaTermino" ColumnName="FechaTermino" />
+                <ScalarProperty Name="codActa" ColumnName="codActa" />
+                <ScalarProperty Name="EstadoActa" ColumnName="EstadoActa" />
+                <ScalarProperty Name="codTarea" ColumnName="codTarea" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

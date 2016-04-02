@@ -68,5 +68,11 @@ namespace ticeWS.Controllers
             return objapi.SP_TAREA_DELETE(codigoTarea);
         }
 
+        [HttpGet]
+        public IEnumerable<SP_TAREAS_RETRIEVE_BY_ACTAS_Result> listarTareaXActividad(int codModalidad, string estadoTarea, int estadoActa)
+        {
+
+            return objapi.SP_TAREAS_RETRIEVE_BY_ACTAS(codModalidad, estadoTarea, estadoActa).AsEnumerable();
+        }
     }
 }

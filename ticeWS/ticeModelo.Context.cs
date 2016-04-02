@@ -40,6 +40,7 @@ namespace ticeWS
         public virtual DbSet<Aula> Aula { get; set; }
         public virtual DbSet<Sede> Sede { get; set; }
         public virtual DbSet<Direccion> Direccion { get; set; }
+        public virtual DbSet<Modalidad> Modalidad { get; set; }
     
         public virtual ObjectResult<SP_ACTIVIDAD_RETRIEVE_BY_CURSO_Result> SP_ACTIVIDAD_RETRIEVE_BY_CURSO(string periodo, string estado)
         {
@@ -831,6 +832,33 @@ namespace ticeWS
                 new ObjectParameter("codCurso", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_FOCUSGROUP_RETRIEVE_BY_CURSO_Result>("SP_FOCUSGROUP_RETRIEVE_BY_CURSO", codCursoParameter);
+        }
+    
+        public virtual ObjectResult<SP_MODALIDAD_LOAD_Result> SP_MODALIDAD_LOAD()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_MODALIDAD_LOAD_Result>("SP_MODALIDAD_LOAD");
+        }
+    
+        public virtual ObjectResult<SP_TIPORECURSO_LOAD_Result> SP_TIPORECURSO_LOAD()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_TIPORECURSO_LOAD_Result>("SP_TIPORECURSO_LOAD");
+        }
+    
+        public virtual ObjectResult<SP_TAREAS_RETRIEVE_BY_ACTAS_Result> SP_TAREAS_RETRIEVE_BY_ACTAS(Nullable<int> codModalidad, string estadoTarea, Nullable<int> estadoActa)
+        {
+            var codModalidadParameter = codModalidad.HasValue ?
+                new ObjectParameter("codModalidad", codModalidad) :
+                new ObjectParameter("codModalidad", typeof(int));
+    
+            var estadoTareaParameter = estadoTarea != null ?
+                new ObjectParameter("estadoTarea", estadoTarea) :
+                new ObjectParameter("estadoTarea", typeof(string));
+    
+            var estadoActaParameter = estadoActa.HasValue ?
+                new ObjectParameter("estadoActa", estadoActa) :
+                new ObjectParameter("estadoActa", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_TAREAS_RETRIEVE_BY_ACTAS_Result>("SP_TAREAS_RETRIEVE_BY_ACTAS", codModalidadParameter, estadoTareaParameter, estadoActaParameter);
         }
     }
 }

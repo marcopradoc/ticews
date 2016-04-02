@@ -266,11 +266,13 @@
     <Compile Include="Controllers\FocusGroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MaterialController.cs" />
+    <Compile Include="Controllers\ModalidadController.cs" />
     <Compile Include="Controllers\PeriodoController.cs" />
     <Compile Include="Controllers\SedeController.cs" />
     <Compile Include="Controllers\SemanaController.cs" />
     <Compile Include="Controllers\TallerController.cs" />
     <Compile Include="Controllers\TareaController.cs" />
+    <Compile Include="Controllers\TipoRecursoController.cs" />
     <Compile Include="Controllers\UnidadController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Curso.cs">
@@ -284,6 +286,9 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Modalidad.cs">
+      <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -355,6 +360,9 @@
     <Compile Include="SP_MATERIAL_RETRIEVE_Result.cs">
       <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_MODALIDAD_LOAD_Result.cs">
+      <DependentUpon>ticeModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_PARTICIPANTES_CAPACITACION_RETRIEVE_BY_CAPACITACION_Result.cs">
       <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>
@@ -376,10 +384,16 @@
     <Compile Include="SP_TALLER_RETRIEVE_Result.cs">
       <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_TAREAS_RETRIEVE_BY_ACTAS_Result.cs">
+      <DependentUpon>ticeModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_TAREA_RETRIEVE_BY_ACTIVIDAD_Result.cs">
       <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_TAREA_RETRIEVE_Result.cs">
+      <DependentUpon>ticeModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_TIPORECURSO_LOAD_Result.cs">
       <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_UNIDAD_RETRIEVE_Result.cs">
@@ -497,9 +511,11 @@
     <Folder Include="Views\DetalleCapacitacion\" />
     <Folder Include="Views\Direccion\" />
     <Folder Include="Views\FocusGroup\" />
+    <Folder Include="Views\Modalidad\" />
     <Folder Include="Views\Periodo\" />
     <Folder Include="Views\Sede\" />
     <Folder Include="Views\Semana\" />
+    <Folder Include="Views\TipoRecurso\" />
     <Folder Include="Views\Unidad\" />
   </ItemGroup>
   <ItemGroup>
