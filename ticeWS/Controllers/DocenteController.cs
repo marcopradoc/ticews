@@ -19,5 +19,10 @@ namespace ticeWS.Controllers
             return objapi.SP_DOCENTE_RETRIEVE().AsEnumerable();
         }
 
+        [HttpGet]
+        public IEnumerable<SP_DOCENTE_RETRIEVE_BY_DIRECCION_Result> listar(int codDireccion)
+        {
+            return objapi.SP_DOCENTE_RETRIEVE_BY_DIRECCION(codDireccion).AsEnumerable();
+        }
     }
 }

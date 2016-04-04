@@ -41,6 +41,7 @@ namespace ticeWS
         public virtual DbSet<Sede> Sede { get; set; }
         public virtual DbSet<Direccion> Direccion { get; set; }
         public virtual DbSet<Modalidad> Modalidad { get; set; }
+        public virtual DbSet<ActaConformidad> ActaConformidad { get; set; }
     
         public virtual ObjectResult<SP_ACTIVIDAD_RETRIEVE_BY_CURSO_Result> SP_ACTIVIDAD_RETRIEVE_BY_CURSO(string periodo, string estado)
         {
@@ -859,6 +860,41 @@ namespace ticeWS
                 new ObjectParameter("estadoActa", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_TAREAS_RETRIEVE_BY_ACTAS_Result>("SP_TAREAS_RETRIEVE_BY_ACTAS", codModalidadParameter, estadoTareaParameter, estadoActaParameter);
+        }
+    
+        public virtual ObjectResult<SP_DOCENTE_RETRIEVE_BY_DIRECCION_Result> SP_DOCENTE_RETRIEVE_BY_DIRECCION(Nullable<int> codDireccion)
+        {
+            var codDireccionParameter = codDireccion.HasValue ?
+                new ObjectParameter("codDireccion", codDireccion) :
+                new ObjectParameter("codDireccion", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_DOCENTE_RETRIEVE_BY_DIRECCION_Result>("SP_DOCENTE_RETRIEVE_BY_DIRECCION", codDireccionParameter);
+        }
+    
+        public virtual ObjectResult<SP_TIEMPO_RETRIEVE_Result> SP_TIEMPO_RETRIEVE()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_TIEMPO_RETRIEVE_Result>("SP_TIEMPO_RETRIEVE");
+        }
+    
+        public virtual ObjectResult<SP_HORARIO_RETRIEVE_BY_CURSO_PERIODO_MODALIDAD_DOCENTE_Result> SP_HORARIO_RETRIEVE_BY_CURSO_PERIODO_MODALIDAD_DOCENTE(Nullable<int> codCurso, Nullable<int> codModalidad, string semana, Nullable<int> codDocente)
+        {
+            var codCursoParameter = codCurso.HasValue ?
+                new ObjectParameter("codCurso", codCurso) :
+                new ObjectParameter("codCurso", typeof(int));
+    
+            var codModalidadParameter = codModalidad.HasValue ?
+                new ObjectParameter("codModalidad", codModalidad) :
+                new ObjectParameter("codModalidad", typeof(int));
+    
+            var semanaParameter = semana != null ?
+                new ObjectParameter("semana", semana) :
+                new ObjectParameter("semana", typeof(string));
+    
+            var codDocenteParameter = codDocente.HasValue ?
+                new ObjectParameter("codDocente", codDocente) :
+                new ObjectParameter("codDocente", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_HORARIO_RETRIEVE_BY_CURSO_PERIODO_MODALIDAD_DOCENTE_Result>("SP_HORARIO_RETRIEVE_BY_CURSO_PERIODO_MODALIDAD_DOCENTE", codCursoParameter, codModalidadParameter, semanaParameter, codDocenteParameter);
         }
     }
 }
