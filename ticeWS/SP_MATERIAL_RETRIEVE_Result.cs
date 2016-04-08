@@ -13,7 +13,7 @@ namespace ticeWS
     
     public partial class SP_MATERIAL_RETRIEVE_Result
     {
-        public Nullable<int> codigoMaterial { get; set; }
+        public int codigoMaterial { get; set; }
         public Nullable<int> codigoTaller { get; set; }
         public string nombreDocumento { get; set; }
         public string tipoMaterial { get; set; }

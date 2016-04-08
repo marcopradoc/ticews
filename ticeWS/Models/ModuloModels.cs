@@ -90,7 +90,7 @@ namespace ticeWS.Models
         public Nullable<int> codigoCapacitacion { get; set; }
         public string nombre { get; set; }
         public bool certificado { get; set; }
-        public Nullable<int> codigoPerido { get; set; }
+        public string codigoPerido { get; set; }
         public string descripcion { get; set; }
         public string correoContacto { get; set; }
         public bool enviarNotificacion { get; set; }

@@ -14,8 +14,9 @@ namespace ticeWS
     
     public partial class Periodo
     {
-        public int codPeriodo { get; set; }
-        public string descripcion { get; set; }
+        public string codPeriodo { get; set; }
+        public string anio { get; set; }
+        public string mes { get; set; }
         public Nullable<System.DateTime> fechaCreacion { get; set; }
     }
 }

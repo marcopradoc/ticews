@@ -15,6 +15,5 @@ namespace ticeWS
     {
         public int codDireccion { get; set; }
         public string descripcion { get; set; }
-        public string abreviatura { get; set; }
     }
 }

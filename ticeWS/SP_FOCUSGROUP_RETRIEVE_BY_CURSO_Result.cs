@@ -13,7 +13,7 @@ namespace ticeWS
     
     public partial class SP_FOCUSGROUP_RETRIEVE_BY_CURSO_Result
     {
-        public Nullable<int> codCurso { get; set; }
+        public string codCurso { get; set; }
         public string modalidad { get; set; }
         public Nullable<int> codModalidad { get; set; }
         public string curso { get; set; }

@@ -27,21 +27,21 @@ namespace ticeWS
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AsignacionCurso> AsignacionCurso { get; set; }
         public virtual DbSet<Documento> Documento { get; set; }
-        public virtual DbSet<Periodo> Periodo { get; set; }
-        public virtual DbSet<Capacitacion> Capacitacion { get; set; }
         public virtual DbSet<Tarea> Tarea { get; set; }
-        public virtual DbSet<Curso> Curso { get; set; }
         public virtual DbSet<TipoDocumento> TipoDocumento { get; set; }
         public virtual DbSet<Semana> Semana { get; set; }
         public virtual DbSet<TipoRecurso> TipoRecurso { get; set; }
         public virtual DbSet<Unidad> Unidad { get; set; }
         public virtual DbSet<Aula> Aula { get; set; }
         public virtual DbSet<Sede> Sede { get; set; }
+        public virtual DbSet<ActaConformidad> ActaConformidad { get; set; }
+        public virtual DbSet<AsignacionCurso> AsignacionCurso { get; set; }
+        public virtual DbSet<Curso> Curso { get; set; }
+        public virtual DbSet<Periodo> Periodo { get; set; }
         public virtual DbSet<Direccion> Direccion { get; set; }
         public virtual DbSet<Modalidad> Modalidad { get; set; }
-        public virtual DbSet<ActaConformidad> ActaConformidad { get; set; }
+        public virtual DbSet<Capacitacion> Capacitacion { get; set; }
     
         public virtual ObjectResult<SP_ACTIVIDAD_RETRIEVE_BY_CURSO_Result> SP_ACTIVIDAD_RETRIEVE_BY_CURSO(string periodo, string estado)
         {
@@ -264,13 +264,13 @@ namespace ticeWS
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_DOCUMENTO_RETRIEVE_BY_TAREA_Result>("SP_DOCUMENTO_RETRIEVE_BY_TAREA", codigoTareaParameter);
         }
     
-        public virtual ObjectResult<SP_CURSO_RETRIEVE_Result> SP_CURSO_RETRIEVE(Nullable<int> codigoCurso)
+        public virtual ObjectResult<SP_CURSO_RETRIEVE_Result> SP_CURSO_RETRIEVE(Nullable<int> codCurso)
         {
-            var codigoCursoParameter = codigoCurso.HasValue ?
-                new ObjectParameter("codigoCurso", codigoCurso) :
-                new ObjectParameter("codigoCurso", typeof(int));
+            var codCursoParameter = codCurso.HasValue ?
+                new ObjectParameter("codCurso", codCurso) :
+                new ObjectParameter("codCurso", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CURSO_RETRIEVE_Result>("SP_CURSO_RETRIEVE", codigoCursoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CURSO_RETRIEVE_Result>("SP_CURSO_RETRIEVE", codCursoParameter);
         }
     
         public virtual int SP_DOCUMENTO_CREATE(Nullable<int> codigoCurso, Nullable<int> codigoActividad, Nullable<int> codigoTarea, string titulo, string autor, Nullable<int> codigoTipoDocumento, string descripcion, string rutaDocumento, string estado, string usuarioCreacion)
@@ -437,11 +437,11 @@ namespace ticeWS
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_CURSO_UPDATE", codigoCursoParameter, nombreCursoParameter, estadoParameter, observacionesParameter, usuarioModificacionParameter);
         }
     
-        public virtual ObjectResult<SP_CAPACITACION_RETRIEVE_BY_FILTER_Result> SP_CAPACITACION_RETRIEVE_BY_FILTER(Nullable<int> codPeriodo, string nomCapacitacion)
+        public virtual ObjectResult<SP_CAPACITACION_RETRIEVE_BY_FILTER_Result> SP_CAPACITACION_RETRIEVE_BY_FILTER(string codPeriodo, string nomCapacitacion)
         {
-            var codPeriodoParameter = codPeriodo.HasValue ?
+            var codPeriodoParameter = codPeriodo != null ?
                 new ObjectParameter("codPeriodo", codPeriodo) :
-                new ObjectParameter("codPeriodo", typeof(int));
+                new ObjectParameter("codPeriodo", typeof(string));
     
             var nomCapacitacionParameter = nomCapacitacion != null ?
                 new ObjectParameter("nomCapacitacion", nomCapacitacion) :
@@ -450,15 +450,15 @@ namespace ticeWS
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_CAPACITACION_RETRIEVE_BY_FILTER_Result>("SP_CAPACITACION_RETRIEVE_BY_FILTER", codPeriodoParameter, nomCapacitacionParameter);
         }
     
-        public virtual int SP_CAPACITACION_CREATE(ObjectParameter codigoCapacitacion, string nombre, Nullable<int> codPerido, string descripcion, string correoContacto, Nullable<bool> enviarNotificacion, Nullable<int> periodicidadEnvio, Nullable<bool> capacitacionActiva, Nullable<System.DateTime> fechaCreacion, Nullable<System.DateTime> fechaModificacióm, string usuarioCreacion)
+        public virtual int SP_CAPACITACION_CREATE(ObjectParameter codigoCapacitacion, string nombre, string codPerido, string descripcion, string correoContacto, Nullable<bool> enviarNotificacion, Nullable<int> periodicidadEnvio, Nullable<bool> capacitacionActiva, Nullable<System.DateTime> fechaCreacion, Nullable<System.DateTime> fechaModificacióm, string usuarioCreacion)
         {
             var nombreParameter = nombre != null ?
                 new ObjectParameter("nombre", nombre) :
                 new ObjectParameter("nombre", typeof(string));
     
-            var codPeridoParameter = codPerido.HasValue ?
+            var codPeridoParameter = codPerido != null ?
                 new ObjectParameter("codPerido", codPerido) :
-                new ObjectParameter("codPerido", typeof(int));
+                new ObjectParameter("codPerido", typeof(string));
     
             var descripcionParameter = descripcion != null ?
                 new ObjectParameter("descripcion", descripcion) :
@@ -592,7 +592,7 @@ namespace ticeWS
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_PARTICIPANTES_CAPACITACION_DELETE", codigoCapacitacionParameter, codigoDocenteParameter);
         }
     
-        public virtual int SP_CAPACITACION_UPDATE(Nullable<int> codCapacitacion, string nombre, Nullable<int> codigoPeriodo, string descripcion, string correoContacto, Nullable<bool> enviarNotificacion, Nullable<int> periodicidadEnvio, Nullable<bool> capacitacionActiva, Nullable<System.DateTime> fechaCreacion, Nullable<System.DateTime> fechaModificacióm, string usuarioCreacion, string usuarioModificacion)
+        public virtual int SP_CAPACITACION_UPDATE(Nullable<int> codCapacitacion, string nombre, string codigoPeriodo, string descripcion, string correoContacto, Nullable<bool> enviarNotificacion, Nullable<int> periodicidadEnvio, Nullable<bool> capacitacionActiva, Nullable<System.DateTime> fechaCreacion, Nullable<System.DateTime> fechaModificacióm, string usuarioCreacion, string usuarioModificacion)
         {
             var codCapacitacionParameter = codCapacitacion.HasValue ?
                 new ObjectParameter("codCapacitacion", codCapacitacion) :
@@ -602,9 +602,9 @@ namespace ticeWS
                 new ObjectParameter("nombre", nombre) :
                 new ObjectParameter("nombre", typeof(string));
     
-            var codigoPeriodoParameter = codigoPeriodo.HasValue ?
+            var codigoPeriodoParameter = codigoPeriodo != null ?
                 new ObjectParameter("codigoPeriodo", codigoPeriodo) :
-                new ObjectParameter("codigoPeriodo", typeof(int));
+                new ObjectParameter("codigoPeriodo", typeof(string));
     
             var descripcionParameter = descripcion != null ?
                 new ObjectParameter("descripcion", descripcion) :
@@ -813,11 +813,11 @@ namespace ticeWS
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_DIRECCION_LOAD_Result>("SP_DIRECCION_LOAD");
         }
     
-        public virtual ObjectResult<SP_FOCUSGROUP_RETRIEVE_BY_CURSO_ESTADO_Result> SP_FOCUSGROUP_RETRIEVE_BY_CURSO_ESTADO(Nullable<int> codCurso, string estado)
+        public virtual ObjectResult<SP_FOCUSGROUP_RETRIEVE_BY_CURSO_ESTADO_Result> SP_FOCUSGROUP_RETRIEVE_BY_CURSO_ESTADO(string codCurso, string estado)
         {
-            var codCursoParameter = codCurso.HasValue ?
+            var codCursoParameter = codCurso != null ?
                 new ObjectParameter("codCurso", codCurso) :
-                new ObjectParameter("codCurso", typeof(int));
+                new ObjectParameter("codCurso", typeof(string));
     
             var estadoParameter = estado != null ?
                 new ObjectParameter("estado", estado) :
@@ -826,11 +826,11 @@ namespace ticeWS
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_FOCUSGROUP_RETRIEVE_BY_CURSO_ESTADO_Result>("SP_FOCUSGROUP_RETRIEVE_BY_CURSO_ESTADO", codCursoParameter, estadoParameter);
         }
     
-        public virtual ObjectResult<SP_FOCUSGROUP_RETRIEVE_BY_CURSO_Result> SP_FOCUSGROUP_RETRIEVE_BY_CURSO(Nullable<int> codCurso)
+        public virtual ObjectResult<SP_FOCUSGROUP_RETRIEVE_BY_CURSO_Result> SP_FOCUSGROUP_RETRIEVE_BY_CURSO(string codCurso)
         {
-            var codCursoParameter = codCurso.HasValue ?
+            var codCursoParameter = codCurso != null ?
                 new ObjectParameter("codCurso", codCurso) :
-                new ObjectParameter("codCurso", typeof(int));
+                new ObjectParameter("codCurso", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_FOCUSGROUP_RETRIEVE_BY_CURSO_Result>("SP_FOCUSGROUP_RETRIEVE_BY_CURSO", codCursoParameter);
         }
@@ -876,11 +876,11 @@ namespace ticeWS
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_TIEMPO_RETRIEVE_Result>("SP_TIEMPO_RETRIEVE");
         }
     
-        public virtual ObjectResult<SP_HORARIO_RETRIEVE_BY_CURSO_PERIODO_MODALIDAD_DOCENTE_Result> SP_HORARIO_RETRIEVE_BY_CURSO_PERIODO_MODALIDAD_DOCENTE(Nullable<int> codCurso, Nullable<int> codModalidad, string semana, Nullable<int> codDocente)
+        public virtual ObjectResult<SP_HORARIO_RETRIEVE_BY_CURSO_PERIODO_MODALIDAD_DOCENTE_Result> SP_HORARIO_RETRIEVE_BY_CURSO_PERIODO_MODALIDAD_DOCENTE(string codCurso, Nullable<int> codModalidad, string semana, Nullable<int> codDocente)
         {
-            var codCursoParameter = codCurso.HasValue ?
+            var codCursoParameter = codCurso != null ?
                 new ObjectParameter("codCurso", codCurso) :
-                new ObjectParameter("codCurso", typeof(int));
+                new ObjectParameter("codCurso", typeof(string));
     
             var codModalidadParameter = codModalidad.HasValue ?
                 new ObjectParameter("codModalidad", codModalidad) :

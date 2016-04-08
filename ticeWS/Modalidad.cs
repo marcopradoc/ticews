@@ -14,7 +14,7 @@ namespace ticeWS
     
     public partial class Modalidad
     {
-        public int codigo { get; set; }
+        public int codModalidad { get; set; }
         public string descripcion { get; set; }
         public string abreviatura { get; set; }
         public Nullable<System.DateTime> fechaCreacion { get; set; }

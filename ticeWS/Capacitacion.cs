@@ -16,7 +16,7 @@ namespace ticeWS
     {
         public int codCapacitacion { get; set; }
         public string nombre { get; set; }
-        public Nullable<int> codPeriodo { get; set; }
+        public string codPeriodo { get; set; }
         public string descripcion { get; set; }
         public string correoContacto { get; set; }
         public Nullable<bool> enviarNotificacion { get; set; }

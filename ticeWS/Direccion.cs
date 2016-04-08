@@ -15,8 +15,8 @@ namespace ticeWS
     public partial class Direccion
     {
         public int codDireccion { get; set; }
+        public Nullable<int> codArea { get; set; }
         public string descripcion { get; set; }
-        public string abreviatura { get; set; }
         public Nullable<System.DateTime> fechaCreacion { get; set; }
     }
 }

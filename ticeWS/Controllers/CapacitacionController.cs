@@ -14,7 +14,7 @@ namespace ticeWS.Controllers
         ticeEntities3 objapi = new ticeEntities3();
 
         [HttpGet]
-        public IEnumerable<SP_CAPACITACION_RETRIEVE_BY_FILTER_Result> listarCapacitaciones(int codigoPeriodo, string nombreCapacitacion)
+        public IEnumerable<SP_CAPACITACION_RETRIEVE_BY_FILTER_Result> listarCapacitaciones(string codigoPeriodo, string nombreCapacitacion)
         {
             if (nombreCapacitacion == null)
             {

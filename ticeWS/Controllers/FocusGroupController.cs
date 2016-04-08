@@ -13,13 +13,13 @@ namespace ticeWS.Controllers
         ticeEntities3 objapi = new ticeEntities3();
 
         [HttpGet]
-        public IEnumerable<SP_FOCUSGROUP_RETRIEVE_BY_CURSO_ESTADO_Result> listarFocusGroup(int codCurso, string estado)
+        public IEnumerable<SP_FOCUSGROUP_RETRIEVE_BY_CURSO_ESTADO_Result> listarFocusGroup(string codCurso, string estado)
         {
             return objapi.SP_FOCUSGROUP_RETRIEVE_BY_CURSO_ESTADO(codCurso, estado).AsEnumerable();
         }
 
         [HttpGet]
-        public IEnumerable<SP_FOCUSGROUP_RETRIEVE_BY_CURSO_Result> listarFocusGroup(int codCurso)
+        public IEnumerable<SP_FOCUSGROUP_RETRIEVE_BY_CURSO_Result> listarFocusGroup(string codCurso)
         {
             return objapi.SP_FOCUSGROUP_RETRIEVE_BY_CURSO(codCurso).AsEnumerable();
         }

@@ -13,7 +13,7 @@ namespace ticeWS.Controllers
         ticeEntities3 objapi = new ticeEntities3();
 
         [HttpGet]
-        public IEnumerable<SP_HORARIO_RETRIEVE_BY_CURSO_PERIODO_MODALIDAD_DOCENTE_Result> listarHorarioBy(int codCurso, int codModalidad, string semana, int codDocente)
+        public IEnumerable<SP_HORARIO_RETRIEVE_BY_CURSO_PERIODO_MODALIDAD_DOCENTE_Result> listarHorarioBy(string codCurso, int codModalidad, string semana, int codDocente)
         {
             return objapi.SP_HORARIO_RETRIEVE_BY_CURSO_PERIODO_MODALIDAD_DOCENTE(codCurso, codModalidad, semana, codDocente).AsEnumerable();
         }

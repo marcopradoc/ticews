@@ -13,9 +13,9 @@ namespace ticeWS
     
     public partial class SP_MODALIDAD_LOAD_Result
     {
-        public int codigo { get; set; }
         public string descripcion { get; set; }
         public string abreviatura { get; set; }
         public Nullable<System.DateTime> fechaCreacion { get; set; }
+        public int codModalidad { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace ticeWS
     
     public partial class SP_TAREAS_RETRIEVE_BY_ACTAS_Result
     {
-        public Nullable<int> Curso { get; set; }
+        public string Curso { get; set; }
         public string Actividad { get; set; }
         public string Unidad { get; set; }
         public string Semana { get; set; }

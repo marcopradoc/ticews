@@ -17,7 +17,7 @@ namespace ticeWS
         public Nullable<System.DateTime> fecha { get; set; }
         public Nullable<System.TimeSpan> horaInicio { get; set; }
         public Nullable<System.TimeSpan> horaFin { get; set; }
-        public Nullable<int> codCurso { get; set; }
+        public string codCurso { get; set; }
         public string nombre { get; set; }
         public Nullable<int> codDocente { get; set; }
     }

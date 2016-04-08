@@ -15,9 +15,6 @@ namespace ticeWS
     {
         public string nombres { get; set; }
         public string apellidos { get; set; }
-        public string direccion { get; set; }
-        public string sexo { get; set; }
-        public Nullable<System.DateTime> fechaNacimiento { get; set; }
         public int codDocente { get; set; }
     }
 }

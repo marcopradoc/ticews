@@ -14,13 +14,12 @@ namespace ticeWS
     
     public partial class Curso
     {
-        public int codCurso { get; set; }
+        public string codCurso { get; set; }
         public string nombre { get; set; }
-        public string abreviatura { get; set; }
         public string estado { get; set; }
         public Nullable<System.DateTime> fechacreacion { get; set; }
         public Nullable<int> codDireccionCurso { get; set; }
-        public Nullable<decimal> creditos { get; set; }
+        public Nullable<int> codLineaNegocii { get; set; }
         public string esBlended { get; set; }
         public string esBlenderizable { get; set; }
         public Nullable<decimal> horas { get; set; }

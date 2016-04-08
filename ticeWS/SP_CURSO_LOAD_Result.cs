@@ -13,9 +13,8 @@ namespace ticeWS
     
     public partial class SP_CURSO_LOAD_Result
     {
-        public int codCurso { get; set; }
+        public string codCurso { get; set; }
         public string nombre { get; set; }
-        public string abreviatura { get; set; }
         public string estado { get; set; }
         public string DescEstado { get; set; }
     }

@@ -15,8 +15,9 @@ namespace ticeWS
     public partial class AsignacionCurso
     {
         public int codAsignacionCurso { get; set; }
-        public Nullable<int> codCurso { get; set; }
+        public string codCurso { get; set; }
         public Nullable<int> codDocente { get; set; }
+        public Nullable<int> codLineaNegocio { get; set; }
         public Nullable<int> codModalidad { get; set; }
         public Nullable<int> codPeriodo { get; set; }
         public string asignado { get; set; }

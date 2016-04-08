@@ -23,6 +23,6 @@ namespace ticeWS
         public string lugar { get; set; }
         public Nullable<decimal> sesionesPresenciales { get; set; }
         public Nullable<decimal> sesionesVirtuales { get; set; }
-        public Nullable<System.DateTime> fechaEnvioNotificacion { get; set; }
+        public string fechaEnvioNotificacion { get; set; }
     }
 }
