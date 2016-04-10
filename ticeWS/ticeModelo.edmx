@@ -37,7 +37,7 @@
           <Property Name="codDocente" Type="int" />
           <Property Name="codLineaNegocio" Type="int" />
           <Property Name="codModalidad" Type="int" />
-          <Property Name="codPeriodo" Type="int" />
+          <Property Name="codPeriodo" Type="char" MaxLength="6" />
           <Property Name="asignado" Type="varchar" MaxLength="200" />
           <Property Name="estado" Type="char" MaxLength="1" />
           <Property Name="fechaCreacion" Type="datetime" />
@@ -155,7 +155,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.Capacitacion' no tiene definida nin
             <PropertyRef Name="codTarea" />
           </Key>
           <Property Name="codTarea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="codCurso" Type="int" />
+          <Property Name="codCurso" Type="varchar" MaxLength="20" />
           <Property Name="codActividad" Type="int" />
           <Property Name="titulo" Type="varchar" MaxLength="200" />
           <Property Name="estado" Type="char" MaxLength="1" />
@@ -198,7 +198,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Property Name="fechaCreacion" Type="datetime" />
         </EntityType>
         <Function Name="SP_ACTIVIDAD_CREATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="codCurso" Type="int" Mode="In" />
+          <Parameter Name="codCurso" Type="varchar" Mode="In" />
           <Parameter Name="codUnidad" Type="int" Mode="In" />
           <Parameter Name="codSemana" Type="int" Mode="In" />
           <Parameter Name="titulo" Type="varchar" Mode="In" />
@@ -217,15 +217,15 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Parameter Name="estado" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="SP_ACTIVIDAD_RETRIEVE_BY_CURSO2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="codCurso" Type="int" Mode="In" />
+          <Parameter Name="codCurso" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SP_ACTIVIDAD_RETRIEVE_BY_CURSO3" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="idperiodo" Type="int" Mode="In" />
+          <Parameter Name="idperiodo" Type="varchar" Mode="In" />
           <Parameter Name="estado" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="SP_ACTIVIDAD_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="codActividad" Type="int" Mode="In" />
-          <Parameter Name="codCurso" Type="int" Mode="In" />
+          <Parameter Name="codCurso" Type="varchar" Mode="In" />
           <Parameter Name="codUnidad" Type="int" Mode="In" />
           <Parameter Name="codSemana" Type="int" Mode="In" />
           <Parameter Name="titulo" Type="varchar" Mode="In" />
@@ -272,7 +272,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Parameter Name="coDireccion" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_CURSO_RETRIEVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="codCurso" Type="int" Mode="In" />
+          <Parameter Name="codCurso" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SP_CURSO_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="codigoCurso" Type="int" Mode="In" />
@@ -401,7 +401,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Parameter Name="codigoTaller" Type="int" Mode="In" />
         </Function>
         <Function Name="SP_TAREA_CREATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="codCurso" Type="int" Mode="In" />
+          <Parameter Name="codCurso" Type="varchar" Mode="In" />
           <Parameter Name="codActividad" Type="int" Mode="In" />
           <Parameter Name="titulo" Type="varchar" Mode="In" />
           <Parameter Name="estado" Type="char" Mode="In" />
@@ -424,7 +424,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
         </Function>
         <Function Name="SP_TAREA_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="codTarea" Type="int" Mode="In" />
-          <Parameter Name="codCurso" Type="int" Mode="In" />
+          <Parameter Name="codCurso" Type="varchar" Mode="In" />
           <Parameter Name="codActividad" Type="int" Mode="In" />
           <Parameter Name="titulo" Type="varchar" Mode="In" />
           <Parameter Name="codPrioridad" Type="int" Mode="In" />
@@ -493,7 +493,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
             <Parameter Name="estado" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_ACTIVIDAD_CREATE">
-            <Parameter Name="codCurso" Mode="In" Type="Int32" />
+            <Parameter Name="codCurso" Mode="In" Type="String" />
             <Parameter Name="codUnidad" Mode="In" Type="Int32" />
             <Parameter Name="codSemana" Mode="In" Type="Int32" />
             <Parameter Name="titulo" Mode="In" Type="String" />
@@ -506,7 +506,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           </FunctionImport>
           <FunctionImport Name="SP_ACTIVIDAD_UPDATE">
             <Parameter Name="codActividad" Mode="In" Type="Int32" />
-            <Parameter Name="codCurso" Mode="In" Type="Int32" />
+            <Parameter Name="codCurso" Mode="In" Type="String" />
             <Parameter Name="codUnidad" Mode="In" Type="Int32" />
             <Parameter Name="codSemana" Mode="In" Type="Int32" />
             <Parameter Name="titulo" Mode="In" Type="String" />
@@ -515,7 +515,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
             <Parameter Name="usuarioModificacion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_TAREA_CREATE">
-            <Parameter Name="codCurso" Mode="In" Type="Int32" />
+            <Parameter Name="codCurso" Mode="In" Type="String" />
             <Parameter Name="codActividad" Mode="In" Type="Int32" />
             <Parameter Name="titulo" Mode="In" Type="String" />
             <Parameter Name="estado" Mode="In" Type="String" />
@@ -535,7 +535,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           </FunctionImport>
           <FunctionImport Name="SP_TAREA_UPDATE">
             <Parameter Name="codTarea" Mode="In" Type="Int32" />
-            <Parameter Name="codCurso" Mode="In" Type="Int32" />
+            <Parameter Name="codCurso" Mode="In" Type="String" />
             <Parameter Name="codActividad" Mode="In" Type="Int32" />
             <Parameter Name="titulo" Mode="In" Type="String" />
             <Parameter Name="codPrioridad" Mode="In" Type="Int32" />
@@ -551,7 +551,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Parameter Name="codigoTarea" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SP_CURSO_RETRIEVE" ReturnType="Collection(ticeModel.SP_CURSO_RETRIEVE_Result)">
-          <Parameter Name="codCurso" Mode="In" Type="Int32" />
+          <Parameter Name="codCurso" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_DOCUMENTO_CREATE">
             <Parameter Name="codigoCurso" Mode="In" Type="Int32" />
@@ -566,7 +566,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
             <Parameter Name="usuarioCreacion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_ACTIVIDAD_RETRIEVE_BY_CURSO2" ReturnType="Collection(ticeModel.SP_ACTIVIDAD_RETRIEVE_BY_CURSO2_Result)">
-          <Parameter Name="codCurso" Mode="In" Type="Int32" />
+          <Parameter Name="codCurso" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_ACTIVIDAD_RETRIEVE" ReturnType="Collection(ticeModel.SP_ACTIVIDAD_RETRIEVE_Result)">
           <Parameter Name="codActividad" Mode="In" Type="Int32" />
@@ -661,13 +661,12 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
             <Parameter Name="usuarioModificacion" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_ACTIVIDAD_RETRIEVE_BY_CURSO3" ReturnType="Collection(ticeModel.SP_ACTIVIDAD_RETRIEVE_BY_CURSO3_Result)">
-            <Parameter Name="idperiodo" Mode="In" Type="Int32" />
+            <Parameter Name="idperiodo" Mode="In" Type="String" />
             <Parameter Name="estado" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_PERIODO_RETRIEVE" ReturnType="Collection(ticeModel.SP_PERIODO_RETRIEVE_Result)">
             </FunctionImport>
           <EntitySet Name="Documento" EntityType="ticeModel.Documento" />
-          <EntitySet Name="Tarea" EntityType="ticeModel.Tarea" />
           <EntitySet Name="TipoDocumento" EntityType="ticeModel.TipoDocumento" />
           <EntitySet Name="Semana" EntityType="ticeModel.Semana" />
           <EntitySet Name="TipoRecurso" EntityType="ticeModel.TipoRecurso" />
@@ -741,15 +740,16 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
             <Parameter Name="semana" Mode="In" Type="String" />
             <Parameter Name="codDocente" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="AsignacionCurso" EntityType="ticeModel.AsignacionCurso" />
           <EntitySet Name="Curso" EntityType="ticeModel.Curso" />
           <EntitySet Name="Periodo" EntityType="ticeModel.Periodo" />
           <EntitySet Name="Direccion" EntityType="ticeModel.Direccion" />
           <EntitySet Name="Modalidad" EntityType="ticeModel.Modalidad" />
           <EntitySet Name="Capacitacion" EntityType="ticeModel.Capacitacion" />
+          <EntitySet Name="Tarea" EntityType="ticeModel.Tarea" />
+          <EntitySet Name="AsignacionCurso" EntityType="ticeModel.AsignacionCurso" />
         </EntityContainer>
         <ComplexType Name="SP_CURSO_RETRIEVE_Result">
-          <Property Type="Int32" Name="Codigo" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="Curso" Nullable="true" MaxLength="100" />
           <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
           <Property Type="String" Name="Periodo" Nullable="false" MaxLength="6" />
@@ -776,7 +776,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Property Type="String" Name="usuarioCreacion" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="usuarioModificacion" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="codActividad" Nullable="false" />
-          <Property Type="Int32" Name="codCurso" Nullable="true" />
+          <Property Type="String" Name="codCurso" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="estado" Nullable="true" MaxLength="1" />
           <Property Type="String" Name="DescEstado" Nullable="false" MaxLength="8" />
           <Property Type="Int32" Name="codUnidad" Nullable="true" />
@@ -793,7 +793,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Property Type="String" Name="usuarioCreacion" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="usuarioModificacion" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="codActividad" Nullable="false" />
-          <Property Type="Int32" Name="codCurso" Nullable="true" />
+          <Property Type="String" Name="codCurso" Nullable="true" MaxLength="20" />
           <Property Type="Int32" Name="codUnidad" Nullable="true" />
           <Property Type="String" Name="Unidad" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="codSemana" Nullable="true" />
@@ -936,7 +936,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Property Type="Int32" Name="codDocente" Nullable="false" />
         </ComplexType>
         <ComplexType Name="SP_ACTIVIDAD_RETRIEVE_BY_CURSO3_Result">
-          <Property Type="Int32" Name="Codigo" Nullable="false" />
+          <Property Type="String" Name="Codigo" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="Curso" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="Fecha" Nullable="true" MaxLength="11" />
           <Property Type="String" Name="Periodo" Nullable="false" MaxLength="6" />
@@ -964,27 +964,6 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="rutaDocumento" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="fechaCreacion" Type="DateTime" Precision="3" />
-          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
-          <Property Name="usuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="usuarioModificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Tarea">
-          <Key>
-            <PropertyRef Name="codTarea" />
-          </Key>
-          <Property Name="codTarea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="codCurso" Type="Int32" />
-          <Property Name="codActividad" Type="Int32" />
-          <Property Name="titulo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="porcentajeCompletado" Type="Int32" />
-          <Property Name="codTipoRecurso" Type="Int32" />
-          <Property Name="codRecurso" Type="Int32" />
-          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="fechaInicio" Type="DateTime" Precision="3" />
-          <Property Name="fechaFin" Type="DateTime" Precision="3" />
-          <Property Name="fechaRealCierre" Type="DateTime" Precision="3" />
           <Property Name="fechaCreacion" Type="DateTime" Precision="3" />
           <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
           <Property Name="usuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -1188,24 +1167,6 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
           <Property Type="Int32" Name="codDocente" Nullable="true" />
         </ComplexType>
-        <EntityType Name="AsignacionCurso">
-          <Key>
-            <PropertyRef Name="codAsignacionCurso" />
-          </Key>
-          <Property Name="codAsignacionCurso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="codCurso" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="codDocente" Type="Int32" />
-          <Property Name="codLineaNegocio" Type="Int32" />
-          <Property Name="codModalidad" Type="Int32" />
-          <Property Name="codPeriodo" Type="Int32" />
-          <Property Name="asignado" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="fechaCreacion" Type="DateTime" Precision="3" />
-          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
-          <Property Name="usuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="usuarioModificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="docDiseño" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-        </EntityType>
         <EntityType Name="Curso">
           <Key>
             <PropertyRef Name="codCurso" />
@@ -1264,6 +1225,45 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Property Name="fechaModificacióm" Type="DateTime" Precision="3" />
           <Property Name="usuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="usuarioModificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Tarea">
+          <Key>
+            <PropertyRef Name="codTarea" />
+          </Key>
+          <Property Name="codTarea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codCurso" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="codActividad" Type="Int32" />
+          <Property Name="titulo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="porcentajeCompletado" Type="Int32" />
+          <Property Name="codTipoRecurso" Type="Int32" />
+          <Property Name="codRecurso" Type="Int32" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="fechaInicio" Type="DateTime" Precision="3" />
+          <Property Name="fechaFin" Type="DateTime" Precision="3" />
+          <Property Name="fechaRealCierre" Type="DateTime" Precision="3" />
+          <Property Name="fechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AsignacionCurso">
+          <Key>
+            <PropertyRef Name="codAsignacionCurso" />
+          </Key>
+          <Property Name="codAsignacionCurso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="codCurso" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="codDocente" Type="Int32" />
+          <Property Name="codLineaNegocio" Type="Int32" />
+          <Property Name="codModalidad" Type="Int32" />
+          <Property Name="codPeriodo" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="asignado" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="fechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="fechaModificacion" Type="DateTime" Precision="3" />
+          <Property Name="usuarioCreacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="usuarioModificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="docDiseño" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1557,28 +1557,6 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tarea">
-            <EntityTypeMapping TypeName="ticeModel.Tarea">
-              <MappingFragment StoreEntitySet="Tarea">
-                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
-                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
-                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
-                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
-                <ScalarProperty Name="fechaRealCierre" ColumnName="fechaRealCierre" />
-                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
-                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
-                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
-                <ScalarProperty Name="codRecurso" ColumnName="codRecurso" />
-                <ScalarProperty Name="codTipoRecurso" ColumnName="codTipoRecurso" />
-                <ScalarProperty Name="porcentajeCompletado" ColumnName="porcentajeCompletado" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="titulo" ColumnName="titulo" />
-                <ScalarProperty Name="codActividad" ColumnName="codActividad" />
-                <ScalarProperty Name="codCurso" ColumnName="codCurso" />
-                <ScalarProperty Name="codTarea" ColumnName="codTarea" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TipoDocumento">
             <EntityTypeMapping TypeName="ticeModel.TipoDocumento">
               <MappingFragment StoreEntitySet="TipoDocumento">
@@ -1850,25 +1828,6 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="AsignacionCurso">
-            <EntityTypeMapping TypeName="ticeModel.AsignacionCurso">
-              <MappingFragment StoreEntitySet="AsignacionCurso">
-                <ScalarProperty Name="docDiseño" ColumnName="docDiseño" />
-                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
-                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
-                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
-                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="asignado" ColumnName="asignado" />
-                <ScalarProperty Name="codPeriodo" ColumnName="codPeriodo" />
-                <ScalarProperty Name="codModalidad" ColumnName="codModalidad" />
-                <ScalarProperty Name="codLineaNegocio" ColumnName="codLineaNegocio" />
-                <ScalarProperty Name="codDocente" ColumnName="codDocente" />
-                <ScalarProperty Name="codCurso" ColumnName="codCurso" />
-                <ScalarProperty Name="codAsignacionCurso" ColumnName="codAsignacionCurso" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Curso">
             <EntityTypeMapping TypeName="ticeModel.Curso">
               <MappingFragment StoreEntitySet="Curso">
@@ -1930,6 +1889,47 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
                 <ScalarProperty Name="codPeriodo" ColumnName="codPeriodo" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="codCapacitacion" ColumnName="codCapacitacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tarea">
+            <EntityTypeMapping TypeName="ticeModel.Tarea">
+              <MappingFragment StoreEntitySet="Tarea">
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="fechaRealCierre" ColumnName="fechaRealCierre" />
+                <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
+                <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="codRecurso" ColumnName="codRecurso" />
+                <ScalarProperty Name="codTipoRecurso" ColumnName="codTipoRecurso" />
+                <ScalarProperty Name="porcentajeCompletado" ColumnName="porcentajeCompletado" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="codActividad" ColumnName="codActividad" />
+                <ScalarProperty Name="codCurso" ColumnName="codCurso" />
+                <ScalarProperty Name="codTarea" ColumnName="codTarea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AsignacionCurso">
+            <EntityTypeMapping TypeName="ticeModel.AsignacionCurso">
+              <MappingFragment StoreEntitySet="AsignacionCurso">
+                <ScalarProperty Name="docDiseño" ColumnName="docDiseño" />
+                <ScalarProperty Name="usuarioModificacion" ColumnName="usuarioModificacion" />
+                <ScalarProperty Name="usuarioCreacion" ColumnName="usuarioCreacion" />
+                <ScalarProperty Name="fechaModificacion" ColumnName="fechaModificacion" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="asignado" ColumnName="asignado" />
+                <ScalarProperty Name="codPeriodo" ColumnName="codPeriodo" />
+                <ScalarProperty Name="codModalidad" ColumnName="codModalidad" />
+                <ScalarProperty Name="codLineaNegocio" ColumnName="codLineaNegocio" />
+                <ScalarProperty Name="codDocente" ColumnName="codDocente" />
+                <ScalarProperty Name="codCurso" ColumnName="codCurso" />
+                <ScalarProperty Name="codAsignacionCurso" ColumnName="codAsignacionCurso" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

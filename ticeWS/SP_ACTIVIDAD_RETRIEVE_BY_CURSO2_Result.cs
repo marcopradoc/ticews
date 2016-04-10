@@ -20,7 +20,7 @@ namespace ticeWS
         public string usuarioCreacion { get; set; }
         public string usuarioModificacion { get; set; }
         public int codActividad { get; set; }
-        public Nullable<int> codCurso { get; set; }
+        public string codCurso { get; set; }
         public string estado { get; set; }
         public string DescEstado { get; set; }
         public Nullable<int> codUnidad { get; set; }

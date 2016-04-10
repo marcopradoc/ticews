@@ -48,10 +48,10 @@ namespace ticeWS.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<SP_ACTIVIDAD_RETRIEVE_BY_CURSO3_Result> listarCursosxPeriodo(int? idperiodo, string estado)
+        public IEnumerable<SP_ACTIVIDAD_RETRIEVE_BY_CURSO3_Result> listarCursosxPeriodo2(string idperiodo, string estado)
         {
             if (idperiodo == null)
-                idperiodo = 0;
+                idperiodo = "";
 
             if (estado == null)
                 estado = "";
@@ -60,7 +60,7 @@ namespace ticeWS.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<SP_CURSO_RETRIEVE_Result> loadCurso(int codigo)
+        public IEnumerable<SP_CURSO_RETRIEVE_Result> loadCurso(string codigo)
         {
             return objapi.SP_CURSO_RETRIEVE(codigo).AsEnumerable();
         }

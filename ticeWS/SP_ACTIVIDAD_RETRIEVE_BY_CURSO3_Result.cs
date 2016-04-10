@@ -13,7 +13,7 @@ namespace ticeWS
     
     public partial class SP_ACTIVIDAD_RETRIEVE_BY_CURSO3_Result
     {
-        public int Codigo { get; set; }
+        public string Codigo { get; set; }
         public string Curso { get; set; }
         public string Fecha { get; set; }
         public string Periodo { get; set; }

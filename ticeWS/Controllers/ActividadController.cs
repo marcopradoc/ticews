@@ -24,7 +24,7 @@ namespace ticeWS.Controllers
         }
         
         [HttpGet]
-        public IEnumerable<SP_ACTIVIDAD_RETRIEVE_BY_CURSO2_Result> listarCursosxPeriodo(int codigoCurso)
+        public IEnumerable<SP_ACTIVIDAD_RETRIEVE_BY_CURSO2_Result> listarCursosxPeriodo(string codigoCurso)
         {
             return objapi.SP_ACTIVIDAD_RETRIEVE_BY_CURSO2(codigoCurso).AsEnumerable();
         }
@@ -40,28 +40,5 @@ namespace ticeWS.Controllers
         {
             return objapi.SP_ACTIVIDAD_DELETE(codigoActividad);
         }
-        //[HttpGet]
-        //public string borrarActividad(int codigoActividad)
-        //{
-        //    try
-        //    {
-        //        objapi.SP_ACTIVIDAD_DELETE(codigoActividad);
-        //        return "ok";
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return "Error";
-
-        //    }
-        //}
-
-        //[HttpGet]
-        //public int listarActividadesxCurso(int codigoCurso, int codigoPeriodo, int codigoModalidad)
-        //{
-
-        //    return objapi.SP_ACTIVIDAD_RETRIEVE_BY_CURSO(codigoCurso, codigoPeriodo, codigoModalidad);
-
-        //}
-        
     }
 }

@@ -19,7 +19,7 @@ namespace ticeWS
         public Nullable<int> codDocente { get; set; }
         public Nullable<int> codLineaNegocio { get; set; }
         public Nullable<int> codModalidad { get; set; }
-        public Nullable<int> codPeriodo { get; set; }
+        public string codPeriodo { get; set; }
         public string asignado { get; set; }
         public string estado { get; set; }
         public Nullable<System.DateTime> fechaCreacion { get; set; }

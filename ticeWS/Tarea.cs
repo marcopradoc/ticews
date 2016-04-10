@@ -15,7 +15,7 @@ namespace ticeWS
     public partial class Tarea
     {
         public int codTarea { get; set; }
-        public Nullable<int> codCurso { get; set; }
+        public string codCurso { get; set; }
         public Nullable<int> codActividad { get; set; }
         public string titulo { get; set; }
         public string estado { get; set; }

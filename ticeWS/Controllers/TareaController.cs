@@ -21,7 +21,7 @@ namespace ticeWS.Controllers
         }
 
         [HttpGet]
-        public int ingresarTarea(int codigoCurso, int codigoActividad , string titulo, string estado, int porcentajecompletado, int codigoTipRec, int codigoRecuros ,string descripcion,DateTime fechaInicio,  DateTime fechaFin, string usuarioCreacion)
+        public int ingresarTarea(string codigoCurso, int codigoActividad , string titulo, string estado, int porcentajecompletado, int codigoTipRec, int codigoRecuros ,string descripcion,DateTime fechaInicio,  DateTime fechaFin, string usuarioCreacion)
         {
 
             return objapi.SP_TAREA_CREATE(codigoCurso, codigoActividad, titulo,  estado,  porcentajecompletado, codigoTipRec, codigoRecuros, descripcion, fechaInicio,  fechaFin,  usuarioCreacion);
@@ -43,7 +43,7 @@ namespace ticeWS.Controllers
         }
 
         [HttpGet]
-        public int actualizarTarea(int codigoCurso, int codigoActividad, string titulo, string estado, int porcentajecompletado, int codigoTipRec, int codigoRecuros, string descripcion, DateTime fechaInicio, DateTime fechaFin, string usuarioCreacion)
+        public int actualizarTarea(string codigoCurso, int codigoActividad, string titulo, string estado, int porcentajecompletado, int codigoTipRec, int codigoRecuros, string descripcion, DateTime fechaInicio, DateTime fechaFin, string usuarioCreacion)
         {
 
             return objapi.SP_TAREA_CREATE(codigoCurso, codigoActividad, titulo, estado, porcentajecompletado, codigoTipRec, codigoRecuros, descripcion, fechaInicio, fechaFin, usuarioCreacion);
@@ -51,7 +51,7 @@ namespace ticeWS.Controllers
         }
 
         [HttpPost]
-        public int actualizarTareaPost(int codigoCurso, int codigoActividad, string titulo, string estado, int porcentajecompletado, int codigoTipRec, int codigoRecuros, string descripcion, DateTime fechaInicio, DateTime fechaFin, string usuarioCreacion)
+        public int actualizarTareaPost(string codigoCurso, int codigoActividad, string titulo, string estado, int porcentajecompletado, int codigoTipRec, int codigoRecuros, string descripcion, DateTime fechaInicio, DateTime fechaFin, string usuarioCreacion)
         {
             return objapi.SP_TAREA_CREATE(codigoCurso, codigoActividad, titulo, estado, porcentajecompletado, codigoTipRec, codigoRecuros, descripcion, fechaInicio, fechaFin, usuarioCreacion);
         }

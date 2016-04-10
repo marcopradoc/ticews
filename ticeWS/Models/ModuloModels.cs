@@ -12,7 +12,7 @@ namespace ticeWS.Models
     public class ActividadViewModel
     {
         public Nullable<int> codigoActividad { get; set; }
-        public Nullable<int> codigoCurso { get; set; }
+        public string codigoCurso { get; set; }
         public Nullable<int> codigoTipoCurso { get; set; }
         public string titulo { get; set; }
         public string fechaInicio { get; set; }
@@ -45,7 +45,7 @@ namespace ticeWS.Models
     public class TareaViewModel
     {
         public Nullable<int> codigoTarea { get; set; }
-        public Nullable<int> codigoCurso { get; set; }
+        public string codigoCurso { get; set; }
         public Nullable<int> codigoActividad { get; set; }
         public string titulo { get; set; }
         public Nullable<int> codigoPrioridad { get; set; }
