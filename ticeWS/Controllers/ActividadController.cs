@@ -30,13 +30,13 @@ namespace ticeWS.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<SP_ACTIVIDAD_RETRIEVE_Result> obtenerActividad(int codigoCurso,int codigoActividad)
+        public IEnumerable<SP_ACTIVIDAD_RETRIEVE_Result> obtenerActividad(string codigoCurso,int codigoActividad)
         {
             return objapi.SP_ACTIVIDAD_RETRIEVE(codigoActividad).AsEnumerable();
         }
 
         [HttpPost]
-        public int eliminarActividad(int codigoCurso, int codigoActividad)
+        public int eliminarActividad(string codigoCurso, int codigoActividad)
         {
             return objapi.SP_ACTIVIDAD_DELETE(codigoActividad);
         }

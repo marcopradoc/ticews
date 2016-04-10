@@ -813,7 +813,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Property Type="String" Name="usuarioCreacion" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="usuarioModificacion" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="codTarea" Nullable="false" />
-          <Property Type="Int32" Name="codCurso" Nullable="true" />
+          <Property Type="String" Name="codCurso" Nullable="true" MaxLength="20" />
           <Property Type="Int32" Name="codActividad" Nullable="true" />
           <Property Type="Int32" Name="codRecurso" Nullable="true" />
         </ComplexType>
@@ -831,7 +831,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Property Type="String" Name="usuarioCreacion" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="usuarioModificacion" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="codTarea" Nullable="false" />
-          <Property Type="Int32" Name="codCurso" Nullable="true" />
+          <Property Type="String" Name="codCurso" Nullable="true" MaxLength="20" />
           <Property Type="Int32" Name="codActividad" Nullable="true" />
           <Property Type="Int32" Name="codRecurso" Nullable="true" />
         </ComplexType>
