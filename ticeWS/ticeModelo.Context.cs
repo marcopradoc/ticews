@@ -905,5 +905,38 @@ namespace ticeWS
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_MATERIALTRABAJO_RETRIEVE_BY_TAREA_Result>("SP_MATERIALTRABAJO_RETRIEVE_BY_TAREA", codTareaParameter);
         }
+    
+        public virtual ObjectResult<SP_ACTAINFO_RETRIVE_BY_PROVEEDOR_Result> SP_ACTAINFO_RETRIVE_BY_PROVEEDOR(Nullable<int> codProveedor)
+        {
+            var codProveedorParameter = codProveedor.HasValue ?
+                new ObjectParameter("codProveedor", codProveedor) :
+                new ObjectParameter("codProveedor", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_ACTAINFO_RETRIVE_BY_PROVEEDOR_Result>("SP_ACTAINFO_RETRIVE_BY_PROVEEDOR", codProveedorParameter);
+        }
+    
+        public virtual ObjectResult<SP_GRUPOPAGO_LOAD_Result> SP_GRUPOPAGO_LOAD()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GRUPOPAGO_LOAD_Result>("SP_GRUPOPAGO_LOAD");
+        }
+    
+        public virtual ObjectResult<SP_STRING_LOAD_Result> SP_STRING_LOAD()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_STRING_LOAD_Result>("SP_STRING_LOAD");
+        }
+    
+        public virtual ObjectResult<SP_TIPODOCUMENTO_LOAD_Result> SP_TIPODOCUMENTO_LOAD()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_TIPODOCUMENTO_LOAD_Result>("SP_TIPODOCUMENTO_LOAD");
+        }
+    
+        public virtual ObjectResult<SP_TAREAS_RETRIEVE_BY_PROVEEDOR_Result> SP_TAREAS_RETRIEVE_BY_PROVEEDOR(Nullable<int> codProveedor)
+        {
+            var codProveedorParameter = codProveedor.HasValue ?
+                new ObjectParameter("codProveedor", codProveedor) :
+                new ObjectParameter("codProveedor", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_TAREAS_RETRIEVE_BY_PROVEEDOR_Result>("SP_TAREAS_RETRIEVE_BY_PROVEEDOR", codProveedorParameter);
+        }
     }
 }

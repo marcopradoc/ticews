@@ -255,12 +255,14 @@
       <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActaController.cs" />
     <Compile Include="Controllers\ActividadController.cs" />
     <Compile Include="Controllers\AsignacionCursoController.cs" />
     <Compile Include="Controllers\AulaController.cs" />
     <Compile Include="Controllers\CapacitacionController.cs" />
     <Compile Include="Controllers\CapacitacionMaterialController.cs" />
     <Compile Include="Controllers\CapacitacionParticipanteController.cs" />
+    <Compile Include="Controllers\ContratoController.cs" />
     <Compile Include="Controllers\CursoController.cs" />
     <Compile Include="Controllers\DetalleCapacitacionController.cs" />
     <Compile Include="Controllers\DireccionController.cs" />
@@ -271,6 +273,7 @@
     <Compile Include="Controllers\HorarioController.cs" />
     <Compile Include="Controllers\MaterialController.cs" />
     <Compile Include="Controllers\ModalidadController.cs" />
+    <Compile Include="Controllers\PagoController.cs" />
     <Compile Include="Controllers\PeriodoController.cs" />
     <Compile Include="Controllers\SedeController.cs" />
     <Compile Include="Controllers\SemanaController.cs" />
@@ -309,6 +312,9 @@
       <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="Semana.cs">
+      <DependentUpon>ticeModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_ACTAINFO_RETRIVE_BY_PROVEEDOR_Result.cs">
       <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_ACTIVIDAD_RETRIEVE_BY_CURSO2_Result.cs">
@@ -362,6 +368,9 @@
     <Compile Include="SP_FOCUSGROUP_RETRIEVE_BY_CURSO_Result.cs">
       <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_GRUPOPAGO_LOAD_Result.cs">
+      <DependentUpon>ticeModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_HORARIO_RETRIEVE_BY_CURSO_PERIODO_MODALIDAD_DOCENTE_Result.cs">
       <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>
@@ -389,6 +398,9 @@
     <Compile Include="SP_SEMANA_RETRIEVE_Result.cs">
       <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_STRING_LOAD_Result.cs">
+      <DependentUpon>ticeModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_TALLER_RETRIEVE_BY_CAPACITACION_Result.cs">
       <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>
@@ -401,6 +413,9 @@
     <Compile Include="SP_TAREAS_RETRIEVE_BY_ACTAS_Result.cs">
       <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_TAREAS_RETRIEVE_BY_PROVEEDOR_Result.cs">
+      <DependentUpon>ticeModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_TAREA_RETRIEVE_BY_ACTIVIDAD_Result.cs">
       <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>
@@ -408,6 +423,9 @@
       <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_TIEMPO_RETRIEVE_Result.cs">
+      <DependentUpon>ticeModelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_TIPODOCUMENTO_LOAD_Result.cs">
       <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>
     <Compile Include="SP_TIPORECURSO_LOAD_Result.cs">
@@ -523,13 +541,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Acta\" />
     <Folder Include="Views\Aula\" />
+    <Folder Include="Views\Contrato\" />
     <Folder Include="Views\Curso\" />
     <Folder Include="Views\DetalleCapacitacion\" />
     <Folder Include="Views\Direccion\" />
     <Folder Include="Views\FocusGroup\" />
     <Folder Include="Views\Horario\" />
     <Folder Include="Views\Modalidad\" />
+    <Folder Include="Views\Pago\" />
     <Folder Include="Views\Periodo\" />
     <Folder Include="Views\Sede\" />
     <Folder Include="Views\Semana\" />

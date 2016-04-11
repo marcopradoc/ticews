@@ -197,6 +197,9 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Property Name="descripcion" Type="varchar" MaxLength="50" />
           <Property Name="fechaCreacion" Type="datetime" />
         </EntityType>
+        <Function Name="SP_ACTAINFO_RETRIVE_BY_PROVEEDOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codProveedor" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_ACTIVIDAD_CREATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="codCurso" Type="varchar" Mode="In" />
           <Parameter Name="codUnidad" Type="int" Mode="In" />
@@ -356,6 +359,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Parameter Name="codCurso" Type="varchar" Mode="In" />
           <Parameter Name="estado" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="SP_GRUPOPAGO_LOAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_HORARIO_RETRIEVE_BY_CURSO_PERIODO_MODALIDAD_DOCENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="codCurso" Type="varchar" Mode="In" />
           <Parameter Name="codModalidad" Type="int" Mode="In" />
@@ -396,6 +400,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
         <Function Name="SP_PERIODO_RETRIEVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_SEDE_RETRIEVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_SEMANA_RETRIEVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_STRING_LOAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_TALLER_RETRIEVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_TALLER_RETRIEVE_BY_CAPACITACION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="codigoCapacitacion" Type="int" Mode="In" />
@@ -444,7 +449,11 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Parameter Name="estadoTarea" Type="char" Mode="In" />
           <Parameter Name="estadoActa" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_TAREAS_RETRIEVE_BY_PROVEEDOR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codProveedor" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_TIEMPO_RETRIEVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_TIPODOCUMENTO_LOAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_TIPORECURSO_LOAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_UNIDAD_RETRIEVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="ticeModelStoreContainer">
@@ -752,6 +761,15 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <EntitySet Name="AsignacionCurso" EntityType="ticeModel.AsignacionCurso" />
           <FunctionImport Name="SP_MATERIALTRABAJO_RETRIEVE_BY_TAREA" ReturnType="Collection(ticeModel.SP_MATERIALTRABAJO_RETRIEVE_BY_TAREA_Result)">
           <Parameter Name="codTarea" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_ACTAINFO_RETRIVE_BY_PROVEEDOR" ReturnType="Collection(ticeModel.SP_ACTAINFO_RETRIVE_BY_PROVEEDOR_Result)">
+          <Parameter Name="codProveedor" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_GRUPOPAGO_LOAD" ReturnType="Collection(ticeModel.SP_GRUPOPAGO_LOAD_Result)" />
+          <FunctionImport Name="SP_STRING_LOAD" ReturnType="Collection(ticeModel.SP_STRING_LOAD_Result)" />
+          <FunctionImport Name="SP_TIPODOCUMENTO_LOAD" ReturnType="Collection(ticeModel.SP_TIPODOCUMENTO_LOAD_Result)" />
+          <FunctionImport Name="SP_TAREAS_RETRIEVE_BY_PROVEEDOR" ReturnType="Collection(ticeModel.SP_TAREAS_RETRIEVE_BY_PROVEEDOR_Result)">
+            <Parameter Name="codProveedor" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SP_CURSO_RETRIEVE_Result">
@@ -1132,6 +1150,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Property Type="String" Name="EstadoActa" Nullable="false" MaxLength="9" />
           <Property Type="Int32" Name="codTarea" Nullable="false" />
           <Property Type="String" Name="codigo" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="codProveedor" Nullable="false" />
         </ComplexType>
         <EntityType Name="ActaConformidad">
           <Key>
@@ -1276,6 +1295,37 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Property Type="Int32" Name="codMaterialTrabajo" Nullable="false" />
           <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
           <Property Type="String" Name="estado" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="SP_ACTAINFO_RETRIVE_BY_PROVEEDOR_Result">
+          <Property Type="Int32" Name="codContrato" Nullable="false" />
+          <Property Type="String" Name="titulo" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="vigencia" Nullable="true" MaxLength="23" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="152" />
+          <Property Type="String" Name="RUC" Nullable="false" MaxLength="11" />
+          <Property Type="Decimal" Name="importe" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="subtotal" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="total" Nullable="true" Precision="38" Scale="3" />
+          <Property Type="Decimal" Name="renta" Nullable="true" Precision="38" Scale="3" />
+        </ComplexType>
+        <ComplexType Name="SP_GRUPOPAGO_LOAD_Result">
+          <Property Type="Int32" Name="codGrupoPago" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="SP_STRING_LOAD_Result">
+          <Property Type="Int32" Name="codString" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="SP_TIPODOCUMENTO_LOAD_Result">
+          <Property Type="Int32" Name="codTipoDocumento" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_TAREAS_RETRIEVE_BY_PROVEEDOR_Result">
+          <Property Type="Int32" Name="codTarea" Nullable="false" />
+          <Property Type="String" Name="titulo" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="cantidad" Nullable="false" />
+          <Property Type="Decimal" Name="importe" Nullable="false" Precision="38" Scale="2" />
+          <Property Type="Decimal" Name="total" Nullable="false" Precision="38" Scale="2" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1784,6 +1834,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
                 <ScalarProperty Name="EstadoActa" ColumnName="EstadoActa" />
                 <ScalarProperty Name="codTarea" ColumnName="codTarea" />
                 <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="codProveedor" ColumnName="codProveedor" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1952,6 +2003,57 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
                 <ScalarProperty Name="codMaterialTrabajo" ColumnName="codMaterialTrabajo" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_ACTAINFO_RETRIVE_BY_PROVEEDOR" FunctionName="ticeModel.Store.SP_ACTAINFO_RETRIVE_BY_PROVEEDOR">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_ACTAINFO_RETRIVE_BY_PROVEEDOR_Result">
+                <ScalarProperty Name="codContrato" ColumnName="codContrato" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="vigencia" ColumnName="vigencia" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="RUC" ColumnName="RUC" />
+                <ScalarProperty Name="importe" ColumnName="importe" />
+                <ScalarProperty Name="subtotal" ColumnName="subtotal" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="renta" ColumnName="renta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GRUPOPAGO_LOAD" FunctionName="ticeModel.Store.SP_GRUPOPAGO_LOAD">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_GRUPOPAGO_LOAD_Result">
+                <ScalarProperty Name="codGrupoPago" ColumnName="codGrupoPago" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_STRING_LOAD" FunctionName="ticeModel.Store.SP_STRING_LOAD">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_STRING_LOAD_Result">
+                <ScalarProperty Name="codString" ColumnName="codString" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_TIPODOCUMENTO_LOAD" FunctionName="ticeModel.Store.SP_TIPODOCUMENTO_LOAD">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_TIPODOCUMENTO_LOAD_Result">
+                <ScalarProperty Name="codTipoDocumento" ColumnName="codTipoDocumento" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_TAREAS_RETRIEVE_BY_PROVEEDOR" FunctionName="ticeModel.Store.SP_TAREAS_RETRIEVE_BY_PROVEEDOR">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_TAREAS_RETRIEVE_BY_PROVEEDOR_Result">
+                <ScalarProperty Name="codTarea" ColumnName="codTarea" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="importe" ColumnName="importe" />
+                <ScalarProperty Name="total" ColumnName="total" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
