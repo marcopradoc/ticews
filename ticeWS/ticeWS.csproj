@@ -365,6 +365,9 @@
     <Compile Include="SP_HORARIO_RETRIEVE_BY_CURSO_PERIODO_MODALIDAD_DOCENTE_Result.cs">
       <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_MATERIALTRABAJO_RETRIEVE_BY_TAREA_Result.cs">
+      <DependentUpon>ticeModelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_MATERIAL_CAPACITACION_RETRIEVE_BY_CAPACITACION_Result.cs">
       <DependentUpon>ticeModelo.tt</DependentUpon>
     </Compile>

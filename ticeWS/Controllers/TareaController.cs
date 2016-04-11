@@ -74,5 +74,12 @@ namespace ticeWS.Controllers
 
             return objapi.SP_TAREAS_RETRIEVE_BY_ACTAS(codModalidad, estadoTarea, estadoActa).AsEnumerable();
         }
+
+        [HttpGet]
+        public IEnumerable<SP_MATERIALTRABAJO_RETRIEVE_BY_TAREA_Result> listarEstadosTarea(int codTarea)
+        {
+
+            return objapi.SP_MATERIALTRABAJO_RETRIEVE_BY_TAREA(codTarea).AsEnumerable();
+        }
     }
 }

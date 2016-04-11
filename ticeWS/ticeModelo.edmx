@@ -376,6 +376,9 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
         <Function Name="SP_MATERIAL_RETRIEVE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="codigoTaller" Type="int" Mode="In" />
         </Function>
+        <Function Name="SP_MATERIALTRABAJO_RETRIEVE_BY_TAREA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="codTarea" Type="int" Mode="In" />
+        </Function>
         <Function Name="SP_MODALIDAD_LOAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_PARTICIPANTES_CAPACITACION_CREATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="codigoDocente" Type="int" Mode="In" />
@@ -747,6 +750,9 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <EntitySet Name="Capacitacion" EntityType="ticeModel.Capacitacion" />
           <EntitySet Name="Tarea" EntityType="ticeModel.Tarea" />
           <EntitySet Name="AsignacionCurso" EntityType="ticeModel.AsignacionCurso" />
+          <FunctionImport Name="SP_MATERIALTRABAJO_RETRIEVE_BY_TAREA" ReturnType="Collection(ticeModel.SP_MATERIALTRABAJO_RETRIEVE_BY_TAREA_Result)">
+          <Parameter Name="codTarea" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SP_CURSO_RETRIEVE_Result">
           <Property Type="String" Name="Codigo" Nullable="true" MaxLength="20" />
@@ -783,6 +789,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Property Type="String" Name="unidad" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="codSemana" Nullable="true" />
           <Property Type="String" Name="semana" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="porcentajeAvance" Nullable="false" />
         </ComplexType>
         <ComplexType Name="SP_ACTIVIDAD_RETRIEVE_Result">
           <Property Type="String" Name="Curso" Nullable="true" MaxLength="100" />
@@ -804,7 +811,6 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
         <ComplexType Name="SP_TAREA_RETRIEVE_BY_ACTIVIDAD_Result">
           <Property Type="String" Name="titulo" Nullable="true" MaxLength="200" />
           <Property Type="String" Name="estado" Nullable="true" MaxLength="1" />
-          <Property Type="Int32" Name="porcentajeCompletado" Nullable="true" />
           <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
           <Property Type="String" Name="fechaInicio" Nullable="true" MaxLength="11" />
           <Property Type="String" Name="fechaFin" Nullable="true" MaxLength="11" />
@@ -816,6 +822,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Property Type="String" Name="codCurso" Nullable="true" MaxLength="20" />
           <Property Type="Int32" Name="codActividad" Nullable="true" />
           <Property Type="Int32" Name="codRecurso" Nullable="true" />
+          <Property Type="Int32" Name="porcentajeAvance" Nullable="false" />
         </ComplexType>
         <ComplexType Name="SP_TAREA_RETRIEVE_Result">
           <Property Type="String" Name="Curso" Nullable="true" MaxLength="100" />
@@ -1265,6 +1272,11 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
           <Property Name="usuarioModificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="docDiseño" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
+        <ComplexType Name="SP_MATERIALTRABAJO_RETRIEVE_BY_TAREA_Result">
+          <Property Type="Int32" Name="codMaterialTrabajo" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="estado" Nullable="true" MaxLength="100" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1295,7 +1307,6 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
               <ComplexTypeMapping TypeName="ticeModel.SP_TAREA_RETRIEVE_BY_ACTIVIDAD_Result">
                 <ScalarProperty Name="titulo" ColumnName="titulo" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="porcentajeCompletado" ColumnName="porcentajeCompletado" />
                 <ScalarProperty Name="descripcion" ColumnName="descripcion" />
                 <ScalarProperty Name="fechaInicio" ColumnName="fechaInicio" />
                 <ScalarProperty Name="fechaFin" ColumnName="fechaFin" />
@@ -1307,6 +1318,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
                 <ScalarProperty Name="codCurso" ColumnName="codCurso" />
                 <ScalarProperty Name="codActividad" ColumnName="codActividad" />
                 <ScalarProperty Name="codRecurso" ColumnName="codRecurso" />
+                <ScalarProperty Name="porcentajeAvance" ColumnName="porcentajeAvance" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1362,6 +1374,7 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
                 <ScalarProperty Name="unidad" ColumnName="unidad" />
                 <ScalarProperty Name="codSemana" ColumnName="codSemana" />
                 <ScalarProperty Name="semana" ColumnName="semana" />
+                <ScalarProperty Name="porcentajeAvance" ColumnName="porcentajeAvance" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -1933,6 +1946,15 @@ advertencia 6002: La tabla o vista 'tice.dbo.TipoDocumento' no tiene definida ni
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_MATERIALTRABAJO_RETRIEVE_BY_TAREA" FunctionName="ticeModel.Store.SP_MATERIALTRABAJO_RETRIEVE_BY_TAREA">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ticeModel.SP_MATERIALTRABAJO_RETRIEVE_BY_TAREA_Result">
+                <ScalarProperty Name="codMaterialTrabajo" ColumnName="codMaterialTrabajo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

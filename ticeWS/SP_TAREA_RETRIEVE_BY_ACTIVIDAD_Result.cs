@@ -15,7 +15,6 @@ namespace ticeWS
     {
         public string titulo { get; set; }
         public string estado { get; set; }
-        public Nullable<int> porcentajeCompletado { get; set; }
         public string descripcion { get; set; }
         public string fechaInicio { get; set; }
         public string fechaFin { get; set; }
@@ -27,5 +26,6 @@ namespace ticeWS
         public string codCurso { get; set; }
         public Nullable<int> codActividad { get; set; }
         public Nullable<int> codRecurso { get; set; }
+        public int porcentajeAvance { get; set; }
     }
 }

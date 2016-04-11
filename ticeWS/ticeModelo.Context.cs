@@ -896,5 +896,14 @@ namespace ticeWS
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_HORARIO_RETRIEVE_BY_CURSO_PERIODO_MODALIDAD_DOCENTE_Result>("SP_HORARIO_RETRIEVE_BY_CURSO_PERIODO_MODALIDAD_DOCENTE", codCursoParameter, codModalidadParameter, semanaParameter, codDocenteParameter);
         }
+    
+        public virtual ObjectResult<SP_MATERIALTRABAJO_RETRIEVE_BY_TAREA_Result> SP_MATERIALTRABAJO_RETRIEVE_BY_TAREA(Nullable<int> codTarea)
+        {
+            var codTareaParameter = codTarea.HasValue ?
+                new ObjectParameter("codTarea", codTarea) :
+                new ObjectParameter("codTarea", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_MATERIALTRABAJO_RETRIEVE_BY_TAREA_Result>("SP_MATERIALTRABAJO_RETRIEVE_BY_TAREA", codTareaParameter);
+        }
     }
 }

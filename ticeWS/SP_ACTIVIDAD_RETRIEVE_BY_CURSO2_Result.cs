@@ -27,5 +27,6 @@ namespace ticeWS
         public string unidad { get; set; }
         public Nullable<int> codSemana { get; set; }
         public string semana { get; set; }
+        public int porcentajeAvance { get; set; }
     }
 }
